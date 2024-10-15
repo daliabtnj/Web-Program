@@ -1,0 +1,67 @@
+/* Navigation menu styles */
+header ul.main-nav {
+    list-style: none;           /* Removes bullets from the list */
+    background: #22438C;        /* Sets background color of the nav */
+    padding: 10px;              /* Adds padding for better spacing */
+    text-align: center;         /* Centers the navigation items */
+    margin: 0;                  /* Removes default margin */
+}
+
+/* List items in the navigation (horizontal layout) */
+header ul.main-nav li {
+    display: inline-block;      /* Keeps the nav items horizontal */
+    position: relative;         /* Allows dropdown to position relative to parent */
+    margin: 0 15px;             /* Adds space between nav items */
+}
+
+/* Pushes the Log in item to the right */
+header ul.main-nav .login-right {
+    margin-left: auto;          /* Moves Log in to the far right */
+}
+
+/* Styles for the navigation links */
+header ul.main-nav li a {
+    display: block;             /* Ensures the whole area is clickable */
+    text-align: center;         /* Centers text inside the links */
+    color: #FFF;                /* White text for visibility */
+    text-decoration: none;      /* Removes underline from links */
+    padding: 10px;              /* Adds padding around the links */
+}
+
+/* Dropdown menu container (hidden by default) */
+header ul.main-nav li ul.dropdown {
+    background: #22438C;        /* Same background as nav */
+    position: absolute;         /* Positions dropdown under the parent */
+    top: 100%;                  /* Aligns it below the parent item */
+    left: 0;
+    display: none;              /* Hidden initially, shown on hover */
+    z-index: 999;               /* Ensures dropdown appears above other content */
+    padding: 0;
+    min-width: 100px;           /* Ensures dropdown is at least 100px wide */
+}
+
+/* Styles for each item in the dropdown */
+header ul.main-nav li ul.dropdown li {
+    display: block;             /* Stacks items vertically */
+    text-align: left;           /* Aligns text to the left */
+    padding: 10px;              /* Adds padding for better spacing */
+}
+
+/* Show dropdown when hovering over parent */
+header ul.main-nav li.has-dropdown:hover ul.dropdown {
+    display: block;             /* Displays dropdown on hover */
+}
+
+/* Dropdown link styles */
+header ul.main-nav li ul.dropdown li a {
+    color: white;               /* White text for dropdown links */
+    padding: 10px;              /* Adds padding around dropdown links */
+    display: block;             /* Ensures the whole link area is clickable */
+    text-decoration: none;      /* Removes underline from dropdown links */
+}
+
+/* Styles for the services list */
+ul.services-list {
+    list-style: disc;           /* Adds bullet points to list items */
+    padding-left: 20px;         /* Adds space on the left for bullets */
+}
