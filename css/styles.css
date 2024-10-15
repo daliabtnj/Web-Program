@@ -1,0 +1,61 @@
+
+/* header navigation menu */
+header ul.main-nav {
+    list-style: none;
+    background: #22438C;
+    padding: 10px;
+    text-align: center;
+}
+
+/* list items in the header */
+header ul.main-nav li {
+    display: inline-block;
+    position: relative;
+}
+
+/* links inside the list items */
+header ul.main-nav li a {
+    display: block;
+    text-align: center;
+    color: #FFF;
+    text-decoration: none;
+    padding: 10px;
+}
+
+/* dropdown items (Sign In, Sign Up) */
+header ul.main-nav li ul.dropdown {
+    background: #22438C;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    z-index: 999;
+    padding: 0;
+    min-width: 100px;  /* Ensures dropdown menu is not too wide */
+}
+
+/* individual dropdown list items */
+header ul.main-nav li ul.dropdown li {
+    display: block;
+    text-align: left;
+    padding: 10px;
+}
+
+/* Show the dropdown on hover */
+header ul.main-nav li.has-dropdown:hover ul.dropdown {
+    display: block;
+}
+
+/* styles for dropdown links */
+header ul.main-nav li ul.dropdown li a {
+    color: white;
+    padding: 10px;
+    display: block;
+    text-decoration: none;
+}
+
+/* styles for services list to avoid conflict */
+ul.services-list {
+    list-style: disc;
+    padding-left: 20px;
+}
