@@ -37,5 +37,6 @@ This project, part of the SOEN 287 course, develops a web-based system for servi
 ### Team Members
 - Dalia Betinjaneh (40200966)
 - Mariana Bousaleh ()
+- Victor Romano Franca (40228849)
 
 
