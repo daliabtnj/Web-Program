@@ -35,7 +35,7 @@ This project, part of the SOEN 287 course, develops a web-based system for servi
    - Your default web browser will open, displaying your website.
 
 ### Team Members
-Dalia Betinjaneh (40200966)
-Mariana Bousaleh ()
+- Dalia Betinjaneh (40200966)
+- Mariana Bousaleh ()
 
 
