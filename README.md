@@ -12,7 +12,7 @@ This project, part of the SOEN 287 course, develops a web-based system for servi
 
 ## Technologies
 
-- **HTML**, **CSS**, **JavaScript** (if applicable), **Git**
+- **HTML**, **CSS**, **JavaScript**, **Git**
 
 ## Getting Started
 
