@@ -7,7 +7,10 @@ For now, I am responsible for the forms and user interaction on the client's sid
 ### To Work On (Client Side)
 
 - Create and link javascript file
-
+- SignUp Form
+  - Validate input
+  - Handle form submission
+  - Error handling
 - Sign In/Sign out forms
   - Validate input
   - Handle form submission
