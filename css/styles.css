@@ -59,3 +59,100 @@ ul.services-list {
     list-style: disc;
     padding-left: 20px;
 }
+
+
+/* Style for the logo in the navigation */
+.nav-logo {
+    width: 20px; /* Adjust the size of the logo */
+    height: auto;
+    vertical-align: middle; /* Align the logo vertically with the text */
+    margin-right: 5px; /* Add some space between the logo and the text */
+}
+
+
+
+
+
+
+
+/* To add images in the home page */
+
+
+/* Container for the images */
+.image-gallery {
+    display: flex;
+    flex-direction: column; /* Stack images vertically */
+    margin-left: auto; /* Push the images to the right */
+    width: 30%; /* Define a fixed width for the image gallery */
+    padding-left: 20px; /* Space between main content and images */
+    align-self: flex-start; /* Align the images to the top of the container */
+}
+
+
+/* Style each figure */
+.image-gallery figure {
+    margin-bottom: 20px; /* Space between the images */
+    text-align: center; /* Center the caption under the image */
+}
+
+/* Style the images */
+.image-gallery img {
+    width: 100%; /* Make the image take up the full width of the gallery container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: Rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+}
+
+
+/* Style the captions */
+.image-gallery figcaption {
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+}
+
+
+/* Title above the image gallery */
+.image-gallery-title {
+    text-align: left; 
+    font-style: italic;
+    color: #555;
+    margin-top: 0; 
+    padding-top: 0px; 
+
+}
+
+
+/* Title after the image gallery */
+.image-gallery-end-title {
+    text-align: left; 
+    font-style: italic;
+    color: #555;
+}
+
+
+
+/* add an image in section About Us */
+/* Centering the About Us section image */
+.about-us-image-container {
+    text-align: center; /* Center-align the content inside the container */
+    margin: 20px auto; /* Add some space around the image container */
+    margin-top: 300px;
+}
+
+.about-us-image-container img {
+    width: 300px; /* Fixed width for the image */
+    height: auto; /* Maintain the aspect ratio */
+    display: inline-block; /* Center the image */
+    border-radius: 10px; /* Optional: Adds rounded corners */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+}
+
+
+
+
+
+
+
+
+
