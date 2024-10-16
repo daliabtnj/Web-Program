@@ -1,4 +1,4 @@
-# SOEN 287 Web Program Project
+# Web Program Project
 
 ## Overview
 
