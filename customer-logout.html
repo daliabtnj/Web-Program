@@ -11,35 +11,23 @@
 </head>
 
 <body>
-  <header>
-    <ul class="main-nav">
-        <li><a href="index.html">Home</a></li>
-        <li> <a href="services.html">Services</a></li>
-        <li><a href="about-us.html">About us</a></li>
-        <li><a href="contact.html">Contact us</a></li>
-        <li class="has-dropdown">
-          <a href="#">
-              <img src="https://bysperfeccionoral.com/wp-content/uploads/2020/01/136-1366211_group-of-10-guys-login-user-icon-png.jpg" alt="Login Logo" class="nav-logo">Client &#x25BE;
-          </a>
-          <ul class="dropdown">
-            <li><a href="customer-dashboard.html">Client Space</a></li>
-            <li><a href="customer-account.html">My Account</a></li>
-            <li><a href="customer-requests.html">My Request</a></li>
-            <li><a href="customer-bills&receipts.html">Bills & Receipts</a></li>
-            <li><a href="customer-logout.html">Log Out</a></li>
-          </ul>
-      </li>
-    </ul>
-</header>
+    <!--This is used for the drop down menu-->
+    <div id="header-placeholder"></div>
+    <script>
+        fetch('header.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+          });
+      </script>
 
 <main>
-  <h1>Welcome to your client space !</h1>
-  <h2>Account overview</h2>
-  <p><a href="customer-account.html"><button>My Account</button></a>
-    <a href="customer-requests.html"><button>My Requests</button></a>
-    <a href="customer-bills&receipts.html"><button>Bills & Receipts</button></a>
-    <a href="customer-logout.html"><button>Log Out</button></a>
+  <h1>Thanks for using our services, you are logged out !</h1>
+  <p>
+    <a href="signin.html"><button>Sign In</button></a>
+    <a href="index.html"><button>Home</button></a>
   </p>
+
 
 </main>
 
