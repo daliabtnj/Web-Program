@@ -20,12 +20,11 @@ sign up as a client or as an admin-->
     <div id="header-placeholder"></div>
     <script>
         fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
+          .then(response => response.text())
+          .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
-        });
-    </script>
-    
+          });
+      </script>
 
     <!--Main section for signing in
     Allows to choose between client or administrator to log in-->
