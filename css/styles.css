@@ -99,7 +99,6 @@ ul.services-list {
 }
 
 /* To add images in the home page */
-
 /* Container for the images */
 .image-gallery {
     display: flex;
@@ -159,7 +158,6 @@ ul.services-list {
     width: 300px; 
     height: auto; 
     display: inline-block; 
-    /
 }
 
 
