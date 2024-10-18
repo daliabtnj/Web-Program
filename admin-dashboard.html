@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">:
     <title>Generic Company - Admin Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- footer CSS file  -->
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
@@ -20,8 +22,15 @@
           });
       </script>
 
-    <!--footer-->
-    <footer><p>&copy; SOEN287 Generic Company. All rights reserved.</p></footer>
+<!--This is used for the footer-->
+<div id="footer-placeholder"></div>
+<script>
+    fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+    });
+</script>
 
 </body>
 </html>
