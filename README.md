@@ -41,4 +41,3 @@ This project, part of the SOEN 287 course, develops a web-based system for servi
 - Heena Patel (40257513)
 
 
-

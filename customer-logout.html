@@ -14,16 +14,20 @@
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
     <script>
-        fetch('customer-header.html')
+        fetch('header.html')
           .then(response => response.text())
           .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
           });
       </script>
 
-
 <main>
-  <h1>My Requests</h1>
+  <h1>Thanks for using our services, you are logged out !</h1>
+  <p>
+    <a href="signin.html"><button>Sign In</button></a>
+    <a href="index.html"><button>Home</button></a>
+  </p>
+
 
 </main>
 
