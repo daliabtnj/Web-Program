@@ -1,11 +1,10 @@
-<!--This file creates basic homepage to welcome users-->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">:
-    <title>Generic Company - Admin Dashboard</title>
+    <title>Generic Company - Customer Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
@@ -15,13 +14,22 @@
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
     <script>
-        fetch('header.html')
+        fetch('admin-header.html')
           .then(response => response.text())
           .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
           });
       </script>
 
+  <h1>Admin Dashboard</h1>
+  <h2>Account overview</h2>
+  <p><a href="admin-manage-services.html"><button>Manage Services</button></a>
+    <a href="admin-view-requests.html"><button>Customers Requests</button></a>
+    <a href="admin-bills.html"><button>Manage Bills</button></a>
+    <a href="admin-buisness-settings.html"><button>Buisness Settings</button></a>
+    <a href="customer-logout.html"><button>Log Out</button></a>
+  </p>
+  
 <!--This is used for the footer-->
 <div id="footer-placeholder"></div>
 <script>
