@@ -5,6 +5,10 @@ footer {
     color: #fff;
     padding: 20px 25;
     text-align: center;
+    text-align: center;
+    font-family: "Verdana"; 
+    font-size: 16px;               
+    line-height: 1.6; 
 }
 
 .footer-container {

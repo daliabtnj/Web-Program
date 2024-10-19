@@ -12,14 +12,13 @@
 </head>
 
 <body>
-    <!-- Placeholder for the header -->
     <div id="header-placeholder"></div>
 <!-- Load the header dynamically -->
 <script>
     // Simulating user login status with localStorage for now
     // REPLACE WITH REAL LOGGED IN LOGIC
     let isLoggedIn = localStorage.getItem('isLoggedIn'); 
-  
+
     // Fetch and display the correct header based on login status
     if (isLoggedIn === 'true') {
         // Fetch the logged-in header
@@ -36,7 +35,7 @@
                 document.getElementById('header-placeholder').innerHTML = data;
             });
     }
-   </script>
+</script>
 
     <!--Main Section-->
     <main>
@@ -55,6 +54,7 @@
         <img src="https://www.genmaint.co.uk/wp-content/uploads/2018/01/SHUTTERSTOCK-2.jpg" alt="About Us Image">
     </div>
     </main>
+
 
     <!--This is used for the footer-->
 <div id="footer-placeholder"></div>

@@ -5,7 +5,7 @@
 /* header navigation menu */
 header ul.main-nav {
     list-style: none;
-    background: #822f3a;
+    background: #600d1a;
     padding: 10px;
     display: flex; /* Align items horizontally */
     justify-content: flex-start; /* Align the content to the left */
@@ -29,10 +29,10 @@ header ul.main-nav li a {
     display: block;
     text-align: center;
     color: #FFF;
-    font-family: "Verdana", serif; /* Elegant font */
+    font-family: "Verdana": /* Elegant font */
     font-style: italic; /* Slightly cursive */
     font-weight: 600; /* Semi-bold */
-    font-size: 18px;
+    font-size: 20px;
     padding: 10px;
     text-decoration: none;
     transition: background-color 0.3s ease; /* Smooth background transition */
@@ -47,20 +47,23 @@ header ul.main-nav li a:focus {
 
 /* Apply a darker background when the link is hovered over */
 header ul.main-nav li a:hover {
-    background-color: #722533; /* Slightly darker shade on hover */
+    background-color: #73343f; /* Slightly darker shade on hover */
     border-radius: 5px;
 }
 
 /* dropdown items (Sign In, Sign Up) */
 header ul.main-nav li ul.dropdown {
-    background: #822f3a;
+    background: #600d1a;
     position: absolute;
     top: 100%;
     left: 0;
     display: none;
     z-index: 999;
     padding: 0;
-    min-width: 100px; /* Ensures dropdown menu is not too wide */
+    min-width: 100px; 
+    max-width: 200px;
+    font-size: 16px;
+
 }
 
 /* individual dropdown list items */
@@ -81,7 +84,7 @@ header ul.main-nav li ul.dropdown li a {
     padding: 10px;
     display: block;
     text-decoration: none;
-    font-family: "Verdana", serif; /* Font for dropdown items */
+    font-family: "Verdana"; /* Font for dropdown items */
 }
 
 /* Style for the logo in the navigation */
@@ -161,10 +164,15 @@ ul.services-list {
 }
 
 
-
-
-
-
+/* background color light gray*/
+body {
+    background-color: #f7f7f7; 
+    font-family: "Verdana";
+    font-size: 16px;               
+    font-weight: 450;              
+    line-height: 1.5;              
+    color: #333; 
+}
 
 
 
