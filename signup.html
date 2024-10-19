@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/login-signup.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
+
 </head>
 
 <body>
@@ -28,8 +29,8 @@
         <section class="signup-box">
             <h1>Sign Up</h1>
             <p>Create a new account</p>
-            <div id="error"></div>
-            <form id="form" action="customer-dashboard.html" method="POST">
+            <div id="error" style="color: red;"></div>
+            <form id="form">
                 <label for="name">Name:</label><br>
                 <input type="text" placeholder="enter name" id="name" name="name" required><br>
 
@@ -61,6 +62,8 @@
                 document.getElementById('footer-placeholder').innerHTML = data;
             });
     </script>
+
+    <script type="text/javascript" src="./javascript/client.js"></script>
 
 </body>
 
