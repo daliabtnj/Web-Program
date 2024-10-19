@@ -1,0 +1,84 @@
+/* This is used for the styling of the footer*/
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 25;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: row; /* Force items into a horizontal row */
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    flex-wrap: nowrap; /* Prevent items from wrapping */
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 25%; /* Each section takes up 25% of the container width */
+    margin: 10px;
+    text-align: left;
+}
+
+.footer-section h4 {
+    margin-bottom: 15px;
+    font-size: 1.3rem; 
+    font-weight: bold; 
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Social Media Icons */
+.social-icons {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    justify-content: flex-start;
+}
+
+.social-icons li {
+    margin-right: 10px;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Footer bottom */
+.footer-bottom {
+    margin-top: 20px;
+    border-top: 1px solid #444;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+/* put footer at the bottom and keep extra space */
+main {
+    margin-bottom: 300px; /* Add space between content and footer */
+}

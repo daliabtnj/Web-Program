@@ -1,0 +1,71 @@
+/* This is used for the styling of sign up, sign in */
+
+/* Container for the signup box */
+.signup-box {
+    background-color: #f5f5f5; /* Light gray background */
+    padding: 30px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 10px; /* Rounded corners */
+    width: 300px; /* Adjust the width of the box */
+    margin: 0 auto; /* Center the box horizontally */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    text-align: left; /* Align text to the left */
+}
+
+/* Labels for the form */
+.signup-box label {
+    display: block; /* Make labels block elements */
+    margin-bottom: 0; /* Add space between label and input */
+    font-weight: bold; /* Optional: Make labels bold */
+}
+
+/* Input fields for email and password */
+.signup-box input[type="text"], .signup-box input[type="password"], .signup-box input[type="email"] {
+    width: 100%;
+    padding: 12px; /* Increase padding for a bigger box */
+    margin-bottom: 15px;
+    border: 2px solid #ccc; /* Slightly thicker border */
+    border-radius: 8px; /* More rounded corners */
+    box-sizing: border-box;
+    font-size: 14px; /* Set a consistent font size */
+}
+
+/* Hover effect for the inputs */
+.signup-box input[type="text"]:focus, .signup-box input[type="password"]:focus, .signup-box input[type="email"]:focus {
+    border-color: #007bff; /* Change border color when focused */
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* Add a subtle glow */
+}
+
+
+
+
+
+
+
+
+/* For log in */
+
+
+
+/* Style for the login box */
+.login-box {
+    background-color: #f5f5f5; /* Light gray background */
+    padding: 30px;
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 10px; /* Rounded corners */
+    width: 300px; /* Adjust the width of the box */
+    margin: 0 auto; /* Center the box horizontally */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+    text-align: center; /* Center the text inside the box */
+}
+
+
+/* Style for the logo in the navigation */
+.nav-logo {
+    width: 40px; /* Set a fixed width for the logo */
+    height: auto; /* Maintain the aspect ratio */
+    vertical-align: middle; /* Align the logo vertically with the text */
+    margin-right: 5px; /* Add some space between the logo and the text */
+}
+

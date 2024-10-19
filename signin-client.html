@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">:
     <title>Generic Company - Sign in client</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- login-signup CSS file  -->
+    <link rel="stylesheet" href="css/login-signup.css">
+    <!-- footer CSS file  -->
+    <link rel="stylesheet" href="css/footer.css">
+
 </head>
 
 <body>
@@ -14,17 +19,17 @@
     <div id="header-placeholder"></div>
     <script>
         fetch('header.html')
-          .then(response => response.text())
-          .then(data => {
+        .then(response => response.text())
+        .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
-          });
-      </script>
+        });
+    </script>
 
     <!--Main section for signing in
     Allows to choose between client or administrator to log in-->
     <main>
-        <section>
-            <h1>Sign in</h1>
+        <section class="signup-box">
+            <h1>Client Sign In</h1>
             <form action="customer-dashboard.html" method="POST"> 
                 <!--Username-->
                 <label for="email">Email:</label><br>
@@ -35,16 +40,23 @@
                 <input type="password" placeholder="enter password" id="password" name="password" required><br>
 
                 <!--sign in button-->
-                <br><button type="submit">SIGN IN</button>
+                <br><button type="submit">submit</button>
             </form>
-            <p>sign in as admin <a href="signin-admin.html">here</a>,
+            <p>Sign in as admin <a href="signin-admin.html">here</a>,
             sign up <a href="signup.html">here</a>!</p>
 
         </section>
     </main>
 
-    <!--footer-->
-    <footer><p>&copy; SOEN287 Generic Company. All rights reserved.</p></footer>
 
+<!--This is used for the footer-->
+<div id="footer-placeholder"></div>
+<script>
+    fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+    });
+</script>
 </body>
 </html>
