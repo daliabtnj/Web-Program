@@ -6,10 +6,12 @@ footer {
     padding: 20px 25;
     text-align: center;
     text-align: center;
-    font-family: "Verdana"; 
+    font-family: "Verdana", serif; 
     font-size: 16px;               
     line-height: 1.6; 
+    margin-top: auto; /* Pushes footer to the bottom */
 }
+
 
 .footer-container {
     display: flex;

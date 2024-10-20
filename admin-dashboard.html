@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/styles.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
+    <!-- admin-client CSS file  -->
+    <link rel="stylesheet" href="css/admin-client.css">
 </head>
 
 <body>
@@ -21,15 +23,21 @@
           });
       </script>
 
+<!--wrap into a main tag to be able to align the footer correctly-->
+<main>
   <h1>Admin Dashboard</h1>
   <h2>Account overview</h2>
-  <p><a href="admin-manage-services.html"><button>Manage Services</button></a>
+  <div class="button-section">
+  <a href="admin-manage-services.html"><button>Manage Services</button></a>
     <a href="admin-view-requests.html"><button>Customers Requests</button></a>
     <a href="admin-bills.html"><button>Manage Bills</button></a>
     <a href="admin-buisness-settings.html"><button>Buisness Settings</button></a>
     <a href="customer-logout.html"><button>Log Out</button></a>
-  </p>
+</div>
+</main>
   
+
+
 <!--This is used for the footer-->
 <div id="footer-placeholder"></div>
 <script>
@@ -41,4 +49,5 @@
 </script>
 
 </body>
+
 </html>
