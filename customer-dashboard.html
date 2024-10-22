@@ -2,46 +2,49 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generic Company - Customer Dashboard</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- footer CSS file  -->
-    <link rel="stylesheet" href="css/footer.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generic Company - Customer Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- footer CSS file  -->
+  <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
-    <!--This is used for the drop down menu-->
-    <div id="header-placeholder"></div>
-    <script>
+  <!--This is used for the drop down menu-->
+  <div id="header-placeholder"></div>
+  <script>
 
-        fetch('customer-header.html')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-    });
-    </script>
+    fetch('customer-header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+  </script>
 
-<main>
-  <h1>Welcome to your client space !</h1>
-  <h2>Account overview</h2>
-  <p><a href="customer-account.html"><button>My Account</button></a>
-    <a href="customer-requests.html"><button>My Requests</button></a>
-    <a href="customer-bills&receipts.html"><button>Bills & Receipts</button></a>
-    <a href="customer-logout.html"><button>Log Out</button></a>
-  </p> 
+  <main>
+    <h1>Welcome to your client space !</h1>
+    <h2>Account overview</h2>
+    <p><a href="customer-account.html"><button>My Account</button></a>
+      <a href="customer-requests.html"><button>My Requests</button></a>
+      <a href="customer-bills&receipts.html"><button>Bills & Receipts</button></a>
+      <a href="customer-logout.html"><button>Log Out</button></a>
+    </p>
 
-</main>
+  </main>
 
-<!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script>
+  <!--This is used for the footer-->
+  <div id="footer-placeholder"></div>
+  <script>
     fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
+      .then(response => response.text())
+      .then(data => {
         document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
+      });
+  </script>
+
+  <script type="text/javascript" src="./javascript/client.js"></script>
 
 </body>
+
 </html>
