@@ -1,5 +1,17 @@
 /* This is used for the sytling of the header and added images */
 
+/* Container for the logo */
+.logo-container {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+/* Style for the header logo */
+.header-logo {
+    width: 150px; 
+    height: auto;
+    vertical-align: middle;
+}
 
 /* header navigation menu */
 header ul.main-nav {

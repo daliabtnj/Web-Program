@@ -7,7 +7,7 @@
     border: 1px solid #ccc; 
     border-radius: 10px; /* Rounded corners */
     width: 300px;  
-    margin: 0 auto; /* Center the box horizont */
+    margin: 0 auto; /* Center the box horizontal; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* shadow */
     text-align: left; 
 }
@@ -22,19 +22,19 @@
 /* Input fields for email and password */
 .signup-box input[type="text"], .signup-box input[type="password"], .signup-box input[type="email"] {
     width: 100%;
-    padding: 12px; /* Increase padding for a bigger box */
+    padding: 12px; 
     margin-bottom: 15px;
-    border: 2px solid #ccc; /* Slightly thicker border */
-    border-radius: 8px; /* More rounded corners */
+    border: 2px solid #ccc; /* thicker border */
+    border-radius: 8px; /* rounded corners */
     box-sizing: border-box;
-    font-size: 14px; /* Set a consistent font size */
+    font-size: 14px; 
 }
 
 /* Hover effect for the inputs */
 .signup-box input[type="text"]:focus, .signup-box input[type="password"]:focus, .signup-box input[type="email"]:focus {
-    border-color: #007bff; /* Change border color when focused */
-    outline: none; /* Remove the default outline */
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); /* Add a subtle glow */
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2); 
 }
 
 
@@ -52,19 +52,19 @@
 .login-box {
     background-color: #f5f5f5; /* Light gray background */
     padding: 30px;
-    border: 1px solid #ccc; /* Light border */
+    border: 1px solid #ccc; 
     border-radius: 10px; /* Rounded corners */
-    width: 300px; /* Adjust the width of the box */
-    margin: 0 auto; /* Center the box horizontally */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
-    text-align: center; /* Center the text inside the box */
+    width: 300px; 
+    margin: 0 auto; /* Center the box horizontal */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* shadow for depth */
+    text-align: center; /* Center the text in the box */
 }
 
 
 /* Style for the logo in the navigation */
 .nav-logo {
-    width: 40px; /* Set a fixed width for the logo */
-    height: auto; /* Maintain the aspect ratio */
-    vertical-align: middle; /* Align the logo vertically with the text */
-    margin-right: 5px; /* Add some space between the logo and the text */
+    width: 40px; 
+    height: auto; 
+    vertical-align: middle; 
+    margin-right: 5px; /*  space between logo and text */
 }
