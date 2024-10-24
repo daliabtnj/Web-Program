@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/admin-client.css">
 </head>
 
+
 <body>
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
@@ -23,6 +24,7 @@
           });
       </script>
 
+<<<<<<< HEAD
 <!--wrap into a main tag to be able to align the footer correctly-->
 <main>
   <h1>Admin Dashboard</h1>
@@ -36,6 +38,22 @@
 </div>
 </main>
   
+=======
+
+<!--This is used to display the different options for admins-->
+<div class = "adminDashboard-container">
+
+    <!--Quick Links-->
+    <h1>Admin Dashboard</h1>
+    <h2>Account overview</h2>
+    <p><a href="admin-manage-services.html"><button>Manage Services</button></a>
+      <a href="admin-view-requests.html"><button>Customers Requests</button></a>
+      <a href="admin-bills.html"><button>Manage Bills</button></a>
+      <a href="admin-buisness-settings.html"><button>Buisness Settings</button></a>
+      <a href="customer-logout.html"><button>Log Out</button></a>
+    </p>
+    
+>>>>>>> f7e4d744fa9785645b39371b28bdb0de34faed71
 
 
 <!--This is used for the footer-->
@@ -47,6 +65,8 @@
         document.getElementById('footer-placeholder').innerHTML = data;
     });
 </script>
+
+
 
 </body>
 
