@@ -1,3 +1,5 @@
+/* This is used to style the buttons on the admin and client dashboard */
+
 /* Main container alignment */
 main {
     display: flex;
@@ -9,10 +11,10 @@ main {
 
 /* Align text to the left */
 .text-section {
-    width: 100%; /* Ensures full width */
+    width: 100%; 
     text-align: left;
     margin-bottom: 20px;
-    padding-left: 20px; /* Add some padding if needed */
+    padding-left: 20px;
 }
 
 /* Button section aligned to the left */
@@ -20,7 +22,7 @@ main {
     display: flex;
     justify-content: flex-start; /* Aligns buttons to the left */
     gap: 20px;
-    flex-wrap: wrap; /* If needed, allows buttons to wrap */
+    flex-wrap: wrap; 
 }
 
 /* Styling the buttons (same as before) */

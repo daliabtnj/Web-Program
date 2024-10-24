@@ -1,6 +1,5 @@
 /* This is used for the sytling of the header and added images */
 
-/* This is used for the styling of the header and added images */
 
 /* header navigation menu */
 header ul.main-nav {
@@ -9,7 +8,7 @@ header ul.main-nav {
     padding: 10px;
     display: flex; /* Align items horizontally */
     justify-content: flex-start; /* Align the content to the left */
-    align-items: center; /* Vertically center items */
+    align-items: center;
 }
 
 /* list items in the header */
@@ -21,7 +20,7 @@ header ul.main-nav li {
 
 /* Push the Log In/Sign In to the right */
 header ul.main-nav li.has-dropdown {
-    margin-left: auto; /* Push this list item to the right */
+    margin-left: auto; 
 }
 
 /* links inside the list items */
@@ -29,20 +28,20 @@ header ul.main-nav li a {
     display: block;
     text-align: center;
     color: #FFF;
-    font-family: "Verdana", serif; /* Elegant font */
-    font-style: italic; /* Slightly cursive */
-    font-weight: 600; /* Semi-bold */
+    font-family: "Verdana", serif; 
+    font-style: italic; 
+    font-weight: 600; 
     font-size: 20px;
     padding: 10px;
     text-decoration: none;
     transition: background-color 0.3s ease; /* Smooth background transition */
 }
 
-/* Apply a darker background when the link is clicked (active state) */
+/* Apply a darker background when the link is clicked */
 header ul.main-nav li a:active,
 header ul.main-nav li a:focus {
-    background-color: #600d1a; /* Darker color */
-    border-radius: 5px; /* Optional: add rounded corners */
+    background-color: #600d1a; 
+    border-radius: 5px; 
 }
 
 /* Apply a darker background when the link is hovered over */
@@ -84,14 +83,14 @@ header ul.main-nav li ul.dropdown li a {
     padding: 10px;
     display: block;
     text-decoration: none;
-    font-family: "Verdana", serif; /* Font for dropdown items */
+    font-family: "Verdana", serif; 
 }
 
 /* Style for the logo in the navigation */
 .nav-logo {
     width: 50px; /* Adjust the size of the logo */
     height: auto;
-    vertical-align: middle; /* Align the logo vertically with the text */
+    vertical-align: middle; 
     margin-right: 5px; /* Add some space between the logo and the text */
 }
 
@@ -173,6 +172,4 @@ body {
     line-height: 1.5;              
     color: #333; 
 }
-
-
 

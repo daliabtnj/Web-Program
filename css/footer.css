@@ -20,12 +20,12 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 30px;
-    flex-wrap: nowrap; /* Prevent items from wrapping */
+    flex-wrap: nowrap; 
 }
 
 .footer-section {
     flex: 1;
-    min-width: 25%; /* Each section takes up 25% of the container width */
+    min-width: 25%; 
     margin: 10px;
     text-align: left;
 }
