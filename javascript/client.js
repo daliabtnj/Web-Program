@@ -1,55 +1,52 @@
 // Sign-Up Form Validation
 
 // Sign-Up Page required information
-const name = document.getElementById('name').value;
-const email = document.getElementById('email').value;
-const phone = document.getElementById('phone').value;
-const password = document.getElementById('password').value;
-const password_repeat = document.getElementById('password-repeat').value;
-const form = document.getElementById('form');
-const errors = document.getElementById('error');
 
-let client = {
-    'name': name,
-    'email': email,
-    'phone': phone,
-    'password': password,
-};
-
-// let client_arr = [];
+const name = document.getElementById('name');
+const email = document.getElementById('email');
+const phone = document.getElementById('phone');
+const password = document.getElementById('password');
+const password_repeat = document.getElementById('password-repeat');
 
 
 
+var isLoggedIn = false;
 
 // Error Handling and Form Validation
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let errorMessages = [];
-    errors.innerText = '';
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('form');
 
-    // If the password does not match the password confirmation, throw error
-    if (password_repeat != password) {
-        errorMessages.push('Passwords do not match.');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let errorMessages = [];
+            const errors = document.getElementById('error');
+            errors.innerText = '';
+
+            // If the password does not match the password confirmation, throw error
+            if (password_repeat.value != password.value) {
+                errorMessages.push('Passwords do not match.');
+            }
+
+            // If there are any errors with the Sign Up screen, display them
+            if (errorMessages.length > 0) {
+                errors.innerText = errorMessages.join(', ')
+            }
+            else {
+
+                isLoggedIn = true;
+                console.log("Form is valid. Redirecting...");
+                window.location.href = "customer-dashboard.html";   // redirect to customer dashboard
+            }
+
+        });
     }
-
-    // If there are any errors with the Sign Up screen, display them
-    if (errorMessages.length > 0) {
-        errors.innerText = errorMessages.join(', ')
-    }
-    else {
-        // client_arr.push(client);
-
-        // client = JSON.stringify(client);
-
-        localStorage.setItem("client", JSON.stringify(client))
-
-        let newClient = localStorage.getItem("client");
-
-
-        console.log("Form is valid. Redirecting...");
-        window.location.href = "customer-dashboard.html";   // redirect to customer dashboard
-        console.log(JSON.parse(newClient));
-    }
-
 });
+
+
+
+// testing loop to check if user is logged in
+// while (isLoggedIn === true) {
+//     console.log(`User: ${}`);
+// }
 
