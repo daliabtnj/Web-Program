@@ -12,14 +12,13 @@
 </head>
 
 <body>
-    <!-- Placeholder for the header -->
     <div id="header-placeholder"></div>
 <!-- Load the header dynamically -->
 <script>
     // Simulating user login status with localStorage for now
     // REPLACE WITH REAL LOGGED IN LOGIC
     let isLoggedIn = localStorage.getItem('isLoggedIn'); 
-  
+
     // Fetch and display the correct header based on login status
     if (isLoggedIn === 'true') {
         // Fetch the logged-in header
@@ -36,25 +35,32 @@
                 document.getElementById('header-placeholder').innerHTML = data;
             });
     }
-   </script>
+</script>
 
     <!--Main Section-->
     <main>
-        <h1>About us</h1>
-        <p>This is our generic ocompany's story. We are a good company that provides good services since 1987. 
-            We are dedicated to our loyal customers. Our generic company is one of the best in its field and has done tone of great things.
-        </p>
-        <p>
-            Our company is in the top #1 of its field. We hope you will love the generic services our company provides.
-        </p>
-        <p>
-            This project is made for SOEN 287 class at Concordia University. Through this website, customers and administrators can perform several tasks.
-        </p>
+        <h1>About Us</h1>
+        <p>ServiceHub is a platform designed to provide businesses with a versatile, user-friendly system to manage and showcase different kinds of services online.</p>
+        <p>Whether you run a small cleaning company or a large firm, our service management system simplifies customer interactions, billing, client requests, and much more — all within a secure interface!</p>
+        
+        <br>
+        
+        <h3>History & Achievements</h3>
+        <p>Founded by four university colleagues passionate about computer science and innovation, our platform aims to simplify how service businesses operate.</p>
+        <p>With a strong focus on flexibility and reliability, we’ve become a top choice for companies seeking effective service management solutions.</p>
+    
+    
+
+
+
+
+
         <!-- Insert an image-->
     <div class="about-us-image-container">
         <img src="https://www.genmaint.co.uk/wp-content/uploads/2018/01/SHUTTERSTOCK-2.jpg" alt="About Us Image">
     </div>
     </main>
+
 
     <!--This is used for the footer-->
 <div id="footer-placeholder"></div>
