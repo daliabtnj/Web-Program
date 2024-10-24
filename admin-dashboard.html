@@ -3,12 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">:
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generic Company - Customer Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
 </head>
+
 
 <body>
     <!--This is used for the drop down menu-->
@@ -21,15 +22,22 @@
           });
       </script>
 
-  <h1>Admin Dashboard</h1>
-  <h2>Account overview</h2>
-  <p><a href="admin-manage-services.html"><button>Manage Services</button></a>
-    <a href="admin-view-requests.html"><button>Customers Requests</button></a>
-    <a href="admin-bills.html"><button>Manage Bills</button></a>
-    <a href="admin-buisness-settings.html"><button>Buisness Settings</button></a>
-    <a href="customer-logout.html"><button>Log Out</button></a>
-  </p>
-  
+
+<!--This is used to display the different options for admins-->
+<div class = "adminDashboard-container">
+
+    <!--Quick Links-->
+    <h1>Admin Dashboard</h1>
+    <h2>Account overview</h2>
+    <p><a href="admin-manage-services.html"><button>Manage Services</button></a>
+      <a href="admin-view-requests.html"><button>Customers Requests</button></a>
+      <a href="admin-bills.html"><button>Manage Bills</button></a>
+      <a href="admin-buisness-settings.html"><button>Buisness Settings</button></a>
+      <a href="customer-logout.html"><button>Log Out</button></a>
+    </p>
+    
+
+
 <!--This is used for the footer-->
 <div id="footer-placeholder"></div>
 <script>
@@ -39,6 +47,8 @@
         document.getElementById('footer-placeholder').innerHTML = data;
     });
 </script>
+
+
 
 </body>
 </html>
