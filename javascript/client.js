@@ -1,16 +1,5 @@
 // Sign-Up Form Validation
 
-
-
-
-
-// var isLoggedIn = false;
-
-// var current_user_name;
-// var current_user_email;
-// var current_user_phone;
-// var current_user_password;
-
 // Error Handling and Form Validation
 document.addEventListener('DOMContentLoaded', () => {
     // Sign-Up Page required information
@@ -39,25 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 errors.innerText = errorMessages.join(', ')
             }
             else {
-                // window.localStorage.setItem("user_name", name.value);
-                // window.localStorage.setItem("user_email", email.value);
-                // window.localStorage.setItem("user_phone", phone.value);
-                // window.localStorage.setItem("user_password", password.value);
-
-                // current_user_name = window.localStorage.getItem("user_name");
-                // current_user_email = window.localStorage.getItem("user_email");
-                // current_user_phone = window.localStorage.getItem("user_phone");
-                // current_user_password = window.localStorage.getItem("user_password");
-
-
-
-
-                // isLoggedIn = true;
                 console.log("Form is valid. Redirecting...");
                 window.location.href = "customer-dashboard.html";   // redirect to customer dashboard
-
-                // console.log(`User First Name: ${current_user_name}\n`);
-                // console.log(`User Email Name: ${current_user_email}\n`);
 
             }
 
@@ -65,11 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// // testing loop to check if user is logged in
-// while (isLoggedIn === true) {
-//     console.log(`User First Name: ${current_user_name}\n`);
-//     console.log(`User Email Name: ${current_user_email}\n`);
-// }
 
 
 
