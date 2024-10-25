@@ -12,9 +12,9 @@ For now, I am responsible for the forms and user interaction on the client's sid
   - Handle form submission ✅
   - Error handling ✅
 - Sign In/Sign out forms
-  - Validate input
-  - Handle form submission
-  - Error handling
+  - Validate input ⚠️
+  - Handle form submission ✅
+  - Error handling ✅
 - Request Service functionality
   - Capture user requests for services
   - Store user requests temporarily.
@@ -28,3 +28,9 @@ For now, I am responsible for the forms and user interaction on the client's sid
 
 - Handle customer requests
 - Handle service completion
+
+### NOTES
+- Hardcode info: 
+  - var isLoggedIn = true if form is handled.
+  - Have 3 predefined emails and passwords as existing clients.
+  - Create html for book-services (copy paste customer-dashboard and fix it up).

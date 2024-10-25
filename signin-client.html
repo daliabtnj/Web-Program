@@ -19,10 +19,10 @@
     <div id="header-placeholder"></div>
     <script>
         fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
     </script>
 
     <!--Main section for signing in
@@ -30,7 +30,8 @@
     <main>
         <section class="signup-box">
             <h1>Client Sign In</h1>
-            <form action="customer-dashboard.html" method="POST"> 
+            <div id="error" style="color: red;"></div>
+            <form id="client-sign-in-form">
                 <!--Username-->
                 <label for="email">Email:</label><br>
                 <input type="email" placeholder="enter email" id="email" name="email" required><br>
@@ -43,20 +44,23 @@
                 <br><button type="submit">submit</button>
             </form>
             <p>Sign in as admin <a href="signin-admin.html">here</a>,
-            sign up <a href="signup.html">here</a>!</p>
+                sign up <a href="signup.html">here</a>!</p>
 
         </section>
     </main>
 
 
-<!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script>
-    fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
+    <!--This is used for the footer-->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            });
+    </script>
+
+    <script type="text/javascript" src="./javascript/client.js"></script>
 </body>
+
 </html>

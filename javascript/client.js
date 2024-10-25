@@ -9,10 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const phone = document.getElementById('phone');
     const password = document.getElementById('password');
     const password_repeat = document.getElementById('password-repeat');
-    const form = document.getElementById('form');
+    const clientSignUpForm = document.getElementById('client-sign-up-form');
+    const clientSignInForm = document.getElementById('client-sign-in-form');
 
-    if (form) {
-        form.addEventListener('submit', (e) => {
+    if (clientSignUpForm) {
+        clientSignUpForm.addEventListener('submit', (e) => {
             e.preventDefault();
             let errorMessages = [];
             const errors = document.getElementById('error');
@@ -25,15 +26,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // If there are any errors with the Sign Up screen, display them
             if (errorMessages.length > 0) {
-                errors.innerText = errorMessages.join(', ')
+                errors.innerText = errorMessages.join(', ');
             }
             else {
                 console.log("Form is valid. Redirecting...");
                 window.location.href = "customer-dashboard.html";   // redirect to customer dashboard
 
             }
-
         });
+    }
+
+    if (clientSignInForm) {
+        clientSignInForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let errorMessages = [];
+            const errors = document.getElementById('error');
+            errors.innerText = '';
+
+            if (errorMessages.length > 0) {
+                errors.innerText = errorMessages.join(', ');
+            }
+            else {
+                console.log("Form is valid. Redirecting...");
+                window.location.href = "customer-dashboard.html";
+            }
+        })
     }
 });
 
