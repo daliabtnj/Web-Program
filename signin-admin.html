@@ -31,10 +31,7 @@
     <main>
         <section class="signup-box">
             <h1>Admin Sign In</h1>
-
-            <!-- Login action from admin.js (JavaScript file)-->
-            <form id="admin-login-form" onsubmit = "loginAdmin(event)">
-
+            <form action="admin-dashboard.html" method="GET"> 
                 <!--Username-->
                 <label for="email">Email:</label><br>
                 <input type="email" placeholder="enter email" id="email" name="email" required><br>
@@ -43,8 +40,8 @@
                 <label for="password">Password:</label><br>
                 <input type="password" placeholder="enter password" id="password" name="password" required><br>
 
-                <!--Sign in button-->
-                <br><button type="submit">Submit</button>
+                <!--sign in button-->
+                <button type="submit">Submit</button>
             </form>
 
             <p>sign in as client <a href="signin-client.html">here</a>,
