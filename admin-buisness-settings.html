@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/footer.css">
     <!-- JavaScript file -->
-    <script src="admin.js" defer></script> <!-- Added defer for better loading -->
+    <script src="admin.js" defer></script> 
 </head>
 
 <body>
@@ -22,44 +22,70 @@
             });
     </script>
 
-    <main>
+
+<main>
+    <section>
         <h1>Business Settings</h1>
 
-        <!-- This is used to manage business settings -->
-        <!-- Make edits to specific service -->
-        <!-- editService function from admin.js (JavaScript file) -->
-        <form id="admin-business-settings" onsubmit="editBusinessInfo(event)">
-            <!-- Company Name -->
-            <label for="companyName">Company Name:</label><br>
-            <input type="text" id="companyName" name="companyName" value="Company 1" required><br>
+        <div class="service-item">
+            <h3>Company Name:</h3>
+            <p class="editable" contenteditable="false">Name One</p>
+            <button onclick="editInformation(this)">EDIT NAME</button>
+            <button onclick="saveInformation(this)">SAVE NAME</button>
+            <hr>
+        </div>
 
-            <!-- Logo -->
-            <label for="logo">Logo URL:</label>
-            <input type="text" id="logo" name="logo" value="logo.png" required><br>
+        <div class="service-item">
+            <h3>Logo URL:</h3>
+            <p class="editable" contenteditable="false">something........</p>
+            <button onclick="editInformation(this)">EDIT LOGO</button>
+            <button onclick="saveInformation(this)">SAVE LOGO</button>
+            <hr>
+        </div>
 
-            <!-- Address -->
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" value="123 Generci Street, Generic City, GIC G4C" required><br>
+        <div class="service-item">
+            <h3>Address:</h3>
+            <p class="editable" contenteditable="false">123 Generic Street, Generic City, GIC G4C</p>
+            <button onclick="editInformation(this)">EDIT ADDRESS</button>
+            <button onclick="saveInformation(this)">SAVE ADDRESS</button>
+            <hr>
+        </div>
 
-            <!-- Phone -->
-            <label for="phone">Phone:</label>
-            <input type="text" id="phone" name="phone" value="123-456-7890" required><br>
+        <div class="service-item">
+            <h3>Phone:</h3>
+            <p class="editable" contenteditable="false">123-123-123</p>
+            <button onclick="editInformation(this)">EDIT PHONE</button>
+            <button onclick="saveInformation(this)">SAVE PHONE</button>
+            <hr>
+        </div>
 
-            <button type="submit">Save Changes</button>
-        </form>
+        <div class="service-item">
+            <h3>Email:</h3>
+            <p class="editable" contenteditable="false">admin@email.com</p>
+            <button onclick="editInformation(this)">EDIT EMAIL</button>
+            <button onclick="saveInformation(this)">SAVE EMAIL</button>
+            <hr>
+        </div>
+    </section>
+</main>
 
-        <!-- To go back to admin dashboard -->
-        <li><a href="admin-dashboard.html">Admin Home</a></li>
-    </main>
+<script>
+    // Function to make only the paragraph text editable
+    function editInformation(button) {
+        const parent = button.parentNode;
+        const serviceDescription = parent.querySelector('p'); // Only select the <p> tag
+        serviceDescription.contentEditable = true;
+        serviceDescription.focus();
+    }
 
-    <!-- This is used for the footer -->
-    <div id="footer-placeholder"></div>
-    <script>
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
-    </script>
+    // Function to save the edited text (just for frontend purposes)
+    function saveInformation(button) {
+        const parent = button.parentNode;
+        const serviceDescription = parent.querySelector('p'); // Only select the <p> tag
+        serviceDescription.contentEditable = false;
+        alert("Information updated (not persisted in backend).");
+    }
+</script>
+
 </body>
 </html>
