@@ -26,7 +26,7 @@ footer {
 }
 
 .footer-section h4 {
-    color: #fff; /* Explicit white color for headings */
+    color: #fff;
     margin-bottom: 15px;
     font-size: 1.3rem;
     font-weight: bold;
@@ -52,7 +52,7 @@ footer {
 }
 
 .footer-section ul li::before {
-    content: "•"; /* Custom bullet */
+    content: "•"; 
     color: #fff; /* White bullet */
     margin-right: 8px;
 }
@@ -67,11 +67,11 @@ footer {
 
 .footer-bottom {
     font-size: 0.9em;
-    color: #fff; /* White color for footer bottom text */
+    color: #fff; 
 }
 
 main {
-    padding-bottom: 100px; 
+    padding-bottom: 50px; 
 }
 
 footer {
@@ -81,7 +81,7 @@ footer {
 /* Styling for email and phone links */
 .footer-section a[href^="mailto"],
 .footer-section a[href^="tel"] {
-    color: #4989e9; /* Light blue color for email and phone links */
+    color: #4989e9; 
     text-decoration: underline; /* Always underlined */
 }
 

@@ -192,55 +192,55 @@ h1, h2, h3, h4 {
 
 /* Specific heading sizes */
 h1 {
-    font-size: 36px; /* Main heading size */
-    margin-bottom: 12px; /* Space below heading */
+    font-size: 36px; 
+    margin-bottom: 12px; 
 }
 
 h2 {
-    font-size: 30px; /* Secondary heading size */
+    font-size: 30px; 
     margin-bottom: 10px;
 }
 
 h3 {
-    font-size: 24px; /* Subheading size */
+    font-size: 24px; 
     margin-bottom: 8px;
 }
 
 h4 {
-    font-size: 20px; /* Smaller heading size */
+    font-size: 20px; 
     margin-bottom: 6px;
 }
 
 /* Paragraph styling */
 p {
-    font-size: 18px; /* Standard text size */
+    font-size: 18px; 
     color: #555; /* Slightly lighter color for paragraphs */
-    line-height: 1.6; /* Improves readability */
+    line-height: 1.6; 
     margin-bottom: 10px;
 }
 
 /* List item styling */
 ul, li {
-    font-size: 18px; /* Standard text size */
-    color: #555; /* Matches paragraph color */
-    margin-bottom: 8px; /* Space below each list item */
+    font-size: 18px; 
+    color: #555; 
+    margin-bottom: 8px; 
 }
 
 /* Editable class styling */
 .editable {
-    outline: none; /* Remove outline when editing */
+    outline: none; 
 }
 
 /* Button styling for consistency */
 button {
-    font-size: 16px; /* Button text size */
-    padding: 10px 15px; /* Padding for button size */
-    background-color: #73343f; /* Background color */
-    color: #fff; /* Button text color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Show pointer on hover */
-    margin: 5px; /* Spacing between buttons */
+    font-size: 16px; 
+    padding: 10px 15px; 
+    background-color: #600d1a; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin: 5px; 
 }
 
 /* Button hover effect */

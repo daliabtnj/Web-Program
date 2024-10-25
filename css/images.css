@@ -12,7 +12,7 @@
 
 /* Image styling */
 .why-choose-us-image, .welcome-image{
-    width: 250px; 
+    width: 450px; 
     max-width: 100%; 
     border-radius: 10px; 
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
@@ -20,7 +20,7 @@
 
 /* Image styling */
 .people-image{
-    width: 320px; 
+    width: 520px; 
     max-width: 100%; 
     border-radius: 10px; 
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
@@ -41,8 +41,8 @@
 /* Add an image in section About Us */
 /* Centering the About Us section image */
 .about-us-image-container {
-    text-align: center; /* Center-align the content inside the container */
-    margin: 20px auto; /* Add some space around the image container */
+    text-align: center; 
+    margin: 20px auto; 
     margin-top: 100px;
 }
 

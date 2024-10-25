@@ -1,12 +1,12 @@
 /* to style services when logged out*/
 
 .service-box {
-    background-color: #f7f7f7; /* Light background color for the box */
-    padding: 20px; /* Padding inside the box */
-    margin: 15px 0; /* Space between each box */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for a box effect */
-    border: 1px solid #ddd; /* Optional border to define the box */
+    background-color: #f7f7f7; 
+    padding: 20px; 
+    margin: 15px 0;
+    border-radius: 10px; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #ddd;
 }
 
 /* Styling for the Book Service button */
@@ -21,7 +21,7 @@
 }
 
 .service-box button:hover {
-    background-color: #73343f; /* Slightly darker color on hover */
+    background-color: #73343f; 
 }
 
 /*---------------------------------------------------------------------------------------------------------------------*/
