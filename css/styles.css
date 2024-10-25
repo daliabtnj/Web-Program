@@ -159,19 +159,7 @@ ul.services-list {
     padding-left: 20px;
 }
 
-/* Add an image in section About Us */
-/* Centering the About Us section image */
-.about-us-image-container {
-    text-align: center; /* Center-align the content inside the container */
-    margin: 20px auto; /* Add some space around the image container */
-    margin-top: 300px;
-}
 
-.about-us-image-container img {
-    width: 300px; 
-    height: auto; 
-    display: inline-block; 
-}
 
 
 /* background color light gray*/
