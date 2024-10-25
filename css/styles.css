@@ -248,36 +248,3 @@ button:hover {
     background-color: #73343f; /* Slightly darker on hover */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Box styling for sections */
-.section-box {
-    background-color: #fff; /* White background for contrast */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 10px; /* Rounded corners */
-    padding: 20px;
-    margin: 20px 0; /* Space between boxes */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-}
-
-/* Box styling for ul elements */
-.section-box ul {
-    padding-left: 20px; /* Indentation for list items */
-}

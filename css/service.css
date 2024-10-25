@@ -25,7 +25,7 @@
 }
 
 /*---------------------------------------------------------------------------------------------------------------------*/
-/* Service Box Styling  for Admin*/
+/* Service Box Styling  for Admin, client */
 .service-item {
     background-color: #f9f9f9;
     padding: 20px;
@@ -133,4 +133,12 @@
 
 /*---------------------------------------------------------------------------------------------------------------------*/
 
+/* manage services for admin*/
+
+.editable-box {
+    background-color: #f1f1f1; 
+    border: 2px solid #ffa500; /* to indicate editing mode */
+    padding: 10px; 
+    border-radius: 5px; 
+}
 

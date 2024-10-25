@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/styles.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
+    <!-- service CSS file  -->
+    <link rel="stylesheet" href="css/service.css">
     <!-- JavaScript file -->
     <script src="admin.js" defer></script> 
 </head>
@@ -31,7 +33,7 @@
 
         <div class="service-item">
             <h3>Company Name:</h3>
-            <p class="editable" contenteditable="false">Name One</p>
+            <p class="editable" contenteditable="false">Service Website</p>
             <button onclick="editInformation(this)">EDIT NAME</button>
             <button onclick="saveInformation(this)">SAVE NAME</button>
             <hr>
@@ -39,7 +41,7 @@
 
         <div class="service-item">
             <h3>Logo URL:</h3>
-            <p class="editable" contenteditable="false">something........</p>
+            <p class="editable" contenteditable="false">48A449F8-648E-4FAE-A0A1-BD8D4E4FB0DF_1_201_a.jpeg</p>
             <button onclick="editInformation(this)">EDIT LOGO</button>
             <button onclick="saveInformation(this)">SAVE LOGO</button>
             <hr>
@@ -47,7 +49,7 @@
 
         <div class="service-item">
             <h3>Address:</h3>
-            <p class="editable" contenteditable="false">123 Generic Street, Generic City, GIC G4C</p>
+            <p class="editable" contenteditable="false">123 Maplewood Avenue, Suite 45, Brookfield, NY 10234, USA</p>
             <button onclick="editInformation(this)">EDIT ADDRESS</button>
             <button onclick="saveInformation(this)">SAVE ADDRESS</button>
             <hr>
@@ -55,7 +57,7 @@
 
         <div class="service-item">
             <h3>Phone:</h3>
-            <p class="editable" contenteditable="false">123-123-123</p>
+            <p class="editable" contenteditable="false">+1 (555) 987-6543</p>
             <button onclick="editInformation(this)">EDIT PHONE</button>
             <button onclick="saveInformation(this)">SAVE PHONE</button>
             <hr>
@@ -63,7 +65,7 @@
 
         <div class="service-item">
             <h3>Email:</h3>
-            <p class="editable" contenteditable="false">admin@email.com</p>
+            <p class="editable" contenteditable="false">ServiceWebsite@services.com</p>
             <button onclick="editInformation(this)">EDIT EMAIL</button>
             <button onclick="saveInformation(this)">SAVE EMAIL</button>
             <hr>
@@ -74,20 +76,37 @@
 <script>
     // Function to make only the paragraph text editable
     function editInformation(button) {
-        const parent = button.parentNode;
-        const serviceDescription = parent.querySelector('p'); // Only select the <p> tag
-        serviceDescription.contentEditable = true;
-        serviceDescription.focus();
-    }
+    const parent = button.parentNode;
+    const serviceDescription = parent.querySelector('p'); 
+    serviceDescription.contentEditable = true;
+    serviceDescription.classList.add('editable-box'); 
+    serviceDescription.focus();
+}
 
     // Function to save the edited text (just for frontend purposes)
     function saveInformation(button) {
-        const parent = button.parentNode;
-        const serviceDescription = parent.querySelector('p'); // Only select the <p> tag
-        serviceDescription.contentEditable = false;
-        alert("Information updated (not persisted in backend).");
-    }
+    const parent = button.parentNode;
+    const serviceDescription = parent.querySelector('p'); 
+    serviceDescription.contentEditable = false;
+    serviceDescription.classList.remove('editable-box'); 
+    alert("Information updated (not persisted in backend).");
+}
 </script>
 
+
+
+
+<!--This is used for the footer-->
+<div id="footer-placeholder"></div>
+<script>
+    fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+    });
+</script>
+
+
 </body>
+
 </html>

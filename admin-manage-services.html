@@ -111,40 +111,40 @@
             });
 
         // Function to make the text editable
-function editService(button) {
-    const parent = button.parentNode;
-    const serviceTitle = parent.querySelector('h3');
-    const serviceDescription = parent.querySelector('p');
-    const serviceHeader = parent.querySelector('h4');
-    const serviceListItems = parent.querySelectorAll('ul li'); 
+        function editService(button) {
+        const parent = button.parentNode;
+        const serviceTitle = parent.querySelector('h3');
+        const serviceDescription = parent.querySelector('p');
+        const serviceHeader = parent.querySelector('h4');
+        const serviceListItems = parent.querySelectorAll('ul li'); 
 
-    // Make each section editable and add a class for styling
-    if (serviceTitle) {
+        // Make each section editable and add a class for styling
+        if (serviceTitle) {
         serviceTitle.contentEditable = true;
         serviceTitle.classList.add('editing-header');
-    }
+        }
 
-    if (serviceDescription) {
+        if (serviceDescription) {
         serviceDescription.contentEditable = true;
         serviceDescription.classList.add('editing-paragraph');
-    }
+        }
 
-    if (serviceHeader) {
+        if (serviceHeader) {
         serviceHeader.contentEditable = true;
         serviceHeader.classList.add('editing-header');
-    }
+        }
 
-    // Make all list items editable and add a class for styling
-    serviceListItems.forEach(item => {
+       // Make all list items editable and add a class for styling
+        serviceListItems.forEach(item => {
         item.contentEditable = true;
         item.classList.add('editing-list');
-    });
-}
+        });
+    }
 
         
 
-  // Function to save the edited text (just for frontend purposes)
-function saveService(button) {
+     // Function to save the edited text (just for frontend purposes)
+    function saveService(button) {
     const parent = button.parentNode;
     const serviceTitle = parent.querySelector('h3');
     const serviceDescription = parent.querySelector('p');
