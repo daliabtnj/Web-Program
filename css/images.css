@@ -1,0 +1,14 @@
+/* Image for home menu why chose us */
+
+.why-choose-us-image-container, .welcome-image-container {
+    display: flex;
+    justify-content: center; /* Center the images for a balanced layout */
+    margin: 20px auto; /* Adds spacing around the images */
+}
+
+.why-choose-us-image, .welcome-image {
+    max-width: 200px; /* Adjusted size for uniform appearance */
+    border-radius: 20px; 
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adds a professional shadow effect */
+    margin: 0 10px; /* Adds some horizontal spacing between images */
+}
