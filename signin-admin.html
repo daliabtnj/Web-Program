@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/login-signup.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
+    <!-- JavaScript file-->
+    <script src = "admin.js"></script>
 </head>
 
 <body>
@@ -24,12 +26,15 @@
           });
       </script>
 
-    <!--Main section for signing in
+   <!--Main section for signing in
     Allows to choose between client or administrator to log in-->
     <main>
         <section class="signup-box">
             <h1>Admin Sign In</h1>
-            <form action="admin-dashboard.html" method="POST"> 
+
+            <!-- Login action from admin.js (JavaScript file)-->
+            <form id="admin-login-form" onsubmit = "loginAdmin(event)">
+
                 <!--Username-->
                 <label for="email">Email:</label><br>
                 <input type="email" placeholder="enter email" id="email" name="email" required><br>
@@ -38,9 +43,10 @@
                 <label for="password">Password:</label><br>
                 <input type="password" placeholder="enter password" id="password" name="password" required><br>
 
-                <!--sign in button-->
-                <br><button type="submit">submit</button>
+                <!--Sign in button-->
+                <br><button type="submit">Submit</button>
             </form>
+
             <p>sign in as client <a href="signin-client.html">here</a>,
             sign up <a href="signup.html">here</a>!</p>
         </section>
