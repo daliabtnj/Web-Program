@@ -1,14 +1,35 @@
-/* Image for home menu why chose us */
-
-.why-choose-us-image-container, .welcome-image-container {
-    display: flex;
-    justify-content: center; /* Center the images for a balanced layout */
-    margin: 20px auto; /* Adds spacing around the images */
+/* Container for both images: welcome and why choose us */
+.images-container {
+    display: flex; 
+    align-items: center; 
+    margin: 80px 200px;  /* Adds spacing above and below each image */
 }
 
-.why-choose-us-image, .welcome-image {
-    max-width: 200px; /* Adjusted size for uniform appearance */
-    border-radius: 20px; 
-    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2); /* Adds a professional shadow effect */
-    margin: 0 10px; /* Adds some horizontal spacing between images */
+/* Individual image containers */
+.welcome-image-container, .why-choose-us-image-container, .people-image-container, .explore-services-image-container {
+    margin: 0 20px 20px 20px; /* Adds spacing between the two containers */
+}
+
+/* Image styling */
+.why-choose-us-image, .welcome-image{
+    width: 250px; 
+    max-width: 100%; 
+    border-radius: 10px; 
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Image styling */
+.people-image{
+    width: 320px; 
+    max-width: 100%; 
+    border-radius: 10px; 
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+    height: 250px; 
+}
+/* Image styling */
+.explore-services-image{
+    width: 250px; 
+    border-radius: 10px; 
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+    height: 150px; 
 }
