@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Company - Customer Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- footer CSS file  -->
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+    <!--This is used for the drop down menu-->
+    <div id="header-placeholder"></div>
+    <script>
+        fetch('customer-header.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+          });
+      </script>
+
+
+<main>
+    <section>
+        <h1>Book a service</h1>
+        
+        <h3>First service</h3>
+        <p>Our first service is very useful. It allows you to do stuff and to perform tasks. This service is great for 
+            clients who want the first service as it allows you to do what this general service is supposed to do. This service costs $$$$$.</p>
+            <button type="submit">BOOK SERVICE</button>
+        <hr>
+
+        <h3>Second service</h3>
+        <p>Our second service is very useful. It allows you to do stuff and to perform tasks. This service is great for 
+            clients who want the second service as it allows you to do what this general service is supposed to do. This service costs $$$$</p>
+            <button type="submit">BOOK SERVICE</button>
+        <hr>
+
+        <h3>Third service</h3>
+        <p>Our third service is very useful. It allows you to do stuff and to perform tasks. This service is great for 
+            clients who want the third service as it allows you to do what this general service is supposed to do. This service costs $$$</p>
+            <button type="submit">BOOK SERVICE</button>
+        <hr>
+
+        <h3>Other service</h3>
+        <p>Our other service is very useful. It allows you to do stuff and to perform tasks. This service is great for 
+            clients who want the other service as it allows you to do what this general service is supposed to do. This service costs $$</p>
+            <button type="submit">BOOK SERVICE</button>
+        <hr>
+
+        <h3>Last service</h3>
+        <p>Our last service is very useful. It allows you to do stuff and to perform tasks. This service is great for 
+            clients who want the last service as it allows you to do what this general service is supposed to do. This service costs $</p>
+            <button type="submit">BOOK SERVICE</button>
+
+    </section>
+
+<!--This is used for the footer-->
+<div id="footer-placeholder"></div>
+<script>
+    fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+    });
+</script>
+
+</body>
+</html>
