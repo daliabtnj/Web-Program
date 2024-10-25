@@ -25,7 +25,7 @@
     <main>
         <h1>Manage Bills</h1>
 
-        <!-- Customer Bills Section -->
+        <!-- Customer Bills -->
         <div class="section" id="bills">
             <div class="header">Customer Bills</div>
             <table>
@@ -35,8 +35,8 @@
                         <th>Customer Name</th>
                         <th>Service</th>
                         <th>Amount</th>
-                        <th>Status</th>
                         <th>Date</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,18 +44,31 @@
                     <tr>
                         <td>20190290</td>
                         <td>Name Name</td>
-                        <td>Service 1</td>
-                        <td>$500</td>
-                        <td>Unpaid</td>
+                        <td>Service #1</td>
+                        <td>$60</td>
                         <td>2024-10-24</td>
+                        <td>
+                          <select>
+                              <option value="Paid">Paid</option>
+                              <option value="Unpaid">Unpaid</option>
+                          </select>
+                        </td>
+                        <td><button class="btn-update">Save</button></td>
+                        
                     </tr>
                     <tr>
                         <td>48920571</td>
                         <td>Name Name</td>
-                        <td>Service 2</td>
-                        <td>$200</td>
-                        <td>Paid</td>
+                        <td>Service #3</td>
+                        <td>$30</td>
                         <td>2024-10-10</td>
+                        <td>
+                          <select>
+                              <option value="Paid">Paid</option>
+                              <option value="Unpaid">Unpaid</option>
+                          </select>
+                        </td>
+                        <td><button class="btn-update">Save</button></td>
                     </tr>
                 </tbody>
             </table>
