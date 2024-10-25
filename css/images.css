@@ -53,22 +53,3 @@
 }
 
 
-/*--------------------------------------------------------------------------------------------------------------*/
-
-/* for contact us image */
-.contact-us {
-    display: flex;
-    justify-content: space-between; /* Aligns the content and image container side by side */
-    align-items: flex-start; /* Aligns content to the top level */
-    gap: 90px; /* Adds space between the text and image */
-}
-
-.contact-content {
-    width: 60%; /* Adjust as necessary */
-}
-
-.contact-image img {
-    width: 100px; /* Adjust the size of the image */
-    border-radius: 10px; /* Optional: adds rounded corners */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow for a nicer look */
-}
