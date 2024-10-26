@@ -13,29 +13,6 @@
 
 <body>
     <div id="header-placeholder"></div>
-<!-- Load the header dynamically -->
-<script>
-    // Simulating user login status with localStorage for now
-    // REPLACE WITH REAL LOGGED IN LOGIC
-    let isLoggedIn = localStorage.getItem('isLoggedIn'); 
-
-    // Fetch and display the correct header based on login status
-    if (isLoggedIn === 'true') {
-        // Fetch the logged-in header
-        fetch('customer-header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-    } else {
-        // Fetch the logged-out header
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-    }
-</script>
 
     <!--Main Section-->
     <main>
@@ -48,12 +25,6 @@
         <h3>History & Achievements</h3>
         <p>Founded by four university colleagues passionate about computer science and innovation, our platform aims to simplify how service businesses operate.</p>
         <p>With a strong focus on flexibility and reliability, we’ve become a top choice for companies seeking effective service management solutions.</p>
-    
-    
-
-
-
-
 
         <!-- Insert an image-->
     <div class="about-us-image-container">
@@ -61,16 +32,8 @@
     </div>
     </main>
 
-
-    <!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script>
-    fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
+    <div id="footer-placeholder"></div>
+    <script src="js/headers-footer.js"></script>
 
 </body>
 </html>
