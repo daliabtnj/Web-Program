@@ -16,17 +16,8 @@
 </head>
 
 <body>
-<<<<<<< HEAD
   <!--This is used for the drop down menu-->
   <div id="header-placeholder"></div>
-  <script>
-
-    fetch('customer-header.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('header-placeholder').innerHTML = data;
-      });
-  </script>
 
   <main>
     <h1>Welcome to your client space !</h1>
@@ -36,43 +27,16 @@
       <a href="customer-account.html"><button>My Account</button></a>
       <a href="customer-requests.html"><button>My Requests</button></a>
       <a href="customer-bills&receipts.html"><button>Bills & Receipts</button></a>
-      <a href="customer-logout.html"><button>Log Out</button></a>
+      <a href="logout.html"><button>Log Out</button></a>
     </div>
-=======
-    <!--This is used for the drop down menu-->
-    <div id="header-placeholder"></div>
-
-<main>
-  <h1>Welcome to your client space !</h1>
-  <h2>Account overview</h2>
-  <!--i had to change here for the text to be aligned to the left --> 
-  <div class="button-section">
-    <a href="customer-account.html"><button>My Account</button></a>
-    <a href="customer-requests.html"><button>My Requests</button></a>
-    <a href="customer-bills&receipts.html"><button>Bills & Receipts</button></a>
-    <a href="logout.html"><button>Log Out</button></a>
-  </div>
->>>>>>> 99e6dd0aa6b51a2575c13f50a1977b0c47562a2e
 
   </main>
 
-<<<<<<< HEAD
   <!--This is used for the footer-->
   <div id="footer-placeholder"></div>
-  <script>
-    fetch('footer-admin-client.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-      });
-  </script>
-
+  <script src="js/headers-footer.js"></script>
   <script type="text/javascript" src="./javascript/client.js"></script>
-=======
-<!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script src="js/headers-footer.js"></script>
->>>>>>> 99e6dd0aa6b51a2575c13f50a1977b0c47562a2e
+
 
 </body>
 

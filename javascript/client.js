@@ -137,6 +137,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+// Client can cancel services
+document.addEventListener('DOMContentLoaded', () => {
+    const cancelServiceButton = document.querySelectorAll('.cancel-service-button');
+
+    if (cancelServiceButton) {
+        cancelServiceButton.forEach(button => {
+            button.addEventListener('click', () => {
+                alert('Service canceled');
+
+                const serviceRow = event.target.closest('tr');
+                if (serviceRow) {
+                    serviceRow.remove();
+                }
+            });
+        });
+    }
+});
+
 
 
 
