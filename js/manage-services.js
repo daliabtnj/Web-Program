@@ -3,10 +3,30 @@ function editService(button) {
     const parent = button.parentNode;
     const serviceTitle = parent.querySelector('h3');
     const serviceDescription = parent.querySelector('p');
+    const serviceHeader = parent.querySelector('h4');
+    const serviceListItems = parent.querySelectorAll('ul li'); 
 
+// Make each section editable and add a class for styling
+if (serviceTitle) {
     serviceTitle.contentEditable = true;
+    serviceTitle.classList.add('editing-header');
+    }
+
+    if (serviceDescription) {
     serviceDescription.contentEditable = true;
-    serviceTitle.focus();
+    serviceDescription.classList.add('editing-paragraph');
+    }
+
+    if (serviceHeader) {
+    serviceHeader.contentEditable = true;
+    serviceHeader.classList.add('editing-header');
+    }
+
+   // Make all list items editable and add a class for styling
+    serviceListItems.forEach(item => {
+    item.contentEditable = true;
+    item.classList.add('editing-list');
+    });
 }
 
 // Function to save the edited text (just for frontend purposes)
@@ -14,9 +34,40 @@ function saveService(button) {
     const parent = button.parentNode;
     const serviceTitle = parent.querySelector('h3');
     const serviceDescription = parent.querySelector('p');
+    const serviceHeader = parent.querySelector('h4');
+    const serviceList = parent.querySelector('ul');
 
-    serviceTitle.contentEditable = false;
-    serviceDescription.contentEditable = false;
+    if (serviceTitle) {
+        serviceTitle.contentEditable = false;
+        serviceTitle.classList.remove('editing-header');
+    }
+
+    if (serviceDescription) {
+        serviceDescription.contentEditable = false;
+        serviceDescription.classList.remove('editing-paragraph');
+    }
+
+    if (serviceHeader) {
+        serviceHeader.contentEditable = false;
+        serviceHeader.classList.remove('editing-header');
+    }
+
+    if (serviceList) {
+        serviceList.contentEditable = false;
+        serviceList.classList.remove('editing-box');
+
+        // Loop through each list item and remove empty ones
+        const listItems = serviceList.querySelectorAll('li');
+        listItems.forEach(item => {
+            if (item.textContent.trim() === "") {
+                item.remove(); // Remove empty list items
+            } else {
+                item.contentEditable = false;
+                item.classList.remove('editing-list');
+            }
+        });
+    }
+
     alert("Service updated (not persisted in backend).");
 }
 
