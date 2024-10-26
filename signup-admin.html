@@ -1,0 +1,60 @@
+<!--Sign in page for clients-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Company - Sign in admin</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- login-signup CSS file  -->
+    <link rel="stylesheet" href="css/login-signup.css">
+    <!-- footer CSS file  -->
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+    <!--This is used for the drop down menu-->
+    <div id="header-placeholder"></div>
+
+    <!--Main section for signing in
+    Allows to choose between client or administrator to log in-->
+    <main>
+        <section class="signup-box">
+            <h1>Admin Sign Up</h1>
+            <form action="admin-dashboard.html" method="GET" onsubmit="saveAdmin()"> 
+                <p>Create a new account</p>
+                <div id="error" style="color: red;"></div>
+                <form id="client-sign-up-form">
+                    <label for="name">Name:</label><br>
+                    <input type="text" placeholder="enter name" id="name" name="name" required><br>
+    
+                    <label for="email">Email:</label><br>
+                    <input type="text" placeholder="enter email" id="email" name="email" required><br>
+    
+                    <label for="phone">Phone number:</label><br>
+                    <input type="text" placeholder="enter number" id="phone" name="phone" required><br>
+    
+                    <label for="password">Password:</label><br>
+                    <input type="password" placeholder="enter password" id="password" name="password" required><br>
+    
+                    <label for="password-repeat">Confirm password:</label><br>
+                    <input type="password" placeholder="repeat password" id="password-repeat" name="password-repeat"
+                        required><br>
+    
+                    <!--sign up button-->
+                    <br><button type="submit">submit</button>
+            </form>
+            <p>sign in as client <a href="signin-client.html">here</a>,
+            sign up <a href="signup.html">here</a>!</p>
+        </section>
+    </main>
+
+    <!--This is used for the footer-->
+    <div id="footer-placeholder"></div>
+    <script src="js/headers-footer.js"></script>
+    <script src="js/confirmation-pop-ups.js"></script>
+
+
+</body>
+</html>
