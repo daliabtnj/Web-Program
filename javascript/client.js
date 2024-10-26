@@ -82,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign in successful
             else {
                 console.log("Form is valid. Redirecting...");
+                saveCustomer();
                 window.location.href = "customer-dashboard.html";
 
             }
