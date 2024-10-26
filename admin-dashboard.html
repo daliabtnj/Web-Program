@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generic Company - Customer Dashboard</title>
+    <!-- styles CSS file  -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
@@ -15,13 +16,6 @@
 <body>
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
-    <script>
-        fetch('admin-header.html')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-          });
-      </script>
 
 <!--wrap into a main tag to be able to align the footer correctly-->
 <main>
@@ -31,8 +25,8 @@
   <a href="admin-manage-services.html"><button>Manage Services</button></a>
     <a href="admin-view-requests.html"><button>Customers Requests</button></a>
     <a href="admin-bills.html"><button>Manage Bills</button></a>
-    <a href="admin-buisness-settings.html"><button>Buisness Settings</button></a>
-    <a href="customer-logout.html"><button>Log Out</button></a>
+    <a href="admin-buisness-settings.html"><button>Business Settings</button></a>
+    <a href="logout.html"><button>Log Out</button></a>
 </div>
 </main>
   
@@ -40,13 +34,7 @@
 
 <!--This is used for the footer-->
 <div id="footer-placeholder"></div>
-<script>
-    fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
+<script src="js/headers-footer.js"></script>
 
 </body>
 

@@ -2,41 +2,59 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generic Company - Customer Dashboard</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- footer CSS file  -->
-    <link rel="stylesheet" href="css/footer.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generic Company - Customer Dashboard</title>
+  <!-- styles CSS file  -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- footer CSS file  -->
+  <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
-    <!--This is used for the drop down menu-->
-    <div id="header-placeholder"></div>
-    <script>
-        fetch('customer-header.html')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-          });
-      </script>
+  <!--This is used for the drop down menu-->
+  <div id="header-placeholder"></div>
 
-   
+  <main>
+    <h1>My Bills</h1>
+    <!-- Client Bills -->
+    <div class="section" id="bills">
+      <table>
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Service</th>
+            <th>Cost</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Predefined bills -->
+          <tr>
 
-<main>
-  <h1>My Bills</h1>
+            <td>Pet Groomers Inc.</td>
+            <td>Pet Grooming</td>
+            <td>$60</td>
+            <td>2024-10-24</td>
 
-</main>
+          </tr>
+          <tr>
 
- <!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script>
-    fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
-  
+            <td>Tutors.ca</td>
+            <td>Tutoring</td>
+            <td>$30</td>
+            <td>2024-10-10</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!--This is used for the footer-->
+  <div id="footer-placeholder"></div>
+  <script src="js/headers-footer.js"></script>
+
 </body>
+
 </html>

@@ -1,18 +1,20 @@
-<!--Sign in page for clients-->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generic Company - Sign in client</title>
+    <title>Generic Company - Sign up</title>
     <!-- styles CSS file  -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- login-signup CSS file  -->
     <link rel="stylesheet" href="css/login-signup.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
-    
+    <!-- popupMessage CSS file  -->
+    <link rel="stylesheet" href="css/popupMessage.css">
+
+
 
 </head>
 
@@ -20,47 +22,40 @@
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
 
-    <!--Main section for signing in
+    <!--Main section for signing up
     Allows to choose between client or administrator to log in-->
     <main>
         <section class="signup-box">
-            <h1>Client Sign In</h1>
+            <h1>Sign Up</h1>
+            <p>Create a new account</p>
             <div id="error" style="color: red;"></div>
-            <form id="client-sign-in-form">
-                <!--Username-->
-                <label for="email">Email:</label><br>
-                <input type="email" placeholder="enter email" id="email" name="email" required><br>
+            <form id="client-sign-up-form">
+                <label for="name">Name:</label><br>
+                <input type="text" placeholder="enter name" id="name" name="name" required><br>
 
-                <!--Password-->
+                <label for="email">Email:</label><br>
+                <input type="text" placeholder="enter email" id="email" name="email" required><br>
+
+                <label for="phone">Phone number:</label><br>
+                <input type="text" placeholder="enter number" id="phone" name="phone" required><br>
+
                 <label for="password">Password:</label><br>
                 <input type="password" placeholder="enter password" id="password" name="password" required><br>
 
-                <!--sign in button-->
-                <button type="submit" onsubmit="saveCustomer()">Submit</button>
-            </form>
-            <p>Sign in as admin <a href="signin-admin.html">here</a>,
-                sign up <a href="signup.html">here</a>!</p>
+                <label for="password-repeat">Confirm password:</label><br>
+                <input type="password" placeholder="repeat password" id="password-repeat" name="password-repeat"
+                    required><br>
 
+                <!--sign up button-->
+                <br><button type="submit">submit</button>
+            </form>
         </section>
     </main>
-
 
     <!--This is used for the footer-->
     <div id="footer-placeholder"></div>
     <script src="js/headers-footer.js"></script>
     <script type="text/javascript" src="./javascript/client.js"></script>
-
-
-
-
-<!-- Confirmation Modal -->
-<div id="confirmationModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center;">
-    <div style="background-color: white; padding: 20px; border-radius: 8px; width: 300px; text-align: center;">
-        <p>Sign-up successful!</p>
-        <button onclick="closeModal()">OK</button>
-    </div>
-</div>
-
 
 </body>
 

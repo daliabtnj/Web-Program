@@ -7,9 +7,12 @@
     <!--Ensures that website adapts to different devices-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generic Company - Homepage</title>
+    <!-- styles CSS file  -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
+    <!-- image CSS file  -->
+    <link rel="stylesheet" href="css/images.css">
     
 </head>
 
@@ -19,7 +22,7 @@
 
     <!--Section for main content-->
     <main>
-        <h1>Welcome to ServiceHub community</h1>
+        <h1>Welcome to ServiceHub community  </h1>
         <p>The platform to post and access a wide range of services.</p>
         <section>
             <h2>Introduction</h2>    
@@ -41,44 +44,29 @@
             <p>Visit the Services menu to browse through our offerings or contact us to learn more.</p>
         </section>
 
+        <!-- Insert an image-->
+        <div class="images-container">
+            <div class="welcome-image-container">
+                <img src="https://static.vecteezy.com/system/resources/previews/009/841/855/non_2x/business-welcome-design-character-on-white-background-free-vector.jpg" alt="Welcome Image" class="welcome-image">
+            </div>
+            <div class="why-choose-us-image-container">
+                <img src="https://cdn.vectorstock.com/i/500p/55/61/why-choose-us-speech-bubble-vector-24175561.jpg" alt="Why Choose Us Image" class="why-choose-us-image">
+            </div>
+            <div class="people-image-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPSN81sREMXlIqUx_pGEJFy2iI8BvqhBVgOQ&s" class="people-image">
+            </div>
+            <div class="explore-services-container">
+                <img src="https://thumbs.dreamstime.com/b/our-services-customer-support-employee-service-solid-glyph-icon-web-card-template-148522737.jpg" class="explore-services-image">
+            </div>
+        </div>
+        
 
-    
     </main>
 
-<!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script>
-    fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
 
-<!-- Load the header dynamically -->
-<script>
-    // Simulating user login status with localStorage for now
-    // REPLACE WITH REAL LOGGED IN LOGIC
-    let isLoggedIn = localStorage.getItem('isLoggedIn'); 
-
-    // Fetch and display the correct header based on login status
-    if (isLoggedIn === 'true') {
-        // Fetch the logged-in header
-        fetch('customer-header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-    } else {
-        // Fetch the logged-out header
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-    }
-</script>
-
+    <div id="footer-placeholder"></div>
+    <script src="js/headers-footer.js"></script>
+    
 </body>
 
 </html>
