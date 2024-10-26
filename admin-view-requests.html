@@ -13,13 +13,6 @@
 <body>
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
-    <script>
-        fetch('admin-header.html')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-          });
-      </script>
 
     <main>
     <h1>View Customer Requests</h1>
@@ -73,16 +66,57 @@
       </table>
   </div>
 </main>
+    <!-- Customer Requests Section -->
+    <div class="section" id="requests">
+      <div class="header">Customer Requests</div>
+      <table>
+          <thead>
+              <tr>
+                  <th>Service</th>
+                  <th>Client Name</th>
+                  <th>Details / Notes</th>
+                  <th>Status</th>
+                  <th>Date</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Client 1 hardcoded example -->
+              <tr>
+                  <td>#1 Tutoring</td>
+                  <td>Name Name</td>
+                  <td>For a 15 year old and for 2 hours.</td>
+                  <td>
+                      <select>
+                          <option value="pending">Pending</option>
+                          <option value="completed">Completed</option>
+                          <option value="booked">Booked</option>
+                      </select>
+                  </td>
+                  <td>2024-10-10</td>
+                  <td><button class="btn-update">Update Status</button></td>
+              </tr>
+              <tr>
+                  <td>#3 Pet Grooming</td>
+                  <td>Name Name</td>
+                  <td>Small poodle</td>
+                  <td>
+                      <select>
+                          <option value="pending">Pending</option>
+                          <option value="completed">Completed</option>
+                          <option value="booked">Booked</option>
+                      </select>
+                  </td>
+                  <td>2024-10-15</td>
+                  <td><button class="btn-update">Update Status</button></td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</main>
 
   <!--This is used for the footer-->
   <div id="footer-placeholder"></div>
-  <script>
-      fetch('footer-admin-client.html')
-      .then(response => response.text())
-      .then(data => {
-          document.getElementById('footer-placeholder').innerHTML = data;
-      });
-  </script>
+  <script src="js/headers-footer.js"></script>
 
 </body>
 </html>
