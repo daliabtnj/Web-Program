@@ -10,43 +10,50 @@
     <!-- login-signup CSS file  -->
     <link rel="stylesheet" href="css/login-signup.css">
     <!-- footer CSS file  -->
-    <link rel="stylesheet" href="css/footer.css">
+    <!-- popupMessage CSS file  -->
+    <link rel="stylesheet" href="css/popupMessage.css">
+    
+
+
 </head>
 
 <body>
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
 
-    <!--Main for sign up-->
+<!--Main section for signing up
+    Allows to choose between client or administrator to log in-->
     <main>
         <section class="signup-box">
             <h1>Sign Up</h1>
-            <p>Create a new account</p>
-            <form action="customer-dashboard.html" method="POST">
-                <label for="name">Name:</label><br>
-                <input type="text" placeholder="enter name" id="name" name="name" required><br>
-        
-                <label for="email">Email:</label><br>
-                <input type="text" placeholder="enter email" id="email" name="email" required><br>
-
-                <label for="phone">Phone number:</label><br>
-                <input type="text" placeholder="enter number" id="phone" name="phone" required><br>
-        
-                <label for="password">Password:</label><br>
-                <input type="password" placeholder="enter password" id="password" name="password" required><br>
-        
-                <label for="password-repeat">Confirm password:</label><br>
-                <input type="password" placeholder="repeat password" id="password-repeat" name="password-repeat" required><br>
-    
-                <!--sign up button-->
-                <br><button type="submit">submit</button>
-            </form>
+            <p>Would you like to sign up as a client or an admin?</p>
+            <a href="signup-client.html"><button>Client</button></a>
+            <a href="signup-admin.html"><button>Admin</button></a>
         </section>
     </main>
 
-<!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script src="js/headers-footer.js"></script>
+
+
+
+
+<!-- Modal for confirmation -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <h2>Sign Up Successful</h2>
+        <p>You have signed up successfully!</p>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+
+
+
+
+    <!--This is used for the footer-->
+    <div id="footer-placeholder"></div>
+    <script src="js/headers-footer.js"></script>
+    <script type="text/javascript" src="./javascript/client.js"></script>
 
 </body>
+
 </html>
