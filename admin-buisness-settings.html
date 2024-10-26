@@ -18,18 +18,9 @@
 <body>
     <!-- This is used for the drop down menu -->
     <div id="header-placeholder"></div>
-    <script>
-        fetch('admin-header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-    </script>
 
-
-<main>
-    <section>
-        <h1>Business Settings</h1>
+    <main>
+    <h1>Business Settings</h1>
 
         <div class="service-item">
             <h3>Company Name:</h3>
@@ -73,39 +64,11 @@
     </section>
 </main>
 
-<script>
-    // Function to make only the paragraph text editable
-    function editInformation(button) {
-    const parent = button.parentNode;
-    const serviceDescription = parent.querySelector('p'); 
-    serviceDescription.contentEditable = true;
-    serviceDescription.classList.add('editable-box'); 
-    serviceDescription.focus();
-}
-
-    // Function to save the edited text (just for frontend purposes)
-    function saveInformation(button) {
-    const parent = button.parentNode;
-    const serviceDescription = parent.querySelector('p'); 
-    serviceDescription.contentEditable = false;
-    serviceDescription.classList.remove('editable-box'); 
-    alert("Information updated (not persisted in backend).");
-}
-</script>
-
-
-
-
-<!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script>
-    fetch('footer-admin-client.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
-
+  <!--This is used for the footer-->
+  <div id="footer-placeholder"></div>
+  <script src="js/headers-footer.js"></script>
+  <script src="admin.js"></script>
+  <script src="js/business-settings.js"></script>
 
 </body>
 
