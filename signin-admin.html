@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generic Company - Sign in admin</title>
-    <!-- styles CSS file  -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- login-signup CSS file  -->
     <link rel="stylesheet" href="css/login-signup.css">
@@ -32,7 +31,10 @@
     <main>
         <section class="signup-box">
             <h1>Admin Sign In</h1>
-            <form action="admin-dashboard.html" method="GET"> 
+
+            <!-- Login action from admin.js (JavaScript file)-->
+            <form id="admin-login-form" onsubmit = "loginAdmin(event)">
+
                 <!--Username-->
                 <label for="email">Email:</label><br>
                 <input type="email" placeholder="enter email" id="email" name="email" required><br>
@@ -41,8 +43,8 @@
                 <label for="password">Password:</label><br>
                 <input type="password" placeholder="enter password" id="password" name="password" required><br>
 
-                <!--sign in button-->
-                <button type="submit">Submit</button>
+                <!--Sign in button-->
+                <br><button type="submit">Submit</button>
             </form>
 
             <p>sign in as client <a href="signin-client.html">here</a>,
