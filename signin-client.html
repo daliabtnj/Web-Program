@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generic Company - Sign in client</title>
-    <!-- styles CSS file  -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- login-signup CSS file  -->
     <link rel="stylesheet" href="css/login-signup.css">
@@ -18,20 +17,14 @@
 <body>
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
-    <script>
-        fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
-    </script>
 
     <!--Main section for signing in
     Allows to choose between client or administrator to log in-->
     <main>
         <section class="signup-box">
             <h1>Client Sign In</h1>
-            <form action="customer-dashboard.html" method="GET"> 
+            <form action="customer-dashboard.html" method="GET" onsubmit="saveCustomer()"> 
+                
                 <!--Username-->
                 <label for="email">Email:</label><br>
                 <input type="email" placeholder="enter email" id="email" name="email" required><br>
@@ -41,7 +34,7 @@
                 <input type="password" placeholder="enter password" id="password" name="password" required><br>
 
                 <!--sign in button-->
-                <button type="submit">Submit</button>
+                <button type="submit" onsubmit="saveCustomer()">Submit</button>
             </form>
             <p>Sign in as admin <a href="signin-admin.html">here</a>,
             sign up <a href="signup.html">here</a>!</p>
@@ -52,12 +45,8 @@
 
 <!--This is used for the footer-->
 <div id="footer-placeholder"></div>
-<script>
-    fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
+<script src="js/headers-footer.js"></script>
+
+
 </body>
 </html>
