@@ -13,8 +13,19 @@
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
     <!-- JavaScript file-->
-    <script src = "admin.js"></script>
-    <script src="js/headers-footer.js"></script>
+    <script src = "admin.js" defer></script>
+    <script src="js/headers-footer.js" defer></script>
+    <script>
+        // Clear login status on page load
+        function clearLoginStatus() {
+            localStorage.removeItem('whoIsLogged'); // Remove the login status
+        }
+
+        // Call the function when the page loads
+        document.addEventListener("DOMContentLoaded", function() {
+            clearLoginStatus(); // Clear login status
+        });
+    </script>
 
 </head>
 
