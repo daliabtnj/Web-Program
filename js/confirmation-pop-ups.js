@@ -1,30 +1,13 @@
 /*------------------------------------------------------------------------------------------------------*/
-// signup.js
+// signup confirmation for client
+// JavaScript to validate email and show confirmation pop-up
 
-document.addEventListener('DOMContentLoaded', () => {
-    const clientSignUpForm = document.getElementById('client-sign-up-form');
-    const password = document.getElementById('password');
-    const passwordRepeat = document.getElementById('password-repeat');
-    const errorDiv = document.getElementById('error');
+// Function to check for missing "@" in the email and show confirmation pop-up
+// Function to check for missing "@" in the email and show confirmation pop-up
 
-    clientSignUpForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        errorDiv.textContent = '';
 
-        // Check if passwords match
-        if (password.value !== passwordRepeat.value) {
-            errorDiv.textContent = 'Passwords do not match.';
-            return;
-        }
-
-        // Display the confirmation modal if sign-up is successful
-        document.getElementById("confirmationModal").style.display = "flex";
-    });
-});
-
-function closeModal() {
-    document.getElementById("confirmationModal").style.display = "none";
-}
+/*------------------------------------------------------------------------------------------------------*/
+// signup confirmation for admin
 
 
 
