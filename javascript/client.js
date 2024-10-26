@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign up successful and pushes new user to users array
             else {
                 console.log("Form is valid. Redirecting...");
+                saveCustomer();
                 window.location.href = "customer-dashboard.html";   // Redirect to customer dashboard
 
             }
