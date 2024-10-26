@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generic Company - Sign up</title>
+    <!-- styles CSS file  -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- login-signup CSS file  -->
     <link rel="stylesheet" href="css/login-signup.css">
@@ -15,13 +16,6 @@
 <body>
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
-    <script>
-        fetch('header.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-        });
-    </script>
 
     <!--Main for sign up-->
     <main>
@@ -52,13 +46,7 @@
 
 <!--This is used for the footer-->
 <div id="footer-placeholder"></div>
-<script>
-    fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
+<script src="js/headers-footer.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,37 @@
 /* This is used for the sytling of the header and added images */
 
+/* For tablets and smaller laptops */
+@media (max-width: 1024px) {
+    main {
+    padding: 10px;
+    }
+    button {
+      width: 180px; /* Adjust button size for tablets */
+    height: 150px;
+    font-size: 16px;
+    }
+}
+
+  /* For mobile devices */
+@media (max-width: 768px) {
+    main {
+    padding: 5px;
+    }
+    .button-section {
+      flex-direction: column; /*  buttons vertically on small screens */
+    align-items: center;
+    }
+    button {
+    width: 150px; /* Smaller button size for phones */
+    height: 120px;
+    font-size: 14px;
+    }
+}
+
+/*--------------------------------------------------------------------------------------------------------------*/
+
+
+
 /* Container for the logo */
 .logo-container {
     display: inline-block;
@@ -84,14 +116,13 @@ header ul.main-nav li ul.dropdown {
     background: #600d1a;
     position: absolute;
     top: 100%;
-    left: 0;
+    right: 0; /* Aligns the dropdown to the left */
     display: none;
     z-index: 999;
     padding: 0;
     min-width: 100px; 
     max-width: 200px;
     font-size: 16px;
-
 }
 
 /* individual dropdown list items */
@@ -130,19 +161,7 @@ ul.services-list {
     padding-left: 20px;
 }
 
-/* Add an image in section About Us */
-/* Centering the About Us section image */
-.about-us-image-container {
-    text-align: center; /* Center-align the content inside the container */
-    margin: 20px auto; /* Add some space around the image container */
-    margin-top: 300px;
-}
 
-.about-us-image-container img {
-    width: 300px; 
-    height: auto; 
-    display: inline-block; 
-}
 
 
 /* background color light gray*/
@@ -153,5 +172,79 @@ body {
     font-weight: 450;              
     line-height: 1.5;              
     color: #333; 
+}
+
+
+/*--------------------------------------------------------------------------------------------------------------*/
+
+/* General font styling for the entire document */
+body {
+    font-family: "Arial", sans-serif; /* Set a default font */
+    color: #333; /* Main text color */
+}
+
+/* Headings styling */
+h1, h2, h3, h4 {
+    color: #444; /* Color for headings */
+    font-family: "Georgia", serif; /* Elegant font for headings */
+    font-weight: bold;
+}
+
+/* Specific heading sizes */
+h1 {
+    font-size: 36px; 
+    margin-bottom: 12px; 
+}
+
+h2 {
+    font-size: 30px; 
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 24px; 
+    margin-bottom: 8px;
+}
+
+h4 {
+    font-size: 20px; 
+    margin-bottom: 6px;
+}
+
+/* Paragraph styling */
+p {
+    font-size: 18px; 
+    color: #555; /* Slightly lighter color for paragraphs */
+    line-height: 1.6; 
+    margin-bottom: 10px;
+}
+
+/* List item styling */
+ul, li {
+    font-size: 18px; 
+    color: #555; 
+    margin-bottom: 8px; 
+}
+
+/* Editable class styling */
+.editable {
+    outline: none; 
+}
+
+/* Button styling for consistency */
+button {
+    font-size: 16px; 
+    padding: 10px 15px; 
+    background-color: #600d1a; 
+    color: #fff; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    margin: 5px; 
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #73343f; /* Slightly darker on hover */
 }
 

@@ -1,24 +1,29 @@
+<!-- styles CSS file  -->
+<link rel="stylesheet" href="css/styles.css">
+<!-- footer CSS file  -->
+<link rel="stylesheet" href="css/footer.css">
+
 <header>
-    <div class="logo-container">
-        <a href="index.html">
-            <img src="https://www.service-hub.no/logo.png" alt="ServiceHub Logo" class="header-logo">
-        </a>
-    </div>
+    <h1 class="header-title">SERVICEHUB - Service Website</h1> 
     <ul class="main-nav">
         <li><a href="index.html">Home</a></li>
-        <li> <a href="admin-manage-services.html">Services</a></li>
+        <li> <a href="customer-book-service.html">Services</a></li>
         <li><a href="about-us.html">About us</a></li>
         <li><a href="contact.html">Contact us</a></li>
         <li class="has-dropdown">
             <a href="#">
-                <img src="https://bysperfeccionoral.com/wp-content/uploads/2020/01/136-1366211_group-of-10-guys-login-user-icon-png.jpg" alt="Login Logo" class="nav-logo"> Client &#x25BE;
+                <div class="login-icon-container"></div>
+                <img src="loginIcon.png" alt="Icon Logo" class="nav-logo"> 
+                </div>
+                Client &#x25BE
             </a>
             <ul class="dropdown">
                 <li><a href="customer-dashboard.html">Client Space</a></li>
                 <li><a href="customer-account.html">My Account</a></li>
                 <li><a href="customer-requests.html">My Request</a></li>
                 <li><a href="customer-bills&receipts.html">Bills & Receipts</a></li>
-                <li><a href="customer-logout.html">Log Out</a></li>
+                <li><a href="logout.html" onclick="logout()">Log Out</a></li>
+                <script src="js/headers-footer.js"></script>
             </ul>
         </li>
     </ul>
