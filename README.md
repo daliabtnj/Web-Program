@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project, part of the SOEN 287 course, develops a web-based system for service companies, enabling clients to manage accounts and request services while allowing administrators to manage offerings and track service histories.
+This project develops a web-based system for service companies, enabling clients to manage accounts and request services while allowing administrators to manage offerings and track service histories.
 
 ## Features
 
