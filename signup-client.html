@@ -1,4 +1,4 @@
-<!--Sign in page for clients-->
+<!--Sign up page for clients-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,6 +22,8 @@
     <main>
         <section class="signup-box">
             <h1>Client Sign Up</h1>
+            <form action="customer-dashboard.html" method="GET" onsubmit="saveCustomer()"> 
+
             <p>Create a new account</p>
             <div id="error" style="color: red;"></div>
             <form id="client-sign-up-form">
@@ -41,12 +43,13 @@
                 <input type="password" placeholder="repeat password" id="password-repeat" name="password-repeat"
                     required><br>
 
-                <!--sign up button-->
-                <br><button type="submit">submit</button>
+            <!--sign up button-->
+            <button type="submit" onsubmit="saveCustomer()">Submit</button>
             </form>
+            <p>sign up as admin <a href="signup-admin.html">here</a>,
+            sign in <a href="signin.html">here</a>!</p>
         </section>
     </main>
-
 
 <!--This is used for the footer-->
 <div id="footer-placeholder"></div>
