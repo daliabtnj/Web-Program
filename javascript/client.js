@@ -4,19 +4,13 @@ var users = [
         "name": "John",
         "email": "johndoe@gmail.com",
         "phone": "5141234567",
-        "password": "jobcart59!"
+        "password": "password123!"
     },
     {
         "name": "Violet",
         "email": "violetsteveland@hotmail.com",
         "phone": "4389876543",
         "password": "bookcase451<"
-    },
-    {
-        "name": "Rhiannon",
-        "email": "rhiannonwonder@yahoo.com",
-        "phone": "5144832947",
-        "password": "lightsaber12)"
     }
 ];
 
@@ -34,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const password_repeat = document.getElementById('password-repeat');
     const clientSignUpForm = document.getElementById('client-sign-up-form');
     const clientSignInForm = document.getElementById('client-sign-in-form');
+    const clientAccountForm = document.getElementById('client-account-edit-form');
 
     // Sign-Up Form Validation and error handling
     if (clientSignUpForm) {
@@ -87,8 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
             else {
                 console.log("Form is valid. Redirecting...");
                 window.location.href = "customer-dashboard.html";
+
             }
         })
+    }
+    if (clientAccountForm) {
+
     }
 });
 
