@@ -5,35 +5,108 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generic Company - Customer Dashboard</title>
+    <!-- styles CSS file  -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
+    <!-- service CSS file  -->
+    <link rel="stylesheet" href="css/service.css">
+    <!-- JavaScript file -->
+    <script src="admin.js" defer></script> 
 </head>
 
 <body>
-    <!--This is used for the drop down menu-->
+    <!-- This is used for the drop down menu -->
     <div id="header-placeholder"></div>
     <script>
         fetch('admin-header.html')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-          });
-      </script>
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+    </script>
 
-    <main>
-    <h1>Business Settings</h1>
 
-    </main>
+<main>
+    <section>
+        <h1>Business Settings</h1>
 
-  <!--This is used for the footer-->
-  <div id="footer-placeholder"></div>
-  <script>
-      fetch('footer.html')
-      .then(response => response.text())
-      .then(data => {
-          document.getElementById('footer-placeholder').innerHTML = data;
-      });
-  </script>
+        <div class="service-item">
+            <h3>Company Name:</h3>
+            <p class="editable" contenteditable="false">Service Website</p>
+            <button onclick="editInformation(this)">EDIT NAME</button>
+            <button onclick="saveInformation(this)">SAVE NAME</button>
+            <hr>
+        </div>
+
+        <div class="service-item">
+            <h3>Logo URL:</h3>
+            <p class="editable" contenteditable="false">48A449F8-648E-4FAE-A0A1-BD8D4E4FB0DF_1_201_a.jpeg</p>
+            <button onclick="editInformation(this)">EDIT LOGO</button>
+            <button onclick="saveInformation(this)">SAVE LOGO</button>
+            <hr>
+        </div>
+
+        <div class="service-item">
+            <h3>Address:</h3>
+            <p class="editable" contenteditable="false">123 Maplewood Avenue, Suite 45, Brookfield, NY 10234, USA</p>
+            <button onclick="editInformation(this)">EDIT ADDRESS</button>
+            <button onclick="saveInformation(this)">SAVE ADDRESS</button>
+            <hr>
+        </div>
+
+        <div class="service-item">
+            <h3>Phone:</h3>
+            <p class="editable" contenteditable="false">+1 (555) 987-6543</p>
+            <button onclick="editInformation(this)">EDIT PHONE</button>
+            <button onclick="saveInformation(this)">SAVE PHONE</button>
+            <hr>
+        </div>
+
+        <div class="service-item">
+            <h3>Email:</h3>
+            <p class="editable" contenteditable="false">ServiceWebsite@services.com</p>
+            <button onclick="editInformation(this)">EDIT EMAIL</button>
+            <button onclick="saveInformation(this)">SAVE EMAIL</button>
+            <hr>
+        </div>
+    </section>
+</main>
+
+<script>
+    // Function to make only the paragraph text editable
+    function editInformation(button) {
+    const parent = button.parentNode;
+    const serviceDescription = parent.querySelector('p'); 
+    serviceDescription.contentEditable = true;
+    serviceDescription.classList.add('editable-box'); 
+    serviceDescription.focus();
+}
+
+    // Function to save the edited text (just for frontend purposes)
+    function saveInformation(button) {
+    const parent = button.parentNode;
+    const serviceDescription = parent.querySelector('p'); 
+    serviceDescription.contentEditable = false;
+    serviceDescription.classList.remove('editable-box'); 
+    alert("Information updated (not persisted in backend).");
+}
+</script>
+
+
+
+
+<!--This is used for the footer-->
+<div id="footer-placeholder"></div>
+<script>
+    fetch('footer-admin-client.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+    });
+</script>
+
+
 </body>
+
 </html>

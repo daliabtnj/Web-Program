@@ -8,14 +8,14 @@
     border-radius: 10px; /* Rounded corners */
     width: 300px;  
     margin: 0 auto; /* Center the box horizontal; */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     text-align: left; 
 }
 
 /* Labels for the form */
 .signup-box label {
-    display: block; /* Make labels block elements */
-    margin-bottom: 0; /* Add space between label and input */
+    display: block; 
+    margin-bottom: 0; 
     font-weight: bold; 
 }
 
@@ -25,7 +25,7 @@
     padding: 12px; 
     margin-bottom: 15px;
     border: 2px solid #ccc; /* thicker border */
-    border-radius: 8px; /* rounded corners */
+    border-radius: 8px; 
     box-sizing: border-box;
     font-size: 14px; 
 }
@@ -53,11 +53,11 @@
     background-color: #f5f5f5; /* Light gray background */
     padding: 30px;
     border: 1px solid #ccc; 
-    border-radius: 10px; /* Rounded corners */
+    border-radius: 10px; 
     width: 300px; 
     margin: 0 auto; /* Center the box horizontal */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* shadow for depth */
-    text-align: center; /* Center the text in the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    text-align: center; 
 }
 
 
