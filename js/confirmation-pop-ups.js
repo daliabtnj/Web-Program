@@ -1,4 +1,5 @@
 /*------------------------------------------------------------------------------------------------------*/
+<<<<<<< HEAD
 // signup.js
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -39,6 +40,25 @@ function bookService() {
     document.getElementById("confirmationText").innerHTML =
         "Your booking was a success! Booking confirmation #" + confirmationNumber +
         "<br>You can go to My Request section to see your booking.";
+=======
+
+// Booking confirmation for client with message and date/time
+function bookService() {
+    const confirmationNumber = Math.floor(Math.random() * 10000000);
+    
+    // Get the current date and time
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString(); 
+    const formattedTime = now.toLocaleTimeString(); 
+
+    // Update confirmation message with date and time
+    document.getElementById("confirmationText").innerHTML = 
+        "Your booking was a success! Booking confirmation #" + confirmationNumber +
+        "<br>Booked on: " + formattedDate + " at " + formattedTime +
+        "<br>You can go to My Request section to see your booking.";
+    
+    // Show the modal
+>>>>>>> 6fcff09337b0c7d228206ce5a56332b85d92008e
     document.getElementById("confirmationModal").style.display = "flex";
 }
 

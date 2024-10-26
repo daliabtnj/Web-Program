@@ -82,7 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign in successful
             else {
                 console.log("Form is valid. Redirecting...");
+<<<<<<< HEAD
                 saveCustomer();
+=======
+>>>>>>> 6fcff09337b0c7d228206ce5a56332b85d92008e
                 window.location.href = "customer-dashboard.html";
 
             }
@@ -155,9 +158,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+<<<<<<< HEAD
 });
 
 
 
 
 
+=======
+});
+>>>>>>> 6fcff09337b0c7d228206ce5a56332b85d92008e

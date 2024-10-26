@@ -2,7 +2,11 @@
 
 ## Victor's Part
 
+<<<<<<< HEAD
 For now, I am responsible for the forms and user interaction on the client's side, that is any forms that clients fill and submit, and the way they interect with our website. I'll also be helping with the admin side of things, as that is the most complex part.
+=======
+This project develops a web-based system for service companies, enabling clients to manage accounts and request services while allowing administrators to manage offerings and track service histories.
+>>>>>>> 6fcff09337b0c7d228206ce5a56332b85d92008e
 
 ### To Work On (Client Side)
 
