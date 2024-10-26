@@ -117,7 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (saveButton) {
-        saveButton.addEventListener('click', () => {
+        saveButton.addEventListener('click', (e) => {
+            e.preventDefault();
             nameDisplay.textContent = nameInput.value;
             emailDisplay.textContent = emailInput.value;
             phoneDisplay.textContent = phoneInput.value;
