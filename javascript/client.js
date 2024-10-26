@@ -14,21 +14,21 @@ var users = [
     }
 ];
 
-var isLoggedIn = false;
-
-
 // Error Handling and Form Validation
 document.addEventListener('DOMContentLoaded', () => {
-    // Sign-Up Page required information
 
+    // Sign-Up Page required information
     const name = document.getElementById('name');
     const email = document.getElementById('email');
     const phone = document.getElementById('phone');
     const password = document.getElementById('password');
     const password_repeat = document.getElementById('password-repeat');
+
+    // Get sign up form
     const clientSignUpForm = document.getElementById('client-sign-up-form');
+
+    // Get sing in form
     const clientSignInForm = document.getElementById('client-sign-in-form');
-    const clientAccountForm = document.getElementById('client-account-edit-form');
 
     // Sign-Up Form Validation and error handling
     if (clientSignUpForm) {
@@ -65,7 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const errors = document.getElementById('error');
             errors.innerText = '';
 
-            const existingUser = users.some(user => (user.email == email.value) && (user.password == password.value)); // Check if user exists
+            // Check if user exists
+            const existingUser = users.some(user => (user.email == email.value) && (user.password == password.value));
 
             // If user does not exist
             if (!existingUser) {
@@ -86,9 +87,54 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     }
-    if (clientAccountForm) {
+});
 
+// Form Validation for customer-account information changes
+document.addEventListener('DOMContentLoaded', () => {
+    const editButton = document.getElementById('edit-client-button');
+    const saveButton = document.getElementById('save-changes');
+    const cancelButton = document.getElementById('cancel');
+
+    const clientAccountInfo = document.getElementById('client-account-info');
+    const editClientAccountForm = document.getElementById('client-account-edit-form');
+
+    const nameDisplay = document.getElementById('client-name-display');
+    const emailDisplay = document.getElementById('client-email-display');
+    const phoneDisplay = document.getElementById('client-phone-display');
+    const passwordDisplay = document.getElementById('client-password-display');
+
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const phoneInput = document.getElementById('phone');
+    const passwordInput = document.getElementById('password');
+
+    if (editButton) {
+
+        editButton.addEventListener('click', () => {
+            clientAccountInfo.style.display = 'none';
+            editClientAccountForm.style.display = 'block';
+        });
     }
+
+    if (saveButton) {
+        saveButton.addEventListener('click', () => {
+            nameDisplay.textContent = nameInput.value;
+            emailDisplay.textContent = emailInput.value;
+            phoneDisplay.textContent = phoneInput.value;
+            passwordDisplay.textContent = passwordInput.value;
+
+            editClientAccountForm.style.display = 'none';
+            clientAccountInfo.style.display = 'block';
+        });
+    }
+
+    if (cancelButton) {
+        cancelButton.addEventListener('click', () => {
+            editClientAccountForm.style.display = 'none';
+            clientAccountInfo.style.display = 'block';
+        });
+    }
+
 });
 
 
