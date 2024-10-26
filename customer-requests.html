@@ -2,43 +2,74 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generic Company - Customer Dashboard</title>
-    <!-- styles CSS file  -->
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- footer CSS file  -->
-    <link rel="stylesheet" href="css/footer.css">
-    
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generic Company - Customer Dashboard</title>
+  <!-- styles CSS file  -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- footer CSS file  -->
+  <link rel="stylesheet" href="css/footer.css">
+
 </head>
 
 <body>
-    <!--This is used for the drop down menu-->
-    <div id="header-placeholder"></div>
-    <script>
-        fetch('customer-header.html')
-          .then(response => response.text())
-          .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-          });
-      </script>
+  <!--This is used for the drop down menu-->
+  <div id="header-placeholder"></div>
+  <script>
+    fetch('customer-header.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+  </script>
 
 
-<main>
-  <h1>My Requests</h1>
+  <main>
+    <h1>My Requests</h1>
 
-</main>
+    <!-- View Client's Requests-->
+    <div class="section" id="client-requests">
+      <div class="header">My Requests</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Company</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tutoring</td>
+            <td>Tutors.ca</td>
+            <td>Pending</td>
+            <td>2024-10-10</td>
+            <td><button class="cancel-service-button">Cancel</button></td>
+          </tr>
+          <tr>
+            <td>Pet Grooming</td>
+            <td>Pet Groomers Inc.</td>
+            <td>Booked</td>
+            <td>2024-10-15</td>
+            <td><button class="cancel-service-button">Cancel</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
 
-<!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script>
+  <!--This is used for the footer-->
+  <div id="footer-placeholder"></div>
+  <script>
     fetch('footer-admin-client.html')
-    .then(response => response.text())
-    .then(data => {
+      .then(response => response.text())
+      .then(data => {
         document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
+      });
+  </script>
 
 </body>
+
 </html>

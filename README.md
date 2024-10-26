@@ -37,4 +37,3 @@ For now, I am responsible for the forms and user interaction on the client's sid
 
 - Copy:
   - book service (if not signed in then redirect to sign up page). If service is booked then just output a confirmation and the bills.
-  - 
