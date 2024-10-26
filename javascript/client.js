@@ -1,4 +1,27 @@
-// Sign-Up Form Validation
+// Hardcoded predefined users
+var users = [
+    {
+        "name": "John",
+        "email": "johndoe@gmail.com",
+        "phone": "5141234567",
+        "password": "jobcart59!"
+    },
+    {
+        "name": "Violet",
+        "email": "violetsteveland@hotmail.com",
+        "phone": "4389876543",
+        "password": "bookcase451<"
+    },
+    {
+        "name": "Rhiannon",
+        "email": "rhiannonwonder@yahoo.com",
+        "phone": "5144832947",
+        "password": "lightsaber12)"
+    }
+];
+
+var isLoggedIn = false;
+
 
 // Error Handling and Form Validation
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clientSignUpForm = document.getElementById('client-sign-up-form');
     const clientSignInForm = document.getElementById('client-sign-in-form');
 
+    // Sign-Up Form Validation and error handling
     if (clientSignUpForm) {
         clientSignUpForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -28,14 +52,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (errorMessages.length > 0) {
                 errors.innerText = errorMessages.join(', ');
             }
+
+            // Redirects if sign up successful and pushes new user to users array
             else {
                 console.log("Form is valid. Redirecting...");
-                window.location.href = "customer-dashboard.html";   // redirect to customer dashboard
+                window.location.href = "customer-dashboard.html";   // Redirect to customer dashboard
 
             }
         });
     }
 
+    // Sign-In Form Validation and error handling
     if (clientSignInForm) {
         clientSignInForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -43,9 +70,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const errors = document.getElementById('error');
             errors.innerText = '';
 
+            const existingUser = users.some(user => (user.email == email.value) && (user.password == password.value)); // Check if user exists
+
+            // If user does not exist
+            if (!existingUser) {
+                console.log("user does not exist")
+                errorMessages.push('User does not exist. Try again or sign up.')
+            }
+
+            // Display error messages
             if (errorMessages.length > 0) {
                 errors.innerText = errorMessages.join(', ');
             }
+
+            // Redirects if sign in successful
             else {
                 console.log("Form is valid. Redirecting...");
                 window.location.href = "customer-dashboard.html";

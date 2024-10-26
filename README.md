@@ -34,3 +34,7 @@ For now, I am responsible for the forms and user interaction on the client's sid
   - var isLoggedIn = true if form is handled.
   - Have 3 predefined emails and passwords as existing clients.
   - Create html for book-services (copy paste customer-dashboard and fix it up).
+
+- Copy:
+  - book service (if not signed in then redirect to sign up page). If service is booked then just output a confirmation and the bills.
+  - 
