@@ -1,0 +1,144 @@
+/* to style services when logged out*/
+
+.service-box {
+    background-color: #f7f7f7; 
+    padding: 20px; 
+    margin: 15px 0;
+    border-radius: 10px; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
+    border: 1px solid #ddd;
+}
+
+/* Styling for the Book Service button */
+.service-box button {
+    background-color: #600d1a; /* Button color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.service-box button:hover {
+    background-color: #73343f; 
+}
+
+/*---------------------------------------------------------------------------------------------------------------------*/
+/* Service Box Styling  for Admin, client */
+.service-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+.editable {
+    outline: none;
+    cursor: text;
+}
+
+.service-item button {
+    background-color: #600d1a;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 5px 0;
+}
+
+.service-item button:hover {
+    background-color: #73343f;
+}
+
+/* Box styling for Add Service */
+.add-service-box {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.add-service-box input[type="text"],
+.add-service-box textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.add-service-box button {
+    background-color: #005f5f;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-service-box button:hover {
+    background-color: #007575;
+}
+
+/* Styling for Editable Sections */
+.editing-header {
+    background-color: #f9f9f9;
+    border: 2px solid #ffb700;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.editing-paragraph {
+    background-color: #f9f9f9;
+    border: 2px solid #66c2ff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.editing-list {
+    background-color: #f9f9f9;
+    border: 2px solid #ffa07a;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+/* Styling for "Book Service" Button */
+.service-box button {
+    background-color: #600d1a;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.service-box button:hover {
+    background-color: #73343f;
+}
+
+
+
+/*---------------------------------------------------------------------------------------------------------------------*/
+
+/* manage services for admin*/
+
+.editable-box {
+    background-color: #f1f1f1; 
+    border: 2px solid #ffa500; /* to indicate editing mode */
+    padding: 10px; 
+    border-radius: 5px; 
+}
+

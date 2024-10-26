@@ -1,90 +1,92 @@
-/* This is used for the styling of the footer*/
-
+/* Footer Styling */
 footer {
     background-color: #333;
-    color: #fff;
-    padding: 20px 25;
-    text-align: center;
-    text-align: center;
-    font-family: "Verdana", serif; 
-    font-size: 16px;               
-    line-height: 1.6; 
-    margin-top: auto; /* Pushes footer to the bottom */
+    color: #fff; 
+    padding: 40px 25px;
+    font-family: "Verdana", serif;
+    font-size: 16px;
+    line-height: 1.6;
 }
-
 
 .footer-container {
     display: flex;
-    flex-direction: row; /* Force items into a horizontal row */
+    flex-direction: row;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 30px;
-    flex-wrap: nowrap; 
+    padding: 30px 0;
+    flex-wrap: wrap;
 }
 
 .footer-section {
     flex: 1;
-    min-width: 25%; 
+    min-width: 220px;
     margin: 10px;
     text-align: left;
 }
 
 .footer-section h4 {
-    margin-bottom: 15px;
-    font-size: 1.3rem; 
-    font-weight: bold; 
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-section ul li {
-    margin: 5px 0;
-}
-
-.footer-section ul li a {
     color: #fff;
-    text-decoration: none;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    font-weight: bold;
 }
 
+/* Quick Links and Social Media Icons */
+.footer-section ul li,
+.footer-section p,
+.footer-section a {
+    color: #fff; 
+    text-decoration: none; 
+}
+
+/* Specific hover effect for all footer links except email and phone */
 .footer-section ul li a:hover {
-    text-decoration: underline;
+    text-decoration: underline; 
+    color: #fff; 
 }
 
-/* Social Media Icons */
-.social-icons {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    justify-content: flex-start;
+/* List Item Bullet Colors */
+.footer-section ul {
+    list-style-type: none; 
 }
 
-.social-icons li {
-    margin-right: 10px;
+.footer-section ul li::before {
+    content: "•"; 
+    color: #fff; /* White bullet */
+    margin-right: 8px;
 }
 
-.social-icons img {
-    width: 24px;
-    height: 24px;
-}
-
-/* Footer bottom */
+/* Footer Bottom */
 .footer-bottom {
-    margin-top: 20px;
+    margin-top: 30px;
     border-top: 1px solid #444;
-    padding-top: 10px;
+    padding-top: 15px;
     text-align: center;
 }
 
-.footer-bottom p {
-    margin: 0;
+.footer-bottom {
     font-size: 0.9em;
+    color: #fff; 
 }
 
-/* put footer at the bottom and keep extra space */
 main {
-    margin-bottom: 300px; 
+    padding-bottom: 50px; 
+}
+
+footer {
+    margin-top: 100px; /* Creates a margin between the footer and the main content */
+}
+
+/* Styling for email and phone links */
+.footer-section a[href^="mailto"],
+.footer-section a[href^="tel"] {
+    color: #4989e9; 
+    text-decoration: underline; /* Always underlined */
+}
+
+.footer-section a[href^="mailto"]:hover,
+.footer-section a[href^="tel"]:hover {
+    color: #66a3ff; 
+    text-decoration: underline; /* Keep underline on hover */
 }

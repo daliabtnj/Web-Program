@@ -5,11 +5,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Generic Company - Customer Dashboard</title>
+  <!-- styles CSS file  -->
   <link rel="stylesheet" href="css/styles.css">
   <!-- footer CSS file  -->
   <link rel="stylesheet" href="css/footer.css">
   <!-- admin-client CSS file  -->
   <link rel="stylesheet" href="css/admin-client.css">
+  <!-- client JS file  -->
+  <script type="text/javascript" src="./javascript/client.js"></script>
 </head>
 
 <body>
@@ -40,7 +43,7 @@
   <!--This is used for the footer-->
   <div id="footer-placeholder"></div>
   <script>
-    fetch('footer.html')
+    fetch('footer-admin-client.html')
       .then(response => response.text())
       .then(data => {
         document.getElementById('footer-placeholder').innerHTML = data;
