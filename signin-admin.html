@@ -6,23 +6,28 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generic Company - Sign in admin</title>
+    <!-- styles CSS file  -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- login-signup CSS file  -->
     <link rel="stylesheet" href="css/login-signup.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
+    <!-- JavaScript file-->
+    <script src = "admin.js"></script>
+    <script src="js/headers-footer.js"></script>
+
 </head>
 
 <body>
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
 
-    <!--Main section for signing in
+   <!--Main section for signing in
     Allows to choose between client or administrator to log in-->
     <main>
         <section class="signup-box">
             <h1>Admin Sign In</h1>
-            <form action="admin-dashboard.html" method="GET" onsubmit="saveAdmin()"> 
+            <form id="admin-login-form" onsubmit="loginAdmin(event);">
                 <!--Username-->
                 <label for="email">Email:</label><br>
                 <input type="email" placeholder="enter email" id="email" name="email" required><br>
@@ -32,17 +37,16 @@
                 <input type="password" placeholder="enter password" id="password" name="password" required><br>
 
                 <!--sign in button-->
-                <button type="submit" onsubmit="saveAdmin()">Submit</button>
+                <button type="submit">Submit</button>
             </form>
+
             <p>sign in as client <a href="signin-client.html">here</a>,
             sign up <a href="signup.html">here</a>!</p>
         </section>
     </main>
 
     <!--This is used for the footer-->
-    <div id="footer-placeholder"></div>
-    <script src="js/headers-footer.js"></script>
-
+<div id="footer-placeholder"></div>
 
 </body>
 </html>
