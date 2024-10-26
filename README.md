@@ -1,40 +1,41 @@
-# web_program_soen287
+# Web Program Project
 
-## Victor's Part
+## Overview
 
-For now, I am responsible for the forms and user interaction on the client's side, that is any forms that clients fill and submit, and the way they interect with our website. I'll also be helping with the admin side of things, as that is the most complex part.
 This project develops a web-based system for service companies, enabling clients to manage accounts and request services while allowing administrators to manage offerings and track service histories.
 
-### To Work On (Client Side)
+## Features
 
-- Create and link javascript file ✅
-- SignUp Form
-  - Validate input ✅
-  - Handle form submission ✅
-  - Error handling ✅
-- Sign In/Sign out forms
-  - Validate input ⚠️
-  - Handle form submission ✅
-  - Error handling ✅
-- Request Service functionality
-  - Capture user requests for services
-  - Store user requests temporarily.
-- Customer Dashboard
-  - Display past services
-  - Display future services
-  - Handle requests for cancelling services.
+- User roles: Clients and business administrators
+- Dropdown navigation for easy access to pages
+- Responsive design for various devices
 
+## Technologies
 
-### To Work On (Admin Side)
+- **HTML**, **CSS**, **JavaScript**, **Git**
 
-- Handle customer requests
-- Handle service completion
+## Getting Started
 
-### NOTES
-- Hardcode info: 
-  - var isLoggedIn = true if form is handled.
-  - Have 3 predefined emails and passwords as existing clients.
-  - Create html for book-services (copy paste customer-dashboard and fix it up).
+### Prerequisites
+- A web browser (e.g., Chrome, Firefox)
+- [Visual Studio Code](https://code.visualstudio.com/) installed
 
-- Copy:
-  - book service (if not signed in then redirect to sign up page). If service is booked then just output a confirmation and the bills.
+### Running the Website Locally
+1. **Install Live Server Extension**: 
+   - Open Visual Studio Code.
+   - Go to the Extensions view by clicking on the Extensions icon in the Activity Bar or pressing `Ctrl+Shift+X`.
+   - Search for "Live Server" and click **Install**.
+
+2. **Open Your Project**:
+   - Open the project folder in Visual Studio Code.
+
+3. **Start Live Server**:
+   - Right-click on the `index.html` file (or any HTML file) in the Explorer panel.
+   - Select **Open with Live Server**. 
+   - Your default web browser will open, displaying your website.
+
+### Team Members
+- Dalia Betinjaneh (40200966)
+- Mariana Bou-Saleh (40227084)
+- Victor Romano Franca (40228849)
+- Heena Patel (40257513)
