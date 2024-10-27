@@ -1,14 +1,4 @@
 /*------------------------------------------------------------------------------------------------------*/
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-// signup confirmation for client
-
-
-/*------------------------------------------------------------------------------------------------------*/
-// signup confirmation for admin
-=======
->>>>>>> victor
 // signup.js
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,10 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function closeModal() {
     document.getElementById("confirmationModal").style.display = "none";
 }
-<<<<<<< HEAD
-=======
->>>>>>> 1afcf085fd3e72e1ffd7b8d724adb159bb473d62
->>>>>>> victor
 
 
 
@@ -50,14 +36,6 @@ function closeModal() {
 // booking confirmation for client with message
 function bookService() {
     const confirmationNumber = Math.floor(Math.random() * 10000000);
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-    document.getElementById("confirmationText").innerHTML = 
-        "Your booking was a success! Booking confirmation #" + confirmationNumber +
-        "<br>You can go to My Request section to see your booking.";
-=======
->>>>>>> victor
 
     // Get the current date and time
     const now = new Date();
@@ -71,10 +49,6 @@ function bookService() {
         "<br>You can go to My Request section to see your booking.";
 
     // Show the modal
-<<<<<<< HEAD
-=======
->>>>>>> 1afcf085fd3e72e1ffd7b8d724adb159bb473d62
->>>>>>> victor
     document.getElementById("confirmationModal").style.display = "flex";
 }
 

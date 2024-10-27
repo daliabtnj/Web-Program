@@ -8,7 +8,7 @@ var users = [
     },
     {
         "name": "Violet",
-        "email": "violetsteveland@hotmail.com",
+        "email": "violetsteveland@hotmail.com"
         "phone": "4389876543",
         "password": "bookcase451<"
     }
@@ -51,14 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign up successful and pushes new user to users array
             else {
                 console.log("Form is valid. Redirecting...");
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
                 saveCustomer();
->>>>>>> origin/victor
-=======
-                saveCustomer();
->>>>>>> victor
                 window.location.href = "customer-dashboard.html";   // Redirect to customer dashboard
 
             }
@@ -90,14 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign in successful
             else {
                 console.log("Form is valid. Redirecting...");
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
                 saveCustomer();
->>>>>>> origin/victor
-=======
-                saveCustomer();
->>>>>>> victor
                 window.location.href = "customer-dashboard.html";
 
             }
@@ -170,19 +156,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-});
-=======
-=======
->>>>>>> victor
 });
 
 
 
 
 
-<<<<<<< HEAD
->>>>>>> origin/victor
-=======
->>>>>>> victor
+
