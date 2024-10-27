@@ -32,6 +32,7 @@ function loginAdmin(event) {
     const validAdmin = adminAccounts.find(account => account.email === emailInput && account.password === passwordInput);
 
     if (validAdmin) {
+        saveAdmin();
         window.location.href = 'admin-dashboard.html'; // Leads to admin dashboard
     } else {
         alert("Incorrect email or password.");
