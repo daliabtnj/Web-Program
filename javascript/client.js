@@ -8,7 +8,7 @@ var users = [
     },
     {
         "name": "Violet",
-        "email": "violetsteveland@hotmail.com"
+        "email": "violetsteveland@hotmail.com",
         "phone": "4389876543",
         "password": "bookcase451<"
     }
@@ -157,9 +157,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-
-
-
-
-
