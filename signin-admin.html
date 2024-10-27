@@ -6,13 +6,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generic Company - Sign in admin</title>
+    <!-- styles CSS file  -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- login-signup CSS file  -->
     <link rel="stylesheet" href="css/login-signup.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
     <!-- JavaScript file-->
-    <script src = "admin.js"></script>
+    <script src = "admin.js" defer></script>
+    <script src="js/headers-footer.js" defer></script>
+    <script>
+        // Clear login status on page load
+        function clearLoginStatus() {
+            localStorage.removeItem('whoIsLogged'); // Remove the login status
+        }
+
+        // Call the function when the page loads
+        document.addEventListener("DOMContentLoaded", function() {
+            clearLoginStatus(); // Clear login status
+        });
+    </script>
+
 </head>
 
 <body>
@@ -24,33 +38,26 @@
     <main>
         <section class="signup-box">
             <h1>Admin Sign In</h1>
-            <!-- Login action from admin.js (JavaScript file) -->
-            <form id="admin-login-form" action="admin-dashboard.html" method="GET" onsubmit="loginAdmin(event)">
-                
-                
-            <!-- Username -->
-            <label for="email">Email:</label><br>
-            <input type="email" placeholder="Enter email" id="email" name="email" required><br>
+            <form id="admin-login-form" onsubmit="loginAdmin(event);">
+                <!--Username-->
+                <label for="email">Email:</label><br>
+                <input type="email" placeholder="enter email" id="email" name="email" required><br>
 
-            <!-- Password -->
-            <label for="password">Password:</label><br>
-            <input type="password" placeholder="Enter password" id="password" name="password" required><br>
+                <!--Password-->
+                <label for="password">Password:</label><br>
+                <input type="password" placeholder="enter password" id="password" name="password" required><br>
 
-            <!-- Sign in button -->
-            <button type="submit">Submit</button>
-        
-        </form>
+                <!--sign in button-->
+                <button type="submit">Submit</button>
+            </form>
 
-        
             <p>sign in as client <a href="signin-client.html">here</a>,
             sign up <a href="signup.html">here</a>!</p>
         </section>
     </main>
 
     <!--This is used for the footer-->
-    <div id="footer-placeholder"></div>
-    <script src="js/headers-footer.js"></script>
-
+<div id="footer-placeholder"></div>
 
 </body>
 </html>

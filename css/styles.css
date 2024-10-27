@@ -29,7 +29,27 @@
 }
 
 /*--------------------------------------------------------------------------------------------------------------*/
+header {
+    background-color: #600d1a; /* This will be the full width color */
+    padding: 10px 0; /* Add some vertical padding */
+}
 
+/* Flex container for logo and title */
+.header-container {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    justify-content: flex-start; /* Align items to the left */
+    padding-left: 20px; /* Space from the left */
+}
+
+/* Add the logo styling */
+.header-logo {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    margin-right: 10px; /* Space between logo and title */
+}
+
+/*--------------------------------------------------------------------------------------------------------------*/
 
 
 /* Container for the logo */
@@ -39,14 +59,6 @@
     margin-bottom: 20px;
 }
 
-/* Style for the header logo */
-.header-logo {
-    width: 150px; 
-    height: auto;
-    vertical-align: middle;
-}
-
-
 /* Style for the header title */
 .header-title {
     text-align: left; /* Center-align the title */
@@ -55,9 +67,9 @@
     font-weight: 700;
     font-size: 24px;
     margin: 0;
-    background: #600d1a; 
     padding: 0;
-
+    line-height: 1;
+    background: #600d1a; 
 }
 
 
@@ -70,6 +82,9 @@ header ul.main-nav {
     justify-content: flex-start; /* Align the content to the left */
     align-items: center;
     margin: 0;
+    padding: 0;
+    padding-left: 90px;
+    margin-top:-50px;
 }
 
 /* list items in the header */
@@ -196,8 +211,6 @@ h1 {
     margin-bottom: 12px; 
 }
 
-
-
 h2 {
     font-size: 30px; 
     margin-bottom: 10px;
@@ -248,11 +261,4 @@ button {
 /* Button hover effect */
 button:hover {
     background-color: #73343f; /* Slightly darker on hover */
-}
-
-
-
-h1 {
-    text-align: center;
-    color: #333;
 }
