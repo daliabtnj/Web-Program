@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // If the password does not match the password confirmation, throw error
             if (password_repeat.value != password.value) {
                 errorMessages.push('Passwords do not match.');
+                console.log(errorMessages)
             }
 
             // If there are any errors with the Sign Up screen, display them
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign up successful and pushes new user to users array
             else {
                 console.log("Form is valid. Redirecting...");
-                saveCustomer();
+                signUPCustomer();
                 window.location.href = "customer-dashboard.html";   // Redirect to customer dashboard
 
             }
