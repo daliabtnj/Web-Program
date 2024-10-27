@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/service.css">
     <!-- popupMessage CSS file  -->
     <link rel="stylesheet" href="css/popupMessage.css">
+    <!-- popupMessage CSS file  -->
+    <link rel="stylesheet" href="css/popupMessage.css">
 </head>
 
 <body>
@@ -55,9 +57,11 @@
         <hr>
     </div>
 
-    <div class="service-box">
-        <h3>Other Service - Private Trainer</h3>
-            <p>Our private training service offers personalized fitness coaching tailored to your individual goals. Whether you’re looking to improve your strength, endurance, or overall health, our trainers are here to guide you. This service is priced at $35 per hour.</p>
+            <div class="service-box">
+                <h3>Other Service - Private Trainer</h3>
+                <p>Our private training service offers personalized fitness coaching tailored to your individual goals.
+                    Whether you’re looking to improve your strength, endurance, or overall health, our trainers are here
+                    to guide you. This service is priced at $35 per hour.</p>
 
             <h4>Meet Our Trainers:</h4>
             <ul>
@@ -77,7 +81,7 @@
             <hr>
         </div>
 
-    </section>
+        </section>
 
 <!--This is used for the footer-->
 <div id="footer-placeholder"></div>
@@ -98,5 +102,20 @@
 <script src="js/confirmation-pop-ups.js"></script>
 
 
+
+        <!-- Modal for booking confirmation -->
+        <div id="confirmationModal" class="modal">
+            <div class="modal-content">
+                <h2>Booking Confirmation</h2>
+                <p id="confirmationText">Your booking was a success! Book confirmation #</p>
+                <button class="close-btn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+
+
+        <script src="js/confirmation-pop-ups.js"></script>
+
+
 </body>
+
 </html>

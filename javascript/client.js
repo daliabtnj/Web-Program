@@ -51,6 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign up successful and pushes new user to users array
             else {
                 console.log("Form is valid. Redirecting...");
+<<<<<<< HEAD
+=======
+                saveCustomer();
+>>>>>>> origin/victor
                 window.location.href = "customer-dashboard.html";   // Redirect to customer dashboard
 
             }
@@ -82,6 +86,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign in successful
             else {
                 console.log("Form is valid. Redirecting...");
+<<<<<<< HEAD
+=======
+                saveCustomer();
+>>>>>>> origin/victor
                 window.location.href = "customer-dashboard.html";
 
             }
@@ -154,4 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+<<<<<<< HEAD
 });
+=======
+});
+
+
+
+
+
+>>>>>>> origin/victor

@@ -17,14 +17,50 @@
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
 
-<main>
-  <h1>My Account</h1>
+    <main>
+        <h1>My Account</h1>
 
-</main>
+        <!--Client Account Info (Predefined)-->
+        <div id="client-account-info">
+            <p>Name: <span id="client-name-display">John</span></p>
+            <p>Email: <span id="client-email-display">johndoe@gmail.com</span></p>
+            <p>Phone: <span id="client-phone-display">514-123-4567</span></p>
+            <p style="display: none;">Password: <span id="client-password-display">password123!</span></p>
+            <button id="edit-client-button">Edit</button>
+        </div>
+
+        <!--Client Account Edit Info Form-->
+        <div id="client-account-edit-form" style="display: none;">
+            <form id="client-account-form">
+                <label for="name">Name:</label>
+                <input type="name" id="name" value="John">
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" value="johndoe@gmail.com">
+                <br>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" value="514-123-4567">
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" value="password123!">
+                <br>
+
+                <button type="submit" id="save-changes">Save Changes</button>
+                <button type="cancel" id="cancel">Cancel</button>
+            </form>
+        </div>
+
+
+
+
+    </main>
 
     <!--This is used for the footer-->
     <div id="footer-placeholder"></div>
     <script src="js/headers-footer.js"></script>
-  
+    <script type="text/javascript" src="./javascript/client.js"></script>
+
+
 </body>
+
 </html>
