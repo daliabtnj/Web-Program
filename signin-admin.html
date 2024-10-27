@@ -24,22 +24,24 @@
     <main>
         <section class="signup-box">
             <h1>Admin Sign In</h1>
+            <!-- Login action from admin.js (JavaScript file) -->
+            <form id="admin-login-form" action="admin-dashboard.html" method="GET" onsubmit="loginAdmin(event)">
+                
+                
+            <!-- Username -->
+            <label for="email">Email:</label><br>
+            <input type="email" placeholder="Enter email" id="email" name="email" required><br>
 
-            <!-- Login action from admin.js (JavaScript file)-->
-            <form id="admin-login-form" action="admin-dashboard.html" method="GET" onsubmit="loginAdmin(event); saveAdmin();">
+            <!-- Password -->
+            <label for="password">Password:</label><br>
+            <input type="password" placeholder="Enter password" id="password" name="password" required><br>
 
-                <!--Username-->
-                <label for="email">Email:</label><br>
-                <input type="email" placeholder="enter email" id="email" name="email" required><br>
+            <!-- Sign in button -->
+            <button type="submit">Submit</button>
+        
+        </form>
 
-                <!--Password-->
-                <label for="password">Password:</label><br>
-                <input type="password" placeholder="enter password" id="password" name="password" required><br>
-
-                <!--sign in button-->
-                <button type="submit" onsubmit="saveAdmin()">Submit</button>
-            </form>
-
+        
             <p>sign in as client <a href="signin-client.html">here</a>,
             sign up <a href="signup.html">here</a>!</p>
         </section>

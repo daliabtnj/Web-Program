@@ -6,11 +6,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generic Company - Sign in client</title>
+    <!-- styles CSS file  -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- login-signup CSS file  -->
     <link rel="stylesheet" href="css/login-signup.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
+    
 
 </head>
 
@@ -23,8 +25,8 @@
     <main>
         <section class="signup-box">
             <h1>Client Sign In</h1>
-            <form action="customer-dashboard.html" method="GET" onsubmit="saveCustomer()"> 
-                
+            <div id="error" style="color: red;"></div>
+            <form id="client-sign-in-form">
                 <!--Username-->
                 <label for="email">Email:</label><br>
                 <input type="email" placeholder="enter email" id="email" name="email" required><br>
@@ -37,16 +39,29 @@
                 <button type="submit" onsubmit="saveCustomer()">Submit</button>
             </form>
             <p>Sign in as admin <a href="signin-admin.html">here</a>,
-            sign up <a href="signup.html">here</a>!</p>
+                sign up <a href="signup.html">here</a>!</p>
 
         </section>
     </main>
 
 
-<!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script src="js/headers-footer.js"></script>
+    <!--This is used for the footer-->
+    <div id="footer-placeholder"></div>
+    <script src="js/headers-footer.js"></script>
+    <script type="text/javascript" src="./javascript/client.js"></script>
+
+
+
+
+<!-- Confirmation Modal -->
+<div id="confirmationModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center;">
+    <div style="background-color: white; padding: 20px; border-radius: 8px; width: 300px; text-align: center;">
+        <p>Sign-up successful!</p>
+        <button onclick="closeModal()">OK</button>
+    </div>
+</div>
 
 
 </body>
+
 </html>
