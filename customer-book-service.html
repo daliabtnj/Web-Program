@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/footer.css">
     <!-- service CSS file  -->
     <link rel="stylesheet" href="css/service.css">
+    <!-- popupMessage CSS file  -->
+    <link rel="stylesheet" href="css/popupMessage.css">
 </head>
 
 <body>
@@ -30,14 +32,14 @@
                 <li>Ages 17 to 18: $40/hour</li>
             </ul>
             </p>
-            <button type="submit">BOOK SERVICE</button>
+            <button type="button" onclick="bookService()">BOOK SERVICE</button>
             <hr>
         </div>
 
         <div class="service-box">
         <h3>Second service - Cleaning</h3>
             <p>Our cleaning service is ideal for clients seeking professional, thorough, and reliable cleaning solutions. We offer tailored packages to meet your specific needs, ensuring a spotless environment. This premium service costs 200$.</p>
-            <button type="submit">BOOK SERVICE</button>
+            <button type="button" onclick="bookService()">BOOK SERVICE</button>
         <hr>
     </div>
 
@@ -49,7 +51,7 @@
         <li>Medium Dogs: $40 per session</li>
         <li>Large Dogs: $50 per session</li>
         </ul>
-            <button type="submit">BOOK SERVICE</button>
+        <button type="button" onclick="bookService()">BOOK SERVICE</button>
         <hr>
     </div>
 
@@ -64,14 +66,14 @@
             <li><strong>Coach Melissa Rivera</strong> - Yoga & Flexibility Coach</li>
             <li><strong>Coach David King</strong> - HIIT & Weight Loss Specialist</li>
             </ul>
-            <button type="submit">BOOK SERVICE</button>
+            <button type="button" onclick="bookService()">BOOK SERVICE</button>
         <hr>
     </div>
 
     <div class="service-box">
         <h3>Last Service - Stylist</h3>
         <p>Our stylist service offers expert advice and assistance in makeup, hair and clothing selection for special events. Whether you’re preparing for a wedding, party, or business event, our professional stylists will help you look your best. This service is budget-friendly, costing just $175 per session.</p>
-            <button type="submit">BOOK SERVICE</button>
+        <button type="button" onclick="bookService()">BOOK SERVICE</button>
             <hr>
         </div>
 
@@ -80,6 +82,20 @@
 <!--This is used for the footer-->
 <div id="footer-placeholder"></div>
 <script src="js/headers-footer.js"></script>
+
+
+
+<!-- Modal for booking confirmation -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <h2>Booking Confirmation</h2>
+        <p id="confirmationText">Your booking was a success! Book confirmation #</p>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+
+<script src="js/confirmation-pop-ups.js"></script>
 
 
 </body>
