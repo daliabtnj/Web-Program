@@ -52,9 +52,13 @@ document.addEventListener('DOMContentLoaded', () => {
             else {
                 console.log("Form is valid. Redirecting...");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 saveCustomer();
 >>>>>>> origin/victor
+=======
+                saveCustomer();
+>>>>>>> victor
                 window.location.href = "customer-dashboard.html";   // Redirect to customer dashboard
 
             }
@@ -87,9 +91,13 @@ document.addEventListener('DOMContentLoaded', () => {
             else {
                 console.log("Form is valid. Redirecting...");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                 saveCustomer();
 >>>>>>> origin/victor
+=======
+                saveCustomer();
+>>>>>>> victor
                 window.location.href = "customer-dashboard.html";
 
             }
@@ -163,12 +171,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 });
 =======
+=======
+>>>>>>> victor
 });
 
 
 
 
 
+<<<<<<< HEAD
 >>>>>>> origin/victor
+=======
+>>>>>>> victor
