@@ -7,12 +7,42 @@ fetch('footer.html')
 // Function to save admin login status
 function saveAdmin() {
     localStorage.setItem("whoIsLogged", "admin");
+
+    // Show confirmation message
+    alert("You are now logged in.");
+    return true; // Allow form submission
 }
 
 // Function to save client login status
 function saveCustomer() {
     localStorage.setItem("whoIsLogged", "client");
+
+    // Show confirmation message
+    alert("You are now logged in.");
+    return true; // Allow form submission
 }
+
+
+
+// Function to save admin login status
+function signUPAdmin() {
+    localStorage.setItem("whoIsLogged", "admin");
+
+    // Show confirmation message
+    alert("Account created! You are now logged in.");
+    return true; // Allow form submission
+}
+
+// Function to save client login status
+function signUPCustomer() {
+    localStorage.setItem("whoIsLogged", "client");
+
+    // Show confirmation message
+    alert("Account created! You are now logged in.");
+    return true; // Allow form submission
+}
+
+
 
 // Function to load the correct header based on login status
 function loadHeader() {
@@ -42,6 +72,4 @@ document.addEventListener("DOMContentLoaded", loadHeader);
 function logout() {
     // Clear the login state
     localStorage.removeItem('whoIsLogged');
-    // Optionally, redirect to the home page or login page after logging out
-    // window.location.href = 'index.html'; // Uncomment if you want to redirect immediately
 }
