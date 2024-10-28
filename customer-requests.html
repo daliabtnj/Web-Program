@@ -15,17 +15,97 @@
 </head>
 
 <body>
-    <!--This is used for the drop down menu-->
-    <div id="header-placeholder"></div>
 
-<main>
-  <h1>My Requests</h1>
+  <!--This is used for the drop down menu-->
+  <div id="header-placeholder"></div>
 
-</main>
+  
+  <main>
+    <h1>My Requests</h1>
 
-<!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script src="js/headers-footer.js"></script>
+    <!-- View Client's Requests-->
+    <div class="section" id="client-requests">
+      <div class="header">My Requests</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Details</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tutoring</td>
+            <td>Aged 6, for 2 hours</td>
+            <td>Pending</td>
+            <td>2024-10-10</td>
+            <td><button class="cancel-service-button">Cancel</button></td>
+          </tr>
+          <tr>
+            <td>Pet Grooming</td>
+            <td>For a small dog.</td>
+            <td>Booked</td>
+            <td>2024-10-15</td>
+            <td><button class="cancel-service-button">Cancel</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+    
+  <!--This is used for the footer-->
+  <div id="footer-placeholder"></div>
+  <script src="js/headers-footer.js"></script>
+  <script type="text/javascript" src="./javascript/client.js"></script>
+
 
 </body>
+<!--CSS for the table-->
+<style>
+    
+  main {
+      max-width: 1300px;
+      margin: auto;
+      padding: 20px;
+      background: white ;
+  }
+
+  h1 {
+      text-align: center;
+      color: #333;
+  }
+
+  .table-title {
+      margin: 20px 0;
+  }
+
+  .table-header {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: #555;
+  }
+
+  table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+  }
+
+  th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: left;
+  }
+
+  th {
+      background-color: #600d1915;
+  }
+
+</style>
+
+
+
+
 </html>

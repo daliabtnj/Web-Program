@@ -5,13 +5,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generic Company - Sign in client</title>
+    <title>Generic Company - Sign up client</title>
     <link rel="stylesheet" href="css/styles.css">
     <!-- login-signup CSS file  -->
     <link rel="stylesheet" href="css/login-signup.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
-    
+
 
 </head>
 
@@ -23,7 +23,7 @@
     <main>
         <section class="signup-box">
             <h1>Client Sign Up</h1>
-            <form action="customer-dashboard.html" method="GET" onsubmit="signUPCustomer()"> 
+
 
             <p>Create a new account</p>
             <div id="error" style="color: red;"></div>
@@ -44,21 +44,20 @@
                 <input type="password" placeholder="repeat password" id="password-repeat" name="password-repeat"
                     required><br>
 
-            <!--sign up button-->
-            <button type="submit" onsubmit="saveCustomer()">Submit</button>
-            </form>
-            <p>sign up as admin <a href="signup-admin.html">here</a>,
-            sign in <a href="signin.html">here</a>!</p>
+                <!--sign up button-->
+                <button type="submit" onsubmit="saveCustomer()">Submit</button>
+
+                <p>sign up as admin <a href="signup-admin.html">here</a>,
+                    sign in <a href="signin.html">here</a>!</p>
         </section>
     </main>
 
-<!--This is used for the footer-->
-<div id="footer-placeholder"></div>
-<script src="js/headers-footer.js"></script>
-<script type="text/javascript" src="./javascript/client.js"></script>
+    <!--This is used for the footer-->
+    <div id="footer-placeholder"></div>
+    <script src="js/headers-footer.js"></script>
+    <script type="text/javascript" src="./javascript/client.js"></script>
 
 
 </body>
+
 </html>
-
-
