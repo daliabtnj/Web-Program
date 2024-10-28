@@ -4,7 +4,7 @@
 
 This project develops a web-based system for service companies, enabling clients to manage accounts and request services while allowing administrators to manage offerings and track service histories.
 
-## Link to Run the Website
+## Website Link
 - https://daliabtnj.github.io/web_program/
 
 ## Features
