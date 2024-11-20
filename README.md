@@ -41,4 +41,6 @@ This project develops a web-based system for service companies, enabling clients
 - Heena Patel (40257513)
 
 ### Notes
-- Add a section to input the price when admins create a new service (admin-manage-services)
+- Add a section to input the price when admins create a new service (admin-manage-services).
+- In View Customer Requests, where does details/notes come from?
+- In My Requests (customer-requests), the requests are doubled.
