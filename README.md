@@ -39,3 +39,6 @@ This project develops a web-based system for service companies, enabling clients
 - Mariana Bou-Saleh (40227084)
 - Victor Romano Franca (40228849)
 - Heena Patel (40257513)
+
+### Notes
+- Add a section to input the price when admins create a new service (admin-manage-services)
