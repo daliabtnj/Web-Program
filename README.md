@@ -20,10 +20,10 @@ This project develops a web-based system for service companies, enabling clients
 - A web browser (e.g., Chrome, Firefox)
 - [Visual Studio Code](https://code.visualstudio.com/) installed
 
-### Running the Website
+### Running the Website (through server)
 ```
 npm i
-nodemon server.js
+node server.js
 ```
 Run on localhost:3000
 
