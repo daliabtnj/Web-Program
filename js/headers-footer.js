@@ -72,6 +72,4 @@ document.addEventListener("DOMContentLoaded", loadHeader);
 function logout() {
     // Clear the login state
     localStorage.removeItem('whoIsLogged');
-    // Optionally, redirect to the home page or login page after logging out
-    // window.location.href = 'index.html'; // Uncomment if you want to redirect immediately
 }

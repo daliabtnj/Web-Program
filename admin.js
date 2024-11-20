@@ -32,6 +32,7 @@ function loginAdmin(event) {
     const validAdmin = adminAccounts.find(account => account.email === emailInput && account.password === passwordInput);
 
     if (validAdmin) {
+        saveAdmin();
         window.location.href = 'admin-dashboard.html'; // Leads to admin dashboard
     } else {
         alert("Incorrect email or password.");
@@ -59,29 +60,9 @@ function editBusinessInfo(event) {
 
 // ------------------------------------------------ Services ------------------------------------------------
 
-// Display services
-function displayServices() {
-    const servicesContainer = document.getElementById('services-container');
-
-    // Clear previous services if any
-    servicesContainer.innerHTML = '';
-
-    services.forEach(service => {
-        // Create a container for each service
-        let serviceDiv = document.createElement('div');
-        serviceDiv.innerHTML = `
-            <h3>${service.serviceName}</h3>
-            <p>${service.serviceDescription}</p>
-            <p>Price: $${service.price}</p>
-            <button onclick="bookService(${service.id})">BOOK SERVICE</button>
-            <hr>
-        `;
-        servicesContainer.appendChild(serviceDiv);
-    });
-}
 
 // Add Services
-function addService() {
+/*function addService() {
     let newServiceName = document.getElementById('newServiceName').value;
     let newServicePrice = document.getElementById('newServicePrice').value;
 
@@ -139,7 +120,89 @@ function bookService(serviceId) {
     if (service) {
         alert(`You have booked ${service.serviceName} for $${service.price}.`);
     }
-}
+}*/
+
+
+// Error Handling and Form Validation for clients
+document.addEventListener('DOMContentLoaded', () => {
+
+    // Sign-Up Page required information
+    const name = document.getElementById('name');
+    const email = document.getElementById('email');
+    const phone = document.getElementById('phone');
+    const password = document.getElementById('password');
+    const password_repeat = document.getElementById('password-repeat');
+
+    // Get sign up form for client
+    const clientSignUpForm = document.getElementById('client-sign-up-form');
+
+    // Get sing in form for client 
+    const clientSignInForm = document.getElementById('client-sign-in-form');
+
+    // Sign-Up Form Validation and error handling
+    if (clientSignUpForm) {
+        clientSignUpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let errorMessages = [];
+            const errors = document.getElementById('error');
+            errors.innerText = '';
+
+            // If the password does not match the password confirmation, throw error
+            if (password_repeat.value != password.value) {
+                errorMessages.push('Passwords do not match.');
+                console.log(errorMessages)
+            }
+
+            // If there are any errors with the Sign Up screen, display them
+            if (errorMessages.length > 0) {
+                errors.innerText = errorMessages.join(', ');
+            }
+
+            // Redirects if sign up successful and pushes new user to users array
+            else {
+                console.log("Form is valid. Redirecting...");
+                signUPCustomer();
+                window.location.href = "customer-dashboard.html";   // Redirect to customer dashboard
+
+            }
+        });
+    }
+
+    
+    // Sign-In Form Validation and error handling
+    if (clientSignInForm) {
+        clientSignInForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            let errorMessages = [];
+            const errors = document.getElementById('error');
+            errors.innerText = '';
+
+            // Check if user exists
+            const existingUser = users.some(user => (user.email == email.value) && (user.password == password.value));
+
+            // If user does not exist
+            if (!existingUser) {
+                console.log("user does not exist")
+                errorMessages.push('User does not exist. Try again or sign up.')
+            }
+
+            // Display error messages
+            if (errorMessages.length > 0) {
+                errors.innerText = errorMessages.join(', ');
+            }
+
+            // Redirects if sign in successful
+            else {
+                console.log("Form is valid. Redirecting...");
+                saveCustomer();
+                window.location.href = "customer-dashboard.html";
+
+            }
+        })
+    }
+});
+
+
 
 // Call displayServices on page load
 window.onload = displayServices;

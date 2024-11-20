@@ -19,6 +19,7 @@
 
     <main>
         <h1>My Account</h1>
+<<<<<<< HEAD
 
         <!--Client Account Info (Predefined)-->
         <div id="client-account-info">
@@ -54,13 +55,137 @@
 
 
     </main>
+=======
+
+        <!--Client Account Info (Predefined)-->
+        <div id="client-account-info">
+            <p>Name: <span id="client-name-display">John</span></p>
+            <p>Email: <span id="client-email-display">johndoe@gmail.com</span></p>
+            <p>Phone: <span id="client-phone-display">514-123-4567</span></p>
+            <p style="display: none;">Password: <span id="client-password-display">password123!</span></p>
+            <button id="edit-client-button">Edit</button>
+        </div>
+
+        <!--Client Account Edit Info Form-->
+        <div id="client-account-edit-form" style="display: none;">
+            <form id="client-account-form">
+                <label for="name">Name:</label>
+                <input type="name" id="name" value="John">
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" value="johndoe@gmail.com">
+                <br>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" value="514-123-4567">
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" value="password123!">
+                <br>
+
+                <button type="submit" id="save-changes">Save Changes</button>
+                <button type="cancel" id="cancel">Cancel</button>
+            </form>
+        </div>
+
+    </main>
+
+
+>>>>>>> 91e6bbb81a1c30dea0fe373aac77cce45155b9b6
 
     <!--This is used for the footer-->
     <div id="footer-placeholder"></div>
     <script src="js/headers-footer.js"></script>
     <script type="text/javascript" src="./javascript/client.js"></script>
 
+<<<<<<< HEAD
 
 </body>
 
+=======
+    <!-- Saved Popup -->
+     <div class="dark-background" id="dark-background"></div>
+     <div class="popup" id="popup">
+      <h2>Success!</h2>
+      <p>Your account has been updated.</p>
+      <button class="close-botton " onclick="closePopup()">Close</button>
+    </div>
+
+
+</body>
+
+
+<!-- CSS for styling -->
+<style>
+    main {
+        max-width: 1300px;
+        margin: auto;
+        padding: 20px;
+        background: white;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+
+    input[type="name"], input[type="email"], input[type="tel"], input[type="password"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid#3a3838;
+        border-radius: 5px;
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border: 1px solid black;
+        padding: 20px;
+        border-radius: 5px;
+        z-index: 1000;
+    }
+
+    .dark-background {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .close-botton {
+        background-color: #600d19;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    
+</style>
+
+<!-- JavaScript for popup functionality -->
+<script>
+    function savedPopup() {
+        document.getElementById('dark-background').style.display = 'block';
+        document.getElementById('popup').style.display = 'block';
+    }
+
+    function closePopup() {
+        document.getElementById('dark-background').style.display = 'none';
+        document.getElementById('popup').style.display = 'none';
+    }
+</script>
+
+
+>>>>>>> 91e6bbb81a1c30dea0fe373aac77cce45155b9b6
 </html>
