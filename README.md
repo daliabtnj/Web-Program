@@ -20,6 +20,13 @@ This project develops a web-based system for service companies, enabling clients
 - A web browser (e.g., Chrome, Firefox)
 - [Visual Studio Code](https://code.visualstudio.com/) installed
 
+### Running the Website
+```
+npm i
+nodemon server.js
+```
+Run on localhost:3000
+
 ### Running the Website Locally
 1. **Install Live Server Extension**: 
    - Open Visual Studio Code.
