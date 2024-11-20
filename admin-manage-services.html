@@ -81,7 +81,12 @@
                 <hr>
             </div>
 
-            <!-- Add Service Box -->
+            <!-- Services Container -->
+            <div id="service-container">
+                <!-- Services will be dynamically loaded here -->
+            </div>
+
+            <!-- Add New Service -->
             <div class="add-service-box" id="add-service-box">
                 <h2>Add a New Service</h2>
                 <label for="new-service-name">Service Name:</label><br>
@@ -90,8 +95,12 @@
                 <label for="new-service-description">Service Description:</label><br>
                 <textarea id="new-service-description" rows="4" placeholder="Enter service description"></textarea><br><br>
 
+                <label for="new-service-price">Default Price:</label><br>
+                <input type="number" id="new-service-price" placeholder="Enter default price"><br><br>
+
                 <button onclick="addService()">ADD SERVICE</button>
             </div>
+            
         </section>
     </main>
 
