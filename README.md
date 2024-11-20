@@ -51,3 +51,6 @@ Run on localhost:3000
 - Add a section to input the price when admins create a new service (admin-manage-services).
 - In View Customer Requests, where does details/notes come from?
 - In My Requests (customer-requests), the requests are doubled.
+
+### Database (for us only)
+Import service_hub_db.sql from sql folder into phpmyadmin
