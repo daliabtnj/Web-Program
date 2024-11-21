@@ -75,3 +75,13 @@ ServiceHub acts as a template-based platform (like Moodle) for multiple companie
    - Right-click on the `index.html` file (or any HTML file) in the Explorer panel.
    - Select **Open with Live Server**. 
    - Your default web browser will open, displaying your website.
+
+
+
+For backend purpose
+
+## Database Setup for the admin manage services
+1. Open phpMyAdmin
+2. Create a new database named `admin-manage-services`.
+3. Import the `database/admin-manage-services.sql` file.
+4. Ensure the database connection credentials in `modify-services.js` match your local MySQL setup.
