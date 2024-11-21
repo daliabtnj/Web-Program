@@ -157,18 +157,45 @@ app.get("/update-service/:id", (req, res) => {
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 // Delete a service by ID
-app.get("/delete-service/:id", (req, res) => {
-    const sql = `DELETE FROM services WHERE id = ${req.params.id}`;
+//http://localhost:3000/delete-service/1
+// this works
 
-    db.query(sql, (err, result) => {
-        if (err) {
-            console.error(`Could not delete the service with ID = ${req.params.id}`, err);
-            res.send(`Could not delete the service with ID = ${req.params.id}`);
-        } else {
-            res.send("Service deleted successfully.");
+app.get("/delete-service/:id", (req, res) => {
+    const { id } = req.params;
+
+    // First, fetch the service details
+    const fetchServiceSql = "SELECT * FROM services WHERE id = ?";
+    db.query(fetchServiceSql, [id], (err, serviceResult) => {
+        if (err || serviceResult.length === 0) {
+            console.error(`Could not find the service with ID = ${id}`, err);
+            return res.send(`Could not find the service with ID = ${id}`);
         }
+
+        const service = serviceResult[0]; // Extract service details
+
+        // Now, delete the service
+        const deleteServiceSql = "DELETE FROM services WHERE id = ?";
+        db.query(deleteServiceSql, [id], (deleteErr, deleteResult) => {
+            if (deleteErr) {
+                console.error(`Could not delete the service with ID = ${id}`, deleteErr);
+                return res.send(`Could not delete the service with ID = ${id}`);
+            }
+
+            // Respond with confirmation message including service details
+            res.send(`
+                <html>
+                    <body>
+                        <h1>Service Deleted Successfully!</h1>
+                        <p><strong>Service Name:</strong> ${service.service_name}</p>
+                        <p><strong>Description:</strong> ${service.description}</p>
+                        <p><strong>Price:</strong> $${service.default_price}</p>
+                    </body>
+                </html>
+            `);
+        });
     });
 });
+
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 // Get all services (formatted HTML)
@@ -216,5 +243,3 @@ const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
-
-

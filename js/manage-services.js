@@ -1,163 +1,124 @@
-// Function to edit a service
-function editService(button, id) {
+// methods to manage services for admin side
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+// Function to make the text editable
+function editService(button) {
     const parent = button.parentNode;
     const serviceTitle = parent.querySelector('h3');
-    const serviceDescription = parent.querySelector('p:nth-of-type(1)');
-    const servicePrice = parent.querySelector('p:nth-of-type(2)');
+    const serviceDescription = parent.querySelector('p');
+    const serviceHeader = parent.querySelector('h4');
+    const serviceListItems = parent.querySelectorAll('ul li'); 
 
-    // Make editable
+// Make each section editable and add a class for styling
+if (serviceTitle) {
     serviceTitle.contentEditable = true;
+    serviceTitle.classList.add('editing-header');
+    }
+
+    if (serviceDescription) {
     serviceDescription.contentEditable = true;
-    servicePrice.contentEditable = true;
+    serviceDescription.classList.add('editing-paragraph');
+    }
 
-    serviceTitle.classList.add('editing');
-    serviceDescription.classList.add('editing');
-    servicePrice.classList.add('editing');
+    if (serviceHeader) {
+    serviceHeader.contentEditable = true;
+    serviceHeader.classList.add('editing-header');
+    }
+
+   // Make all list items editable and add a class for styling
+    serviceListItems.forEach(item => {
+    item.contentEditable = true;
+    item.classList.add('editing-list');
+    });
 }
 
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 
-// Function to save a service
-async function saveService(button, id) {
+// Function to save the edited text (just for frontend purposes)
+function saveService(button) {
     const parent = button.parentNode;
-    const serviceTitle = parent.querySelector('h3').textContent.trim();
-    const serviceDescription = parent.querySelector('p:nth-of-type(1)').textContent.trim();
-    const servicePrice = parent.querySelector('p:nth-of-type(2)').textContent.replace('Price: $', '').trim();
+    const serviceTitle = parent.querySelector('h3');
+    const serviceDescription = parent.querySelector('p');
+    const serviceHeader = parent.querySelector('h4');
+    const serviceList = parent.querySelector('ul');
 
-    if (serviceTitle && serviceDescription && servicePrice) {
-        try {
-            const response = await fetch(`/update-service/${id}`, {
-                method: 'GET',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    service_name: serviceTitle,
-                    description: serviceDescription,
-                    default_price: servicePrice
-                })
-            });
-
-            if (response.ok) {
-                alert('Service updated successfully');
-                loadServices(); // Reload services
-            } else {
-                alert('Error updating service');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    } else {
-        alert('All fields must be filled out');
+    if (serviceTitle) {
+        serviceTitle.contentEditable = false;
+        serviceTitle.classList.remove('editing-header');
     }
-}
 
+    if (serviceDescription) {
+        serviceDescription.contentEditable = false;
+        serviceDescription.classList.remove('editing-paragraph');
+    }
+
+    if (serviceHeader) {
+        serviceHeader.contentEditable = false;
+        serviceHeader.classList.remove('editing-header');
+    }
+
+    if (serviceList) {
+        serviceList.contentEditable = false;
+        serviceList.classList.remove('editing-box');
+
+        // Loop through each list item and remove empty ones
+        const listItems = serviceList.querySelectorAll('li');
+        listItems.forEach(item => {
+            if (item.textContent.trim() === "") {
+                item.remove(); // Remove empty list items
+            } else {
+                item.contentEditable = false;
+                item.classList.remove('editing-list');
+            }
+        });
+    }
+
+    alert("Service updated (not persisted in backend).");
+}
 
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 
-// Function to add a new service
+// Function to add a new service and insert it above the add service box
 function addService() {
-    const serviceName = document.getElementById('new-service-name').value.trim();
-    const serviceDescription = document.getElementById('new-service-description').value.trim();
-    const defaultPrice = document.getElementById('new-service-price').value.trim();
+    const serviceName = document.getElementById('new-service-name').value;
+    const serviceDescription = document.getElementById('new-service-description').value;
 
-    if (serviceName && serviceDescription && defaultPrice) {
-        fetch('/add-service', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                service_name: serviceName,
-                description: serviceDescription,
-                default_price: defaultPrice
-            })
-        })
-        .then(response => {
-            if (response.ok) {
-                alert('Service added successfully');
-                loadServices(); // Reload the services
-            } else {
-                alert('Error adding service');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+    if (serviceName && serviceDescription) {
+        const newServiceHTML = `
+        <div class="service-item">
+            <h3 class="editable" contenteditable="false">${serviceName}</h3>
+            <p class="editable" contenteditable="false">${serviceDescription}</p>
+            <button onclick="editService(this)">EDIT SERVICE</button>
+            <button onclick="saveService(this)">SAVE SERVICE</button>
+            <button onclick="deleteService(this)">DELETE SERVICE</button>
+            <hr>
+        </div>`;
+
+        // Insert the new service above the "Add Service" box
+        const addServiceBox = document.getElementById('add-service-box');
+        addServiceBox.insertAdjacentHTML('beforebegin', newServiceHTML);
+
+        // Clear input fields
+        document.getElementById('new-service-name').value = '';
+        document.getElementById('new-service-description').value = '';
+
+        alert("New service added (not persisted in backend).");
     } else {
-        alert('Please fill in all fields');
+        alert("Please fill in both fields.");
     }
 }
-
 
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 
 // Function to delete a service
-function deleteService(button, id) {
-    const confirmation = confirm('Are you sure you want to delete this service?');
+function deleteService(button) {
+    const parent = button.parentNode;
+    const confirmation = confirm("Are you sure you want to delete this service?");
     if (confirmation) {
-        try {
-            const response = await fetch(`/delete-service/${id}`, {
-                method: 'GET'
-            });
-
-            if (response.ok) {
-                alert('Service deleted successfully');
-                button.parentNode.remove(); // Remove service from DOM
-            } else {
-                alert('Error deleting service');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
+        parent.remove();
+        alert("Service deleted (not persisted in backend).");
     }
 }
-
-
-
-
-
-
-/*----------------------------------------------------------------------------------------------------------------------*/
-// Function to load services from the backend
-async function loadServices() {
-    try {
-        const response = await fetch('/services'); // Call the backend endpoint
-        if (response.ok) {
-            const services = await response.json(); // Parse the JSON response
-            console.log(services); // Log the services for debugging
-            displayServices(services); // Call another function to display the services (see below)
-        } else {
-            console.error("Failed to fetch services.");
-        }
-    } catch (err) {
-        console.error("Error:", err);
-    }
-}
-
-// Function to display services in the HTML
-function displayServices(services) {
-    const container = document.getElementById('service-container');
-    container.innerHTML = ''; // Clear any existing content
-
-    services.forEach(service => {
-        const serviceHTML = `
-            <div class="service-item">
-                <h3>${service.service_name}</h3>
-                <p>${service.description}</p>
-                <p>Price: $${service.default_price}</p>
-                <button onclick="editService(this)">EDIT SERVICE</button>
-                <button onclick="saveService(this, ${service.id})">SAVE SERVICE</button>
-                <button onclick="deleteService(this, ${service.id})">DELETE SERVICE</button>
-                <hr>
-            </div>
-        `;
-        container.insertAdjacentHTML('beforeend', serviceHTML); // Append the service HTML
-    });
-}
-
-// Automatically load services when the page loads
-window.addEventListener('DOMContentLoaded', loadServices);
-
-
-
-
