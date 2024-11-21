@@ -55,7 +55,6 @@ app.get("/addhardcodedservice", (req, res) => {
 /*----------------------------------------------------------------------------------------------------------------------*/
 // Define a route for adding a new service (get)
 // you have to define parameters
-// this works
 //http://localhost:3000/addservice?service_name=New%20Service&description=Private+lessons+for+kids&default_price=120
 
 app.get("/addservice", (req, res) => {
@@ -98,31 +97,8 @@ app.get("/addservice", (req, res) => {
 
 
 
-
-
 /*----------------------------------------------------------------------------------------------------------------------*/
-// Add a new service (POST)
-app.post("/add-service", (req, res) => {
-    const { service_name, description, default_price } = req.body;
-
-    if (!service_name || !description || !default_price) {
-        res.status(400).send("All fields are required.");
-        return;
-    }
-
-    const sql = "INSERT INTO services (service_name, description, default_price) VALUES (?, ?, ?)";
-    db.query(sql, [service_name, description, default_price], (err, result) => {
-        if (err) {
-            console.error("Error adding service:", err);
-            res.status(500).send("Error adding service.");
-        } else {
-            res.status(200).send("Service added successfully.");
-        }
-    });
-});
-
-/*----------------------------------------------------------------------------------------------------------------------*/
-// Get all services (JSON)
+// Get all services (JSON) to display
 // http://localhost:3000/services
 // THIS works 
 
@@ -140,25 +116,45 @@ app.get("/services", (req, res) => {
 
 
 /*----------------------------------------------------------------------------------------------------------------------*/
-// Update a service by ID
-app.get("/update-service/:id", (req, res) => {
-    const newDescription = "Updated service description";
-    const sql = `UPDATE services SET description = '${newDescription}' WHERE id = ${req.params.id}`;
+// Update a service by ID using parameters
+// http://localhost:3000/update-service/1?service_name=New%20Name&description=Updated%20Description&default_price=150
 
-    db.query(sql, (err, result) => {
+app.get("/update-service/:id", (req, res) => {
+    const { service_name, description, default_price } = req.query; // Extract query parameters
+    const { id } = req.params;
+
+    if (!service_name || !description || !default_price) {
+        return res.status(400).send("All fields (service_name, description, and default_price) are required.");
+    }
+
+    const sql = "UPDATE services SET service_name = ?, description = ?, default_price = ? WHERE id = ?";
+    db.query(sql, [service_name, description, parseFloat(default_price), id], (err, result) => {
         if (err) {
             console.error("Could not update the service:", err);
-            res.send(`Could not update the service with ID = ${req.params.id}`);
+            res.status(500).send(`Could not update the service with ID = ${id}`);
+        } else if (result.affectedRows === 0) {
+            res.status(404).send(`No service found with ID = ${id}`);
         } else {
-            res.send("Service updated successfully.");
+            res.send(`
+                <html>
+                    <body>
+                        <h1>Service Updated Successfully!</h1>
+                        <p><strong>Service ID:</strong> ${id}</p>
+                        <p><strong>Service Name:</strong> ${service_name}</p>
+                        <p><strong>Description:</strong> ${description}</p>
+                        <p><strong>Default Price:</strong> $${default_price}</p>
+                    </body>
+                </html>
+            `);
         }
     });
 });
 
+
+
 /*----------------------------------------------------------------------------------------------------------------------*/
 // Delete a service by ID
 //http://localhost:3000/delete-service/1
-// this works
 
 app.get("/delete-service/:id", (req, res) => {
     const { id } = req.params;
@@ -196,46 +192,6 @@ app.get("/delete-service/:id", (req, res) => {
     });
 });
 
-
-/*----------------------------------------------------------------------------------------------------------------------*/
-// Get all services (formatted HTML)
-app.get("/getservicesformatted", (req, res) => {
-    const sql = "SELECT * FROM services";
-
-    db.query(sql, (err, result) => {
-        if (err) {
-            res.send("Could not fetch services.");
-        } else {
-            let content = `
-            <html>
-            <head>
-                <title>List of Services</title>
-                <style>
-                    body { font-family: Arial, sans-serif; }
-                    h1 { color: #333; }
-                    .service { margin-bottom: 20px; }
-                </style>
-            </head>
-            <body>
-                <h1>Available Services</h1>
-            `;
-
-            result.forEach((service) => {
-                content += `
-                <div class="service">
-                    <h2>${service.service_name}</h2>
-                    <p>${service.description}</p>
-                    <p>Price: $${service.default_price}</p>
-                </div>
-                <hr>
-                `;
-            });
-
-            content += "</body></html>";
-            res.send(content);
-        }
-    });
-});
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 // Start the server
