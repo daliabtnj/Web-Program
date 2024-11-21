@@ -1,4 +1,8 @@
 // to manage services in the admin side for BACKEND purposes
+// url : http://localhost:3000
+// post: for creating, updating, or sending data to the server
+// get: for retrieving information without affecting server data
+
 
 // Import required modules
 const express = require("express");
@@ -32,7 +36,7 @@ db.connect((err) => {
 // Add a hardcoded service
 app.get("/addhardcodedservice", (req, res) => {
     const service = {
-        service_name: "First Service - Tutoringe",
+        service_name: "First Service - Tutoring",
         description: "Our first service is tailored for kids from 6 to 18 years old. It supports students who need extra help with their studies. We offer private tutoring services. Prices vary by age:.",
         default_price: 100,
     };
@@ -49,23 +53,79 @@ app.get("/addhardcodedservice", (req, res) => {
 });
 
 /*----------------------------------------------------------------------------------------------------------------------*/
+// Define a route for adding a new service (get)
+// you have to define parameters
+// this works
+//http://localhost:3000/addservice?service_name=New%20Service&description=Private+lessons+for+kids&default_price=120
+
+app.get("/addservice", (req, res) => {
+    // Extract service details from query parameters
+    const service = {
+        service_name: req.query.service_name,
+        description: req.query.description,
+        default_price: parseFloat(req.query.default_price),
+    };
+
+    // Validate required parameters
+    if (!service.service_name || !service.description || isNaN(service.default_price)) {
+        return res.status(400).send("Missing or invalid parameters!");
+    }
+
+    // SQL query to insert the service into the database
+    const sql = "INSERT INTO services SET ?";
+
+    // Execute the query
+    db.query(sql, service, (err, result) => {
+        if (err) {
+            console.error("Error adding service:", err);
+            res.send("Could not insert new service!");
+        } else {
+            // Respond with the added service details
+            res.send(`
+                <html>
+                    <body>
+                        <h1>Service added successfully!</h1>
+                        <p><strong>Service Name:</strong> ${service.service_name}</p>
+                        <p><strong>Description:</strong> ${service.description}</p>
+                        <p><strong>Default Price:</strong> $${service.default_price}</p>
+                    </body>
+                </html>
+            `);
+        }
+    });
+});
+
+
+
+
+
+
+/*----------------------------------------------------------------------------------------------------------------------*/
 // Add a new service (POST)
 app.post("/add-service", (req, res) => {
     const { service_name, description, default_price } = req.body;
+
+    if (!service_name || !description || !default_price) {
+        res.status(400).send("All fields are required.");
+        return;
+    }
 
     const sql = "INSERT INTO services (service_name, description, default_price) VALUES (?, ?, ?)";
     db.query(sql, [service_name, description, default_price], (err, result) => {
         if (err) {
             console.error("Error adding service:", err);
-            res.send("Error adding service.");
+            res.status(500).send("Error adding service.");
         } else {
-            res.send("Service added successfully.");
+            res.status(200).send("Service added successfully.");
         }
     });
 });
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 // Get all services (JSON)
+// http://localhost:3000/services
+// THIS works 
+
 app.get("/services", (req, res) => {
     const sql = "SELECT * FROM services";
     db.query(sql, (err, result) => {
@@ -152,7 +212,7 @@ app.get("/getservicesformatted", (req, res) => {
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 // Start the server
-const PORT = 5000;
+const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

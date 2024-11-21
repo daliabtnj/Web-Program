@@ -56,32 +56,32 @@ async function saveService(button, id) {
 /*----------------------------------------------------------------------------------------------------------------------*/
 
 // Function to add a new service
-async function addService() {
+function addService() {
     const serviceName = document.getElementById('new-service-name').value.trim();
     const serviceDescription = document.getElementById('new-service-description').value.trim();
     const defaultPrice = document.getElementById('new-service-price').value.trim();
 
     if (serviceName && serviceDescription && defaultPrice) {
-        try {
-            const response = await fetch('/add-service', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    service_name: serviceName,
-                    description: serviceDescription,
-                    default_price: defaultPrice
-                })
-            });
-
+        fetch('/add-service', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                service_name: serviceName,
+                description: serviceDescription,
+                default_price: defaultPrice
+            })
+        })
+        .then(response => {
             if (response.ok) {
                 alert('Service added successfully');
                 loadServices(); // Reload the services
             } else {
                 alert('Error adding service');
             }
-        } catch (error) {
+        })
+        .catch(error => {
             console.error('Error:', error);
-        }
+        });
     } else {
         alert('Please fill in all fields');
     }
@@ -92,7 +92,7 @@ async function addService() {
 /*----------------------------------------------------------------------------------------------------------------------*/
 
 // Function to delete a service
-async function deleteService(button, id) {
+function deleteService(button, id) {
     const confirmation = confirm('Are you sure you want to delete this service?');
     if (confirmation) {
         try {
