@@ -33,24 +33,86 @@ db.connect((err) => {
 });
 
 /*----------------------------------------------------------------------------------------------------------------------*/
-// Add a hardcoded service
-app.get("/addhardcodedservice", (req, res) => {
-    const service = {
-        service_name: "First Service - Tutoring",
-        description: "Our first service is tailored for kids from 6 to 18 years old. It supports students who need extra help with their studies. We offer private tutoring services. Prices vary by age:.",
-        default_price: 100,
-    };
 
-    const sql = "INSERT INTO Services SET ?";
-    db.query(sql, service, (err, result) => {
-        if (err) {
-            console.error("Error adding service:", err);
-            res.send("Error adding service.");
-        } else {
-            res.send("Hardcoded service added successfully.");
-        }
+// Add multiple hardcoded services
+//http://localhost:3000/addhardcodedservices
+
+app.get("/addhardcodedservices", (req, res) => {
+    const services = [
+        {
+            service_name: "First Service - Tutoring",
+            description: "Our first service is tailored for kids from 6 to 18 years old. It supports students who need extra help with their studies. We offer private tutoring services with flexible pricing based on age.",
+            default_price: 40,
+        },
+        {
+            service_name: "Second Service - Cleaning",
+            description: "Our cleaning service is ideal for clients seeking professional, thorough, and reliable cleaning solutions. This premium service ensures a spotless environment.",
+            default_price: 200,
+        },
+        {
+            service_name: "Third Service - Pet Grooming",
+            description: "Our pet grooming service ensures your furry friends look and feel their best. We offer comprehensive grooming services including bathing, haircuts, and nail trimming.",
+            default_price: 50,
+        },
+        {
+            service_name: "Other Service - Private Trainer",
+            description: "Our private training service offers personalized fitness coaching tailored to your individual goals. Whether you’re looking to improve your strength, endurance, or overall health, our trainers are here to guide you.",
+            default_price: 35,
+        },
+        {
+            service_name: "Last Service - Stylist",
+            description: "Our stylist service offers expert advice and assistance in makeup, hair, and clothing selection for special events. Whether you’re preparing for a wedding, party, or business event, our professional stylists will help you look your best.",
+            default_price: 175,
+        },
+    ];
+
+    let addedServices = [];
+
+    const sqlCheck = "SELECT * FROM Services WHERE service_name = ?";
+    const sqlInsert = "INSERT INTO Services SET ?";
+
+    services.forEach((service, index) => {
+        db.query(sqlCheck, [service.service_name], (err, result) => {
+            if (err) {
+                console.error("Error checking service:", err);
+                return;
+            }
+
+            if (result.length === 0) {
+                // If service does not exist, insert it
+                db.query(sqlInsert, service, (err, insertResult) => {
+                    if (err) {
+                        console.error("Error adding service:", err);
+                        return;
+                    }
+                    addedServices.push(service);
+
+                    // Display confirmation after all services are processed
+                    if (addedServices.length === services.length || index === services.length - 1) {
+                        res.send(`
+                            <html>
+                                <body>
+                                    <h1>Hardcoded Services Added Successfully!</h1>
+                                    <ul>
+                                        ${addedServices
+                                            .map(
+                                                (s) => `
+                                                <li>
+                                                    <strong>${s.service_name}</strong>: ${s.description} (Price: $${s.default_price})
+                                                </li>`
+                                            )
+                                            .join("")}
+                                    </ul>
+                                </body>
+                            </html>
+                        `);
+                    }
+                });
+            }
+        });
     });
 });
+
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 // Define a route for adding a new service (get)
@@ -93,6 +155,7 @@ app.get("/addservice", (req, res) => {
         }
     });
 });
+
 
 
 
