@@ -20,7 +20,7 @@ const db = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "admin-manage-services", // Updated to the correct database
+    database: "service_hub_db", // Updated to the correct database
 });
 
 // Connect to the database
@@ -41,7 +41,7 @@ app.get("/addhardcodedservice", (req, res) => {
         default_price: 100,
     };
 
-    const sql = "INSERT INTO services SET ?";
+    const sql = "INSERT INTO Services SET ?";
     db.query(sql, service, (err, result) => {
         if (err) {
             console.error("Error adding service:", err);
@@ -71,7 +71,7 @@ app.get("/addservice", (req, res) => {
     }
 
     // SQL query to insert the service into the database
-    const sql = "INSERT INTO services SET ?";
+    const sql = "INSERT INTO Services SET ?";
 
     // Execute the query
     db.query(sql, service, (err, result) => {
@@ -103,7 +103,7 @@ app.get("/addservice", (req, res) => {
 // THIS works 
 
 app.get("/services", (req, res) => {
-    const sql = "SELECT * FROM services";
+    const sql = "SELECT * FROM Services";
     db.query(sql, (err, result) => {
         if (err) {
             console.error("Error fetching services:", err); // Log error details
@@ -127,7 +127,7 @@ app.get("/update-service/:id", (req, res) => {
         return res.status(400).send("All fields (service_name, description, and default_price) are required.");
     }
 
-    const sql = "UPDATE services SET service_name = ?, description = ?, default_price = ? WHERE id = ?";
+    const sql = "UPDATE Services SET service_name = ?, description = ?, default_price = ? WHERE id = ?";
     db.query(sql, [service_name, description, parseFloat(default_price), id], (err, result) => {
         if (err) {
             console.error("Could not update the service:", err);
