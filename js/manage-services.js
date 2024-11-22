@@ -82,33 +82,49 @@ function saveService(button) {
 
 // Function to add a new service and insert it above the add service box
 function addService() {
+    // Get values from the input fields
     const serviceName = document.getElementById('new-service-name').value;
     const serviceDescription = document.getElementById('new-service-description').value;
+    const servicePrice = document.getElementById('new-service-price').value;
 
-    if (serviceName && serviceDescription) {
-        const newServiceHTML = `
-        <div class="service-item">
-            <h3 class="editable" contenteditable="false">${serviceName}</h3>
-            <p class="editable" contenteditable="false">${serviceDescription}</p>
-            <button onclick="editService(this)">EDIT SERVICE</button>
-            <button onclick="saveService(this)">SAVE SERVICE</button>
-            <button onclick="deleteService(this)">DELETE SERVICE</button>
-            <hr>
-        </div>`;
+    // Validate input
+    if (serviceName && serviceDescription && servicePrice && !isNaN(servicePrice)) {
+        // Send data to the backend via fetch
+        fetch(`http://localhost:3000/addservice?service_name=${encodeURIComponent(serviceName)}&description=${encodeURIComponent(serviceDescription)}&default_price=${encodeURIComponent(servicePrice)}`)
+            .then(response => response.text())
+            .then(data => {
+                alert("New service added to the database!");
 
-        // Insert the new service above the "Add Service" box
-        const addServiceBox = document.getElementById('add-service-box');
-        addServiceBox.insertAdjacentHTML('beforebegin', newServiceHTML);
+                // Optionally add the new service to the frontend dynamically
+                const newServiceHTML = `
+                <div class="service-item">
+                    <h3 class="editable" contenteditable="false">${serviceName}</h3>
+                    <p class="editable" contenteditable="false">${serviceDescription}</p>
+                    <p><strong>Price:</strong> $${servicePrice}</p>
+                    <button onclick="editService(this)">EDIT SERVICE</button>
+                    <button onclick="saveService(this)">SAVE SERVICE</button>
+                    <button onclick="deleteService(this)">DELETE SERVICE</button>
+                    <hr>
+                </div>`;
 
-        // Clear input fields
-        document.getElementById('new-service-name').value = '';
-        document.getElementById('new-service-description').value = '';
+                // Insert the new service above the "Add Service" box
+                const addServiceBox = document.getElementById('add-service-box');
+                addServiceBox.insertAdjacentHTML('beforebegin', newServiceHTML);
 
-        alert("New service added (not persisted in backend).");
+                // Clear input fields
+                document.getElementById('new-service-name').value = '';
+                document.getElementById('new-service-description').value = '';
+                document.getElementById('new-service-price').value = '';
+            })
+            .catch(err => {
+                console.error("Error adding service:", err);
+                alert("Failed to add service. Please try again.");
+            });
     } else {
-        alert("Please fill in both fields.");
+        alert("Please fill in all fields correctly.");
     }
 }
+
 
 
 /*----------------------------------------------------------------------------------------------------------------------*/

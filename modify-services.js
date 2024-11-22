@@ -5,7 +5,7 @@
 
 
 // Import required modules
-const express = require("express");
+const express = require("express"); // to deal with http methods 
 const mysql = require("mysql");
 
 // Initialize the Express application
