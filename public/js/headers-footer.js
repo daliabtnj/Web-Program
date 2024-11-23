@@ -1,8 +1,12 @@
 fetch('footer.html')
-.then(response => response.text())
-.then(data => {
-    document.getElementById('footer-placeholder').innerHTML = data;
-});
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+
+        // Dynamically update the footer with business settings
+        updateFooter();
+    })
+    .catch(error => console.error("Error loading footer:", error));
 
 // Function to save admin login status
 function saveAdmin() {
@@ -20,6 +24,42 @@ function saveCustomer() {
     // Show confirmation message
     alert("You are now logged in.");
     return true; // Allow form submission
+}
+
+
+async function updateFooter() {
+    try {
+        // Fetch the latest business settings from the backend
+        const response = await fetch('/api/business-settings');
+        const data = await response.json();
+
+        if (!data || !data.email || !data.phone || !data.address) {
+            console.error("Business settings data is incomplete or invalid:", data);
+            return;
+        }
+
+        // Update the email
+        const footerEmail = document.querySelector('.footer-section a[href^="mailto:"]');
+        if (footerEmail) {
+            footerEmail.textContent = data.email;
+            footerEmail.href = `mailto:${data.email}`;
+        }
+
+        // Update the phone
+        const footerPhone = document.querySelector('.footer-section a[href^="tel:"]');
+        if (footerPhone) {
+            footerPhone.textContent = data.phone;
+            footerPhone.href = `tel:${data.phone}`;
+        }
+
+        // Update the address
+        const footerAddress = document.querySelector('.footer-section p:last-child');
+        if (footerAddress) {
+            footerAddress.textContent = `Address: ${data.address}`;
+        }
+    } catch (error) {
+        console.error("Error fetching or updating the footer:", error);
+    }
 }
 
 
@@ -101,6 +141,8 @@ document.addEventListener("DOMContentLoaded", () => {
     loadHeader(); // Load the appropriate header based on login status
     reloadServices(); // Fetch and display the services dynamically
 });
+
+
 
 
 function logout() {
