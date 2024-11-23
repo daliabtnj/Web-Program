@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2024 at 05:25 PM
+-- Generation Time: Nov 24, 2024 at 12:24 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -62,6 +62,14 @@ CREATE TABLE `Clients` (
   `phone` bigint(20) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Clients`
+--
+
+INSERT INTO `Clients` (`id`, `name`, `email`, `phone`, `password`) VALUES
+(1, 'John', 'johndoe@gmail.com', 5141234567, 'password123!'),
+(2, 'Violet', 'violetsteveland@hotmail.com', 4389876543, 'bookcase451<');
 
 -- --------------------------------------------------------
 
@@ -162,7 +170,7 @@ ALTER TABLE `Bills`
 -- AUTO_INCREMENT for table `Clients`
 --
 ALTER TABLE `Clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ServiceRequests`
@@ -174,7 +182,7 @@ ALTER TABLE `ServiceRequests`
 -- AUTO_INCREMENT for table `Services`
 --
 ALTER TABLE `Services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
