@@ -41,6 +41,8 @@ db.connect((err) => {
 
 // Add multiple hardcoded services
 //http://localhost:3000/api/addhardcodedservices
+// to restart id in sql : ALTER TABLE Services AUTO_INCREMENT = 1;
+
 
 router.get("/addhardcodedservices", (req, res) => {
     const services = [
