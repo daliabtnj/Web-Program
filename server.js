@@ -5,6 +5,8 @@ const express = require('express');
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const path = require('path');
+
 dotenv.config();
 
 const app = express();
@@ -12,6 +14,8 @@ const app = express();
 const PORT = 3000;
 
 app.use(bodyParser.json());
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Creating connection to database using database credentials from .env
 const db = mysql.createConnection({
@@ -30,3 +34,8 @@ db.connect((err) => {
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+

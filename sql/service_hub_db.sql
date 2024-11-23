@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 20, 2024 at 07:33 PM
+-- Generation Time: Nov 23, 2024 at 02:03 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -85,10 +85,23 @@ CREATE TABLE `ServiceRequests` (
 
 CREATE TABLE `Services` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
+  `service_name` varchar(255) NOT NULL,
   `description` text DEFAULT NULL,
-  `price` decimal(10,2) NOT NULL
+  `default_price` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Services`
+--
+
+INSERT INTO `Services` (`id`, `service_name`, `description`, `default_price`) VALUES
+(1, 'First Service - Tutoring', 'Our first service is tailored for kids from 6 to 18 years old. It supports students who need extra help with their studies. We offer private tutoring services with flexible pricing based on age.', 40),
+(2, 'Second Service - Cleaning', 'Our cleaning service is ideal for clients seeking professional, thorough, and reliable cleaning solutions. This premium service ensures a spotless environment.', 200),
+(3, 'Third Service - Pet Grooming', 'Our pet grooming service ensures your furry friends look and feel their best. We offer comprehensive grooming services including bathing, haircuts, and nail trimming.', 50),
+(4, 'Other Service - Private Trainer', 'Our private training service offers personalized fitness coaching tailored to your individual goals. Whether you’re looking to improve your strength, endurance, or overall health, our trainers are here to guide you.', 35),
+(5, 'Last Service - Stylist', 'Our stylist service offers expert advice and assistance in makeup, hair, and clothing selection for special events. Whether you’re preparing for a wedding, party, or business event, our professional stylists will help you look your best.', 175),
+(6, 'Test Service', 'Private lessons for kids', 500),
+(7, 'dd', 'test ', 999);
 
 --
 -- Indexes for dumped tables
@@ -163,7 +176,7 @@ ALTER TABLE `ServiceRequests`
 -- AUTO_INCREMENT for table `Services`
 --
 ALTER TABLE `Services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
