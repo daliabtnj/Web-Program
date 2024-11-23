@@ -31,46 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const clientSignInForm = document.getElementById('client-sign-in-form');
     const adminSignUpForm = document.getElementById('admin-sign-up-form');
 
-<<<<<<< HEAD
-    const adminSignUpForm = document.getElementById('admin-sign-up-form');
-
-    // Sign-Up Form Validation and error handling
-    if (adminSignUpForm) {
-        adminSignUpForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            let errorMessages = [];
-            const errors = document.getElementById('error');
-            errors.innerText = '';
-
-            // If the password does not match the password confirmation, throw error
-            if (password_repeat.value != password.value) {
-                errorMessages.push('Passwords do not match.');
-                console.log(errorMessages)
-            }
-
-            // If there are any errors with the Sign Up screen, display them
-            if (errorMessages.length > 0) {
-                errors.innerText = errorMessages.join(', ');
-            }
-
-            // Redirects if sign up successful and pushes new user to users array
-            else {
-                console.log("Form is valid. Redirecting...");
-                signUPAdmin();
-                window.location.href = "admin-dashboard.html";   // Redirect to customer dashboard
-
-            }
-        });
-    }
-
-    // Sign-Up Form Validation and error handling
-    if (clientSignUpForm) {
-        clientSignUpForm.addEventListener('submit', (e) => {
-=======
     // Sign-Up Form Validation and error handling for admin
     if (adminSignUpForm) {
         adminSignUpForm.addEventListener('submit', (e) => {
->>>>>>> 91e6bbb81a1c30dea0fe373aac77cce45155b9b6
             e.preventDefault();
             let errorMessages = [];
             const errors = document.getElementById('error');
@@ -90,8 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign up successful and pushes new user to users array
             else {
                 console.log("Form is valid. Redirecting...");
-<<<<<<< HEAD
-=======
                 signUPAdmin();
                 window.location.href = "admin-dashboard.html";   // Redirect to customer dashboard
 
@@ -120,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign up successful and pushes new user to users array
             else {
                 console.log("Form is valid. Redirecting...");
->>>>>>> 91e6bbb81a1c30dea0fe373aac77cce45155b9b6
                 signUPCustomer();
                 window.location.href = "customer-dashboard.html";   // Redirect to customer dashboard
 

@@ -82,7 +82,6 @@ Run on localhost:3000
    - Right-click on the `index.html` file (or any HTML file) in the Explorer panel.
    - Select **Open with Live Server**. 
    - Your default web browser will open, displaying your website.
-<<<<<<< HEAD
 
 ### Team Members
 - Dalia Betinjaneh (40200966)
@@ -97,5 +96,3 @@ Run on localhost:3000
 
 ### Database (for us only)
 Import service_hub_db.sql from sql folder into phpmyadmin
-=======
->>>>>>> 91e6bbb81a1c30dea0fe373aac77cce45155b9b6
