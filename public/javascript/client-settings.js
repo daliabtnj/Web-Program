@@ -5,24 +5,33 @@
 
 // Load client settings and populate the fields
 async function loadClientSettings() {
-    const clientId = document.getElementById('client-settings').dataset.id; // Get client ID from the top-level div
+    const clientId = document.getElementById('client-settings').dataset.id; // Get client ID
 
     try {
-        const response = await fetch(`/api/client-settings/${clientId}`); // Use the correct endpoint
-        if (!response.ok) throw new Error("Failed to load client settings.");
+        // Fetch client data
+        const response = await fetch(`/api/client-settings/${clientId}`);
+        if (!response.ok) throw new Error(`Failed to load client settings. Status: ${response.status}`);
 
         const data = await response.json();
 
-        // Populate the fields
-        document.querySelector('[data-field="name"]').innerText = data.name;
-        document.querySelector('[data-field="email"]').innerText = data.email;
-        document.querySelector('[data-field="phone"]').innerText = data.phone;
-        document.querySelector('[data-field="password"]').innerText = data.password;
+        // Update both display and input fields
+        document.getElementById("name-display").innerText = data.name || "N/A";
+        document.getElementById("name-input").value = data.name || "";
+
+        document.getElementById("email-display").innerText = data.email || "N/A";
+        document.getElementById("email-input").value = data.email || "";
+
+        document.getElementById("phone-display").innerText = data.phone || "N/A";
+        document.getElementById("phone-input").value = data.phone || "";
+
+        document.getElementById("password-display").innerText = data.password || "N/A";
+        document.getElementById("password-input").value = data.password || "";
     } catch (error) {
-        console.error("Error loading client settings:", error);
+        console.error("Error loading client settings:", error.message);
         alert("Could not load client settings. Please try again.");
     }
 }
+
 
 
 
@@ -54,7 +63,7 @@ async function saveInformation(button) {
 
     try {
         const response = await fetch(`/api/client-settings/${clientId}`, { // Include client ID in the endpoint
-            method: 'POST', // Use POST or PUT based on backend implementation
+            method: 'POST', 
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
         });

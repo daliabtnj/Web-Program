@@ -62,9 +62,16 @@ router.put("/client-settings/:id", (req, res) => {
     db.query(query, values, (err, result) => {
         if (err) return res.status(500).send(err.message);
         if (!result.affectedRows) return res.status(404).send("Client not found.");
-        res.send("Client updated successfully.");
+
+        // Fetch updated client data and return it
+        const selectQuery = "SELECT * FROM Clients WHERE id = ?";
+        db.query(selectQuery, [req.params.id], (err, results) => {
+            if (err) return res.status(500).send(err.message);
+            res.json(results[0]); // Send updated client data
+        });
     });
 });
+
 
 
 /*----------------------------------------------------------------------------------------------------------------------*/

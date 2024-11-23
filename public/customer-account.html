@@ -141,46 +141,61 @@
         document.getElementById(`save-${field}`).style.display = "inline-block";
     }
 
-    function saveField(field) {
-        const inputValue = document.getElementById(`${field}-input`).value.trim();
 
-        if (!inputValue) {
-            alert(`${field.charAt(0).toUpperCase() + field.slice(1)} cannot be empty!`);
-            return;
-        }
-
-        document.getElementById(`${field}-display`).innerText = inputValue;
-        document.getElementById(`${field}-display`).style.display = "block";
-        document.getElementById(`${field}-input`).style.display = "none";
-        document.getElementById(`edit-${field}`).style.display = "inline-block";
-        document.getElementById(`save-${field}`).style.display = "none";
-
-        saveToServer(field, inputValue);
-    }
 
     async function saveToServer(field, value) {
-        const clientId = document.getElementById("client-settings").dataset.id;
-        const payload = { [field]: value };
+    const clientId = document.getElementById("client-settings").dataset.id;
+    const payload = { [field]: value };
 
-        try {
-            const response = await fetch(`/api/client-settings/${clientId}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
-            });
+    try {
+        const response = await fetch(`/api/client-settings/${clientId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+        });
 
-            if (response.ok) {
-                savedPopup();
-            } else {
-                const errorText = await response.text();
-                console.error("Error:", errorText);
-                alert("Failed to update settings.");
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            alert("An error occurred.");
+        if (response.ok) {
+            // Re-fetch all client settings to reflect the latest data
+            loadClientSettings();
+            savedPopup();
+        } else {
+            const errorText = await response.text();
+            console.error("Error:", errorText);
+            alert("Failed to update settings.");
         }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred.");
     }
+}
+
+function saveField(field) {
+    // Get the value from the input field
+    const inputValue = document.getElementById(`${field}-input`).value.trim();
+
+    // Validate input (optional)
+    if (!inputValue) {
+        alert(`${field.charAt(0).toUpperCase() + field.slice(1)} cannot be empty!`);
+        return;
+    }
+
+    // Update the display text
+    document.getElementById(`${field}-display`).innerText = inputValue;
+
+    // Hide the input field and the "Save" button
+    document.getElementById(`${field}-input`).style.display = "none";
+    document.getElementById(`save-${field}`).style.display = "none";
+
+    // Show the display text and the "Edit" button
+    document.getElementById(`${field}-display`).style.display = "block";
+    document.getElementById(`edit-${field}`).style.display = "inline-block";
+
+    // Optionally, save the updated value to the server
+    saveToServer(field, inputValue);
+}
+
+
+
 
     function savedPopup() {
         document.getElementById("dark-background").style.display = "block";
@@ -197,7 +212,6 @@
 <!--This is used for the footer-->
 <div id="footer-placeholder"></div>
 <script src="js/headers-footer.js"></script>
-<script type="text/javascript" src="./javascript/client.js"></script>
 
 
 </html>
