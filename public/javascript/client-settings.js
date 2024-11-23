@@ -1,14 +1,6 @@
-// client settings methods 
+// client settings methods
 
 
-/*----------------------------------------------------------------------------------------------------------------------*/
-// Enable editing of a specific field
-function editInformation(button) {
-    const parent = button.parentNode;
-    const field = parent.querySelector('.editable');
-    field.contentEditable = true;
-    field.focus();
-}
 /*----------------------------------------------------------------------------------------------------------------------*/
 
 // Load client settings and populate the fields
@@ -32,6 +24,17 @@ async function loadClientSettings() {
     }
 }
 
+
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+// Function to make only the paragraph text editable
+function editInformation(button) {
+    const parent = button.parentNode;
+    const field = parent.querySelector('.editable');
+    field.contentEditable = true;
+    field.focus();
+}
 
 
 /*----------------------------------------------------------------------------------------------------------------------*/
@@ -71,7 +74,9 @@ async function saveInformation(button) {
 }
 
 
+
+
 /*----------------------------------------------------------------------------------------------------------------------*/
     
-    // Initialize on page load
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', loadClientSettings);
