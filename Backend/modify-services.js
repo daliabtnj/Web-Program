@@ -10,7 +10,7 @@
 
 
 const express = require("express"); // to deal with http methods
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const path = require("path");
 
 // Create an Express Router instance

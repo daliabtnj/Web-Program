@@ -51,3 +51,9 @@ app.use("/api", modifyServicesRoutes);
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
+
+// d - buisness settings
+const businessSettingsRoutes = require('./Backend/business-settings');
+
+// Pass the db instance to the router
+app.use('/api', businessSettingsRoutes(db));

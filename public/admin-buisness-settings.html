@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="css/service.css">
     <!-- JavaScript file -->
     <script src="admin.js" defer></script> 
+    <script src="js/business-settings.js" defer></script>
+
 </head>
 
 <body>
@@ -25,7 +27,7 @@
 
         <div class="service-item">
             <h3>Company Name:</h3>
-            <p class="editable" contenteditable="false">Service Website</p>
+            <p class="editable" contenteditable="false" data-field="company_name">Service Website</p>
             <button onclick="editInformation(this)">EDIT NAME</button>
             <button onclick="saveInformation(this)">SAVE NAME</button>
             <hr>
@@ -33,7 +35,7 @@
 
         <div class="service-item">
             <h3>Logo URL:</h3>
-            <p class="editable" contenteditable="false">48A449F8-648E-4FAE-A0A1-BD8D4E4FB0DF_1_201_a.jpeg</p>
+            <p class="editable" contenteditable="false" data-field="logo">logo.jpeg</p>
             <button onclick="editInformation(this)">EDIT LOGO</button>
             <button onclick="saveInformation(this)">SAVE LOGO</button>
             <hr>
@@ -41,7 +43,7 @@
 
         <div class="service-item">
             <h3>Address:</h3>
-            <p class="editable" contenteditable="false">123 Maplewood Avenue, Suite 45, Brookfield, NY 10234, USA</p>
+            <p class="editable" contenteditable="false" data-field="address">123 Maplewood Avenue, Suite 45, Brookfield, NY 10234, USA</p>
             <button onclick="editInformation(this)">EDIT ADDRESS</button>
             <button onclick="saveInformation(this)">SAVE ADDRESS</button>
             <hr>
@@ -49,7 +51,7 @@
 
         <div class="service-item">
             <h3>Phone:</h3>
-            <p class="editable" contenteditable="false">+1 (555) 987-6543</p>
+            <p class="editable" contenteditable="false" data-field="phone">+1-555-555-5555</p>
             <button onclick="editInformation(this)">EDIT PHONE</button>
             <button onclick="saveInformation(this)">SAVE PHONE</button>
             <hr>
@@ -57,7 +59,7 @@
 
         <div class="service-item">
             <h3>Email:</h3>
-            <p class="editable" contenteditable="false">ServiceWebsite@services.com</p>
+            <p class="editable" contenteditable="false" data-field="email">email@example.com</p>
             <button onclick="editInformation(this)">EDIT EMAIL</button>
             <button onclick="saveInformation(this)">SAVE EMAIL</button>
             <hr>

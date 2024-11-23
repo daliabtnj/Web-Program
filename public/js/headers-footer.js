@@ -44,8 +44,7 @@ function signUPCustomer() {
 
 
 
-// Function to load the correct header based on login status
-function loadHeader() {
+async function loadHeader() {
     const whoIsIt = localStorage.getItem('whoIsLogged');
     let headerFile;
 
@@ -57,14 +56,50 @@ function loadHeader() {
         headerFile = 'header.html'; // Default header for signed-out users
     }
 
-    fetch(headerFile)
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-            window.scrollTo(0, 0);  // Scroll to the top of the page
-        })
-        .catch(error => console.error('Error loading header:', error));
+    // Fetch the selected header file
+    try {
+        const response = await fetch(headerFile);
+        const headerHTML = await response.text();
+
+        // Inject the header HTML into the page
+        document.getElementById('header-placeholder').innerHTML = headerHTML;
+
+        // If admin is logged in, dynamically fetch and update business settings
+        if (whoIsIt === 'admin') {
+            updateAdminHeader();
+        }
+
+        window.scrollTo(0, 0); // Scroll to the top of the page
+    } catch (error) {
+        console.error('Error loading header:', error);
+    }
 }
+
+async function updateAdminHeader() {
+    try {
+        // Fetch business settings from the database
+        const response = await fetch('/api/business-settings');
+        const data = await response.json();
+
+        // Update only the company name part in the header title
+        const headerTitle = document.querySelector('.header-title');
+        if (headerTitle) {
+            // Extract the prefix ("SERVICEHUB - ") and append the updated company name
+            const prefix = "SERVICEHUB - ";
+            headerTitle.textContent = `${prefix}${data.company_name}`;
+        }
+
+        // Update the logo
+        const headerLogo = document.querySelector('.header-logo');
+        if (headerLogo) {
+            headerLogo.src = data.logo;
+            headerLogo.alt = `${data.company_name} Logo`; // Set a meaningful alt text
+        }
+    } catch (error) {
+        console.error('Error fetching business settings:', error);
+    }
+}
+
 
 // Call loadHeader to dynamically load the header when the page loads
 document.addEventListener("DOMContentLoaded", () => {
