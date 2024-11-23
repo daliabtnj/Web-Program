@@ -1,6 +1,9 @@
 // Javascript file managing the backend (server + database)
+// use http://localhost:3000/index.html 
 
 // Main Backend File: server.js
+
+
 
 // Import necessary dependencies
 const express = require("express");

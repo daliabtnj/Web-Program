@@ -82,6 +82,7 @@ For backend purpose
 
 ## Database Setup for the admin manage services
 1. Open phpMyAdmin
-2. Create a new database named `admin-manage-services`.
-3. Import the `database/admin-manage-services.sql` file.
-4. Ensure the database connection credentials in `modify-services.js` match your local MySQL setup.
+2. Create a new database named `service_hub_db`.
+3. Import the `database/service_hub_db.sql` file.
+4. Ensure the database connection credentials in `server.js` match your local MySQL setup. (do node server.js)
+5. use the url : http://localhost:3000 with your local server running to display the website.
