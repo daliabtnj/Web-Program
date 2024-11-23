@@ -61,15 +61,53 @@ function loadHeader() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
-            window.scrollTo(0, 0);  // Scroll to the top of the page
+
+            // Dynamically update the header title
+            return fetch('http://localhost:3000/api/settings/companyName');
         })
-        .catch(error => console.error('Error loading header:', error));
+        .then(response => response.json())
+        .then(data => {
+            const headerTitle = document.querySelector('#company-name');
+            headerTitle.textContent = data.value;
+            
+        })
+        .catch(error => {
+            console.error('Failed to load company name or header:', error);
+        });
 }
 
 // Call loadHeader to dynamically load the header when the page loads
 document.addEventListener("DOMContentLoaded", loadHeader);
 
+
+
 function logout() {
     // Clear the login state
     localStorage.removeItem('whoIsLogged');
 }
+
+// get buisness settings from backend
+document.addEventListener("DOMContentLoaded", () => {
+    // API URL (adjust based on your setup)
+    const API_URL = "http://localhost:3000/api/settings/";
+
+    // Fetch the company name
+    fetch(`${API_URL}company_name`)
+        .then((response) => response.json())
+        .then((data) => {
+            if (data && data.value) {
+                document.getElementById("company-name").textContent = data.value;
+            }
+        })
+        .catch((error) => console.error("Error fetching company name:", error));
+
+    // Fetch the logo URL
+    fetch(`${API_URL}logo_url`)
+        .then((response) => response.json())
+        .then((data) => {
+            if (data && data.value) {
+                document.getElementById("company-logo").src = data.value;
+            }
+        })
+        .catch((error) => console.error("Error fetching logo URL:", error));
+});

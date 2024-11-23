@@ -40,23 +40,6 @@ function loginAdmin(event) {
 }
 
 // ----------------------------------------- Business Settings --------------------------------------------
-function editBusinessInfo(event) {
-    event.preventDefault();
-
-    // Input changes
-    let newCompanyName = document.getElementById('companyName').value;
-    let newLogo = document.getElementById('logo').value;
-    let newAddress = document.getElementById('address').value;
-    let newPhone = document.getElementById('phone').value;
-
-    // Change the business information
-    businessInfo.companyName = newCompanyName;
-    businessInfo.logo = newLogo;
-    businessInfo.address = newAddress;
-    businessInfo.phone = newPhone;
-
-    alert("Business information has been updated.");
-}
 
 // ------------------------------------------------ Services ------------------------------------------------
 
