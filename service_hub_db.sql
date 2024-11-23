@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2024 at 02:03 AM
+-- Generation Time: Nov 23, 2024 at 05:25 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -99,9 +99,7 @@ INSERT INTO `Services` (`id`, `service_name`, `description`, `default_price`) VA
 (2, 'Second Service - Cleaning', 'Our cleaning service is ideal for clients seeking professional, thorough, and reliable cleaning solutions. This premium service ensures a spotless environment.', 200),
 (3, 'Third Service - Pet Grooming', 'Our pet grooming service ensures your furry friends look and feel their best. We offer comprehensive grooming services including bathing, haircuts, and nail trimming.', 50),
 (4, 'Other Service - Private Trainer', 'Our private training service offers personalized fitness coaching tailored to your individual goals. Whether you’re looking to improve your strength, endurance, or overall health, our trainers are here to guide you.', 35),
-(5, 'Last Service - Stylist', 'Our stylist service offers expert advice and assistance in makeup, hair, and clothing selection for special events. Whether you’re preparing for a wedding, party, or business event, our professional stylists will help you look your best.', 175),
-(6, 'Test Service', 'Private lessons for kids', 500),
-(7, 'dd', 'test ', 999);
+(5, 'Last Service - Stylist', 'Our stylist service offers expert advice and assistance in makeup, hair, and clothing selection for special events. Whether you’re preparing for a wedding, party, or business event, our professional stylists will help you look your best.', 175);
 
 --
 -- Indexes for dumped tables
