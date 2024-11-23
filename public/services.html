@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generic Company - Services</title>
+    <!-- styles CSS file  -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- footer CSS file  -->
+    <link rel="stylesheet" href="css/footer.css">
+    <!-- service CSS file  -->
+    <link rel="stylesheet" href="css/service.css">
+</head>
+
+<body>
+    <!-- Placeholder for the header -->
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section>
+            <h1>Explore our services</h1>
+
+            <!-- Dynamic services container -->
+            <div id="services-container">
+                <!-- Services from database will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Inline JavaScript -->
+    <script>
+        // Fetch services from the database
+        function fetchServices() {
+            fetch('http://localhost:3000/api/services') // Replace with your backend's API endpoint
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((services) => {
+                    // Select the container where services will be displayed
+                    const servicesContainer = document.getElementById('services-container');
+
+                    // Clear existing content (if any)
+                    servicesContainer.innerHTML = '';
+
+                    // Iterate over services and dynamically create service boxes
+                    services.forEach((service) => {
+                        // Create service box HTML
+                        const serviceBox = document.createElement('div');
+                        serviceBox.classList.add('service-box');
+
+                        // Populate the service box
+                        serviceBox.innerHTML = `
+                            <h3>${service.service_name}</h3>
+                            <p>${service.description}</p>
+                            <p><strong>Price:</strong> $${service.default_price}</p>
+                            <a href="signin.html"><button>BOOK SERVICE</button></a>
+                            <hr>
+                        `;
+
+                        // Append the service box to the container
+                        servicesContainer.appendChild(serviceBox);
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error fetching services:', error);
+                });
+        }
+
+        // Call the function to fetch and display services when the page loads
+        document.addEventListener('DOMContentLoaded', fetchServices);
+    </script>
+
+<div id="footer-placeholder"></div>
+<script src="js/headers-footer.js"></script>
+
+</body>
+
+</html>

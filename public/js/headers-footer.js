@@ -67,7 +67,11 @@ function loadHeader() {
 }
 
 // Call loadHeader to dynamically load the header when the page loads
-document.addEventListener("DOMContentLoaded", loadHeader);
+document.addEventListener("DOMContentLoaded", () => {
+    loadHeader(); // Load the appropriate header based on login status
+    reloadServices(); // Fetch and display the services dynamically
+});
+
 
 function logout() {
     // Clear the login state
