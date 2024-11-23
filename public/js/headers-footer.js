@@ -77,28 +77,26 @@ async function loadHeader() {
 
 async function updateAdminHeader() {
     try {
-        // Fetch business settings from the database
+        // Fetch business settings from the backend
         const response = await fetch('/api/business-settings');
         const data = await response.json();
+
+        if (!data || !data.company_name) {
+            console.error("Business settings data is empty or invalid:", data);
+            return;
+        }
 
         // Update only the company name part in the header title
         const headerTitle = document.querySelector('.header-title');
         if (headerTitle) {
-            // Extract the prefix ("SERVICEHUB - ") and append the updated company name
             const prefix = "SERVICEHUB - ";
             headerTitle.textContent = `${prefix}${data.company_name}`;
         }
-
-        // Update the logo
-        const headerLogo = document.querySelector('.header-logo');
-        if (headerLogo) {
-            headerLogo.src = data.logo;
-            headerLogo.alt = `${data.company_name} Logo`; // Set a meaningful alt text
-        }
     } catch (error) {
-        console.error('Error fetching business settings:', error);
+        console.error("Error fetching or updating business settings:", error);
     }
 }
+
 
 
 // Call loadHeader to dynamically load the header when the page loads

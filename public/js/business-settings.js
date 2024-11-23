@@ -1,42 +1,60 @@
-// Fetch existing business settings
+// Load business settings and populate the fields
 async function loadBusinessSettings() {
-    const response = await fetch('/api/business-settings');
-    const data = await response.json();
+    try {
+        const response = await fetch('/api/business-settings');
+        const data = await response.json();
 
-    // Populate fields
-    document.querySelector('.editable[contenteditable=false]').innerText = data.company_name;
-    // Populate other fields similarly
+        // Populate the fields
+        document.querySelector('[data-field="company_name"]').innerText = data.company_name;
+        document.querySelector('[data-field="address"]').innerText = data.address;
+        document.querySelector('[data-field="email"]').innerText = data.email;
+        document.querySelector('[data-field="phone"]').innerText = data.phone;
+    } catch (error) {
+        console.error("Error loading business settings:", error);
+    }
 }
 
 
-// Function to make only the paragraph text editable
+// Enable editing of a specific field
 function editInformation(button) {
     const parent = button.parentNode;
-    const serviceDescription = parent.querySelector('p'); 
-    serviceDescription.contentEditable = true;
-    serviceDescription.classList.add('editable-box'); 
-    serviceDescription.focus();
+    const field = parent.querySelector('.editable');
+    field.contentEditable = true;
+    field.focus();
 }
 
-// Save updated business settings
 async function saveInformation(button) {
     const parent = button.parentNode;
-    const field = parent.querySelector('p');
-    const fieldName = field.getAttribute('data-field'); // Add a data-field attribute for identification
+    const field = parent.querySelector('.editable');
+    const fieldName = field.getAttribute('data-field');
+    const updatedValue = field.innerText.trim();
 
-    const updatedValue = field.innerText;
+    const payload = { [fieldName]: updatedValue };
 
-    // Prepare payload
-    const payload = {};
-    payload[fieldName] = updatedValue;
+    console.log("Sending payload to server:", payload);
 
-    // Send update request
-    await fetch('/api/business-settings', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-    });
+    try {
+        const response = await fetch('/api/business-settings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
 
-    alert("Business settings updated!");
+        if (response.ok) {
+            alert(`${fieldName} updated successfully!`);
+            field.contentEditable = false;
+        } else {
+            const errorText = await response.text();
+            console.error("Error response from server:", errorText);
+            alert("Failed to update business settings.");
+        }
+    } catch (error) {
+        console.error(`Error updating ${fieldName}:`, error);
+        alert("An error occurred while updating the settings.");
+    }
 }
+
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', loadBusinessSettings);
 

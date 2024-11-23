@@ -4,6 +4,8 @@
 // Main Backend File: server.js
 
 
+// Load environment variables
+require('dotenv').config();
 
 // Import necessary dependencies
 const express = require("express");
@@ -35,8 +37,20 @@ const db = mysql.createConnection({
 });
 
 db.connect((err) => {
-    if (err) throw err;
-    console.log("Database service_hub_db connected");
+    if (err) {
+        console.error("Database connection failed:", err);
+        return;
+    }
+    console.log("Connected to the database.");
+
+    // Explicitly select the database
+    db.query("USE service_hub_db", (err) => {
+        if (err) {
+            console.error("Error selecting database:", err);
+        } else {
+            console.log("Database selected successfully.");
+        }
+    });
 });
 
 // Serve the frontend (public directory)
@@ -53,7 +67,8 @@ app.listen(PORT, () => {
 });
 
 // d - buisness settings
+// Import the business settings router
 const businessSettingsRoutes = require('./Backend/business-settings');
 
-// Pass the db instance to the router
-app.use('/api', businessSettingsRoutes(db));
+// Use the business settings routes
+app.use('/api', businessSettingsRoutes);
