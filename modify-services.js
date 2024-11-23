@@ -3,10 +3,10 @@
 // post: for creating, updating, or sending data to the server
 // get: for retrieving information without affecting server data
 
-//GET /api/services: Fetch all services.
-//POST /api/addservice: Add a new service.
-//PUT /api/update-service/:id: Update a service.
-//DELETE /api/delete-service/:id: Delete a service.
+//GET /api/services: Fetch all services
+//POST /api/addservice: Add a new service
+//PUT /api/update-service/:id: Update a service
+//DELETE /api/delete-service/:id: Delete a service
 
 
 const express = require("express"); // to deal with http methods
@@ -172,12 +172,14 @@ router.get("/services", (req, res) => {
 
 
 /*----------------------------------------------------------------------------------------------------------------------*/
-// Update a service by ID using parameters
-// http://localhost:3000/api/update-service/1?service_name=New%20Name&description=Updated%20Description&default_price=150
 
-router.get("/update-service/:id", (req, res) => {
-    const { service_name, description, default_price } = req.query; // Extract query parameters
-    const { id } = req.params; // Extract the service ID from URL
+// Update a service by ID using parameters
+// HTTP Method: PUT
+// URL: http://localhost:3000/api/update-service/1
+
+router.put("/update-service/:id", (req, res) => {
+    const { service_name, description, default_price } = req.body; // Extract data from request body
+    const { id } = req.params; // Extract the service ID from the URL
 
     // Validate required parameters
     if (!service_name || !description || !default_price) {
@@ -185,7 +187,7 @@ router.get("/update-service/:id", (req, res) => {
     }
 
     const sql = "UPDATE Services SET service_name = ?, description = ?, default_price = ? WHERE id = ?";
-    
+
     // Execute the SQL query
     db.query(sql, [service_name, description, parseFloat(default_price), id], (err, result) => {
         if (err) {
@@ -195,19 +197,18 @@ router.get("/update-service/:id", (req, res) => {
         if (result.affectedRows === 0) {
             return res.status(404).send(`No service found with ID = ${id}`);
         }
-        res.send(`
-            <html>
-                <body>
-                    <h1>Service Updated Successfully!</h1>
-                    <p><strong>Service ID:</strong> ${id}</p>
-                    <p><strong>Service Name:</strong> ${service_name}</p>
-                    <p><strong>Description:</strong> ${description}</p>
-                    <p><strong>Default Price:</strong> $${default_price}</p>
-                </body>
-            </html>
-        `);
+        res.status(200).json({
+            message: "Service updated successfully",
+            service: {
+                id,
+                service_name,
+                description,
+                default_price,
+            },
+        });
     });
 });
+
 
 
 

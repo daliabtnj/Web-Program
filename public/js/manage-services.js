@@ -3,10 +3,11 @@ function editService(button) {
     const parent = button.parentNode;
     const serviceTitle = parent.querySelector('h3');
     const serviceDescription = parent.querySelector('p');
-    const serviceHeader = parent.querySelector('h4');
-    const serviceListItems = parent.querySelectorAll('ul li'); 
+    const priceElement = parent.querySelector('.price'); // Assuming you have a price element
+    button.textContent = "SAVE SERVICE"; // Change button text to "SAVE SERVICE"
+    button.setAttribute("onclick", "saveService(this)"); // Change button functionality to saveService
 
-    // Make each section editable and add a class for styling
+    // Make elements editable
     if (serviceTitle) {
         serviceTitle.contentEditable = true;
         serviceTitle.classList.add('editing-header');
@@ -17,61 +18,68 @@ function editService(button) {
         serviceDescription.classList.add('editing-paragraph');
     }
 
-    if (serviceHeader) {
-        serviceHeader.contentEditable = true;
-        serviceHeader.classList.add('editing-header');
+    if (priceElement) {
+        priceElement.contentEditable = true;
+        priceElement.classList.add('editing-paragraph');
     }
-
-    // Make all list items editable and add a class for styling
-    serviceListItems.forEach(item => {
-        item.contentEditable = true;
-        item.classList.add('editing-list');
-    });
 }
+
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 
-// Function to save the edited text (just for frontend purposes)
+// Function to save the edited service
 function saveService(button) {
     const parent = button.parentNode;
-    const serviceTitle = parent.querySelector('h3');
-    const serviceDescription = parent.querySelector('p');
-    const serviceHeader = parent.querySelector('h4');
-    const serviceList = parent.querySelector('ul');
+    const serviceId = parent.getAttribute('data-id'); // Assuming service ID is stored in a data attribute
+    const serviceTitle = parent.querySelector('h3').textContent.trim();
+    const serviceDescription = parent.querySelector('p').textContent.trim();
+    const servicePrice = parseFloat(parent.querySelector('.price').textContent.trim().replace('$', ''));
 
-    if (serviceTitle) {
-        serviceTitle.contentEditable = false;
-        serviceTitle.classList.remove('editing-header');
+    // Validate fields
+    if (!serviceTitle || !serviceDescription || isNaN(servicePrice)) {
+        alert("All fields must be filled out correctly.");
+        return;
     }
 
-    if (serviceDescription) {
-        serviceDescription.contentEditable = false;
-        serviceDescription.classList.remove('editing-paragraph');
-    }
-
-    if (serviceHeader) {
-        serviceHeader.contentEditable = false;
-        serviceHeader.classList.remove('editing-header');
-    }
-
-    if (serviceList) {
-        serviceList.contentEditable = false;
-        serviceList.classList.remove('editing-box');
-
-        // Loop through each list item and remove empty ones
-        const listItems = serviceList.querySelectorAll('li');
-        listItems.forEach(item => {
-            if (item.textContent.trim() === "") {
-                item.remove(); // Remove empty list items
-            } else {
-                item.contentEditable = false;
-                item.classList.remove('editing-list');
+    // Send updated data to the backend using PUT request
+    fetch(`http://localhost:3000/api/update-service/${serviceId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            service_name: serviceTitle,
+            description: serviceDescription,
+            default_price: servicePrice,
+        }),
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Failed to update service.");
             }
-        });
-    }
+            return response.json();
+        })
+        .then((data) => {
+            alert("Service updated successfully!");
+            button.textContent = "EDIT SERVICE"; // Change button text back to "EDIT SERVICE"
+            button.setAttribute("onclick", "editService(this)"); // Reset button functionality to editService
 
-    alert("Service updated (not persisted in backend).");
+            // Make elements non-editable
+            parent.querySelector('h3').contentEditable = false;
+            parent.querySelector('p').contentEditable = false;
+            parent.querySelector('.price').contentEditable = false;
+
+            // Remove styling
+            parent.querySelector('h3').classList.remove('editing-header');
+            parent.querySelector('p').classList.remove('editing-paragraph');
+            parent.querySelector('.price').classList.remove('editing-paragraph');
+        })
+        .catch((error) => {
+            console.error("Error updating service:", error);
+            alert("Failed to update the service. Please try again.");
+        });
 }
+
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 
