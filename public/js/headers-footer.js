@@ -64,10 +64,8 @@ async function loadHeader() {
         // Inject the header HTML into the page
         document.getElementById('header-placeholder').innerHTML = headerHTML;
 
-        // If admin is logged in, dynamically fetch and update business settings
-        if (whoIsIt === 'admin') {
-            updateAdminHeader();
-        }
+        // Dynamically update the business name in all headers
+        updateHeader();
 
         window.scrollTo(0, 0); // Scroll to the top of the page
     } catch (error) {
@@ -75,9 +73,9 @@ async function loadHeader() {
     }
 }
 
-async function updateAdminHeader() {
+async function updateHeader() {
     try {
-        // Fetch business settings from the backend
+        // Fetch the latest business settings
         const response = await fetch('/api/business-settings');
         const data = await response.json();
 
@@ -86,17 +84,16 @@ async function updateAdminHeader() {
             return;
         }
 
-        // Update only the company name part in the header title
+        // Update the company name in the header title
         const headerTitle = document.querySelector('.header-title');
         if (headerTitle) {
             const prefix = "SERVICEHUB - ";
             headerTitle.textContent = `${prefix}${data.company_name}`;
         }
     } catch (error) {
-        console.error("Error fetching or updating business settings:", error);
+        console.error("Error fetching or updating the header:", error);
     }
 }
-
 
 
 // Call loadHeader to dynamically load the header when the page loads
