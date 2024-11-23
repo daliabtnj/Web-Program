@@ -3,17 +3,22 @@
 // post: for creating, updating, or sending data to the server
 // get: for retrieving information without affecting server data
 
+//GET /api/services: Fetch all services.
+//POST /api/addservice: Add a new service.
+//PUT /api/update-service/:id: Update a service.
+//DELETE /api/delete-service/:id: Delete a service.
 
-// Import required modules
-const express = require("express"); // to deal with http methods 
+
+const express = require("express"); // to deal with http methods
 const mysql = require("mysql");
+const path = require("path");
 
-// Initialize the Express application
-const app = express();
+// Create an Express Router instance
+const router = express.Router();
 
 // Middleware for parsing URL-encoded and JSON data
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+router.use(express.urlencoded({ extended: false }));
+router.use(express.json());
 
 // MySQL configuration
 const db = mysql.createConnection({
@@ -35,9 +40,9 @@ db.connect((err) => {
 /*----------------------------------------------------------------------------------------------------------------------*/
 
 // Add multiple hardcoded services
-//http://localhost:3000/addhardcodedservices
+//http://localhost:3000/api/addhardcodedservices
 
-app.get("/addhardcodedservices", (req, res) => {
+router.get("/addhardcodedservices", (req, res) => {
     const services = [
         {
             service_name: "First Service - Tutoring",
@@ -113,59 +118,46 @@ app.get("/addhardcodedservices", (req, res) => {
     });
 });
 
-
 /*----------------------------------------------------------------------------------------------------------------------*/
-// Define a route for adding a new service (get)
-// you have to define parameters
-//http://localhost:3000/addservice?service_name=New%20Service&description=Private+lessons+for+kids&default_price=120
+// Define a route for adding a new service (GET)
+// http://localhost:3000/api/addservice?service_name=New%20Service&description=Private+lessons+for+kids&default_price=120
 
-app.get("/addservice", (req, res) => {
-    // Extract service details from query parameters
+router.post("/addservice", (req, res) => {
     const service = {
-        service_name: req.query.service_name,
-        description: req.query.description,
-        default_price: parseFloat(req.query.default_price),
+        service_name: req.body.service_name,
+        description: req.body.description,
+        default_price: parseFloat(req.body.default_price),
     };
 
-    // Validate required parameters
     if (!service.service_name || !service.description || isNaN(service.default_price)) {
         return res.status(400).send("Missing or invalid parameters!");
     }
 
-    // SQL query to insert the service into the database
     const sql = "INSERT INTO Services SET ?";
-
-    // Execute the query
     db.query(sql, service, (err, result) => {
         if (err) {
             console.error("Error adding service:", err);
-            res.send("Could not insert new service!");
-        } else {
-            // Respond with the added service details
-            res.send(`
-                <html>
-                    <body>
-                        <h1>Service added successfully!</h1>
-                        <p><strong>Service Name:</strong> ${service.service_name}</p>
-                        <p><strong>Description:</strong> ${service.description}</p>
-                        <p><strong>Default Price:</strong> $${service.default_price}</p>
-                    </body>
-                </html>
-            `);
+            return res.status(500).send("Could not insert new service!");
         }
+
+        // Respond with the inserted service details
+        const newServiceId = result.insertId;
+        res.json({
+            id: newServiceId,
+            service_name: service.service_name,
+            description: service.description,
+            default_price: service.default_price,
+        });
     });
 });
 
 
 
-
-
 /*----------------------------------------------------------------------------------------------------------------------*/
-// Get all services (JSON) to display
-// http://localhost:3000/services
-// THIS works 
+// Get all services (JSON)
+// http://localhost:3000/api/services
 
-app.get("/services", (req, res) => {
+router.get("/services", (req, res) => {
     const sql = "SELECT * FROM Services";
     db.query(sql, (err, result) => {
         if (err) {
@@ -178,38 +170,42 @@ app.get("/services", (req, res) => {
 });
 
 
+
 /*----------------------------------------------------------------------------------------------------------------------*/
 // Update a service by ID using parameters
-// http://localhost:3000/update-service/1?service_name=New%20Name&description=Updated%20Description&default_price=150
+// http://localhost:3000/api/update-service/1?service_name=New%20Name&description=Updated%20Description&default_price=150
 
-app.get("/update-service/:id", (req, res) => {
+router.get("/update-service/:id", (req, res) => {
     const { service_name, description, default_price } = req.query; // Extract query parameters
-    const { id } = req.params;
+    const { id } = req.params; // Extract the service ID from URL
 
+    // Validate required parameters
     if (!service_name || !description || !default_price) {
         return res.status(400).send("All fields (service_name, description, and default_price) are required.");
     }
 
     const sql = "UPDATE Services SET service_name = ?, description = ?, default_price = ? WHERE id = ?";
+    
+    // Execute the SQL query
     db.query(sql, [service_name, description, parseFloat(default_price), id], (err, result) => {
         if (err) {
             console.error("Could not update the service:", err);
-            res.status(500).send(`Could not update the service with ID = ${id}`);
-        } else if (result.affectedRows === 0) {
-            res.status(404).send(`No service found with ID = ${id}`);
-        } else {
-            res.send(`
-                <html>
-                    <body>
-                        <h1>Service Updated Successfully!</h1>
-                        <p><strong>Service ID:</strong> ${id}</p>
-                        <p><strong>Service Name:</strong> ${service_name}</p>
-                        <p><strong>Description:</strong> ${description}</p>
-                        <p><strong>Default Price:</strong> $${default_price}</p>
-                    </body>
-                </html>
-            `);
+            return res.status(500).send(`Could not update the service with ID = ${id}`);
         }
+        if (result.affectedRows === 0) {
+            return res.status(404).send(`No service found with ID = ${id}`);
+        }
+        res.send(`
+            <html>
+                <body>
+                    <h1>Service Updated Successfully!</h1>
+                    <p><strong>Service ID:</strong> ${id}</p>
+                    <p><strong>Service Name:</strong> ${service_name}</p>
+                    <p><strong>Description:</strong> ${description}</p>
+                    <p><strong>Default Price:</strong> $${default_price}</p>
+                </body>
+            </html>
+        `);
     });
 });
 
@@ -217,17 +213,21 @@ app.get("/update-service/:id", (req, res) => {
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 // Delete a service by ID
-//http://localhost:3000/delete-service/1
+// http://localhost:3000/api/delete-service/1
 
-app.get("/delete-service/:id", (req, res) => {
-    const { id } = req.params;
+router.get("/delete-service/:id", (req, res) => {
+    const { id } = req.params; // Extract service ID from URL
 
     // First, fetch the service details
     const fetchServiceSql = "SELECT * FROM services WHERE id = ?";
     db.query(fetchServiceSql, [id], (err, serviceResult) => {
-        if (err || serviceResult.length === 0) {
-            console.error(`Could not find the service with ID = ${id}`, err);
-            return res.send(`Could not find the service with ID = ${id}`);
+        if (err) {
+            console.error(`Error fetching the service with ID = ${id}`, err);
+            return res.status(500).send(`Error fetching the service with ID = ${id}`);
+        }
+
+        if (serviceResult.length === 0) {
+            return res.status(404).send(`No service found with ID = ${id}`);
         }
 
         const service = serviceResult[0]; // Extract service details
@@ -236,8 +236,8 @@ app.get("/delete-service/:id", (req, res) => {
         const deleteServiceSql = "DELETE FROM services WHERE id = ?";
         db.query(deleteServiceSql, [id], (deleteErr, deleteResult) => {
             if (deleteErr) {
-                console.error(`Could not delete the service with ID = ${id}`, deleteErr);
-                return res.send(`Could not delete the service with ID = ${id}`);
+                console.error(`Error deleting the service with ID = ${id}`, deleteErr);
+                return res.status(500).send(`Could not delete the service with ID = ${id}`);
             }
 
             // Respond with confirmation message including service details
@@ -256,9 +256,14 @@ app.get("/delete-service/:id", (req, res) => {
 });
 
 
-/*----------------------------------------------------------------------------------------------------------------------*/
-// Start the server
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+
+
+
+
+
+
+
+
+
+// Export the Router
+module.exports = router;
