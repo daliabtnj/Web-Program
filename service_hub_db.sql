@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2024 at 12:24 AM
+-- Generation Time: Nov 24, 2024 at 04:37 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -48,6 +48,28 @@ CREATE TABLE `Bills` (
   `STATUS` enum('unpaid','paid') DEFAULT 'unpaid',
   `DATE` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `BusinessSettings`
+--
+
+CREATE TABLE `BusinessSettings` (
+  `id` int(11) NOT NULL,
+  `company_name` varchar(255) NOT NULL,
+  `logo` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `BusinessSettings`
+--
+
+INSERT INTO `BusinessSettings` (`id`, `company_name`, `logo`, `address`, `email`, `phone`) VALUES
+(1, 'CompanyName', '/uploads/1732418636949-49163177.png', '222 Maplewood Street, H5H 1A8, Montreal, QC', 'email@servicehub.com', '+1(514)123-1117');
 
 -- --------------------------------------------------------
 
@@ -129,6 +151,12 @@ ALTER TABLE `Bills`
   ADD KEY `client_id` (`client_id`);
 
 --
+-- Indexes for table `BusinessSettings`
+--
+ALTER TABLE `BusinessSettings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `Clients`
 --
 ALTER TABLE `Clients`
@@ -167,6 +195,12 @@ ALTER TABLE `Bills`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `BusinessSettings`
+--
+ALTER TABLE `BusinessSettings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `Clients`
 --
 ALTER TABLE `Clients`
@@ -192,15 +226,15 @@ ALTER TABLE `Services`
 -- Constraints for table `Bills`
 --
 ALTER TABLE `Bills`
-  ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`service_request_id`) REFERENCES `ServiceRequests` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `Clients` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`service_request_id`) REFERENCES `servicerequests` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `ServiceRequests`
 --
 ALTER TABLE `ServiceRequests`
-  ADD CONSTRAINT `servicerequests_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `Clients` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `servicerequests_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `Services` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `servicerequests_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `servicerequests_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
