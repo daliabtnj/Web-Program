@@ -14,6 +14,49 @@ var users = [
     }
 ];
 
+// Function to handle customer signup
+function signUPCustomer() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const password = document.getElementById('password').value;
+    const passwordRepeat = document.getElementById('password-repeat').value;
+
+    // Basic validation for password confirmation
+    if (password !== passwordRepeat) {
+        const errorElement = document.getElementById('error');
+        errorElement.innerText = 'Passwords do not match.';
+        return;
+    }
+
+    console.log('Sending data to /signup-client:', { name, email, phone, password });
+
+    // Make the POST request using fetch
+    fetch('http://localhost:3000/signup-client', {
+        method: 'POST',
+        mode: "no-cors",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, phone, password }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.error) {
+                console.error('Server responded with an error:', data.error);
+                document.getElementById('error').innerText = data.error;
+            } else {
+                console.log('Signup successful:', data.message);
+                window.location.href = 'customer-dashboard.html'; // Redirect on success
+            }
+        })
+        .catch((error) => {
+            console.error('Fetch Error:', error);
+            document.getElementById('error').innerText = 'An error occurred. Please try again.';
+        });
+}
+
+
 // Error Handling and Form Validation for clients
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -88,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
+
     // Sign-In Form Validation and error handling
     if (clientSignInForm) {
         clientSignInForm.addEventListener('submit', (e) => {

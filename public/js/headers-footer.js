@@ -1,8 +1,8 @@
 fetch('footer.html')
-.then(response => response.text())
-.then(data => {
-    document.getElementById('footer-placeholder').innerHTML = data;
-});
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+    });
 
 // Function to save admin login status
 function saveAdmin() {
@@ -33,14 +33,73 @@ function signUPAdmin() {
     return true; // Allow form submission
 }
 
-// Function to save client login status
-function signUPCustomer() {
-    localStorage.setItem("whoIsLogged", "client");
+// // Function to save client login status
+// function signUPCustomer() {
+//     // localStorage.setItem("whoIsLogged", "client");
 
-    // Show confirmation message
-    alert("Account created! You are now logged in.");
-    return true; // Allow form submission
-}
+//     // // Show confirmation message
+//     // alert("Account created! You are now logged in.");
+//     // return true; // Allow form submission
+
+//     const name = document.getElementById('name').value;
+//     const email = document.getElementById('email').value;
+//     const phone = document.getElementById('phone').value;
+//     const password = document.getElementById('password').value;
+
+//     console.log('Sending data to /signup-client', { name, email, phone, password });
+
+//     fetch('http://localhost:3000/signup-client', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify({ name, email, phone, password }),
+//     })
+//         .then((response) => response.json())
+//         .then((data) => {
+//             if (data.error) {
+//                 // Display error message
+//                 console.error('Server responded with an error:', data.error);
+//                 document.getElementById('error').innerText = data.error;
+//             } else {
+//                 console.log('Signup successful, redirecting...');
+//                 window.location.href = 'customer-dashboard.html';
+//             }
+//         })
+//         .catch((error) => {
+//             console.error('Fetch Error:', error);
+//         });
+// }
+// function signUPCustomer() {
+//     const name = document.getElementById('name').value;
+//     const email = document.getElementById('email').value;
+//     const phone = document.getElementById('phone').value;
+//     const password = document.getElementById('password').value;
+
+//     console.log('Sending data to /signup-client', { name, email, phone, password });
+
+//     // Axios for the POST request
+//     axios.post('http://localhost:3000/signup-client', {
+//         name: name,
+//         email: email,
+//         phone: phone,
+//         password: password
+//     })
+//         .then((response) => {
+//             if (response.data.error) {
+//                 console.error('Server responded with an error:', response.data.error);
+//                 document.getElementById('error').innerText = response.data.error;
+//             } else {
+//                 console.log('Signup successful, redirecting...');
+//                 window.location.href = 'customer-dashboard.html';
+//             }
+//         })
+//         .catch((error) => {
+//             console.error('Axios Error:', error.response ? error.response.data : error.message);
+//             document.getElementById('error').innerText = 'An error occurred. Please try again.';
+//         });
+// }
+
 
 
 

@@ -27,7 +27,7 @@
 
             <p>Create a new account</p>
             <div id="error" style="color: red;"></div>
-            <form id="client-sign-up-form">
+            <form id="client-sign-up-form" onsubmit="event.preventDefault(); signUPCustomer();">
                 <label for="name">Name:</label><br>
                 <input type="text" placeholder="enter name" id="name" name="name" required><br>
 
@@ -45,15 +45,18 @@
                     required><br>
 
                 <!--sign up button-->
-                <button type="submit" onsubmit="saveCustomer()">Submit</button>
-
-                <p>sign up as admin <a href="signup-admin.html">here</a>,
-                    sign in <a href="signin.html">here</a>!</p>
+                <!-- <button type="submit" onsubmit="saveCustomer()">Submit</button> -->
+                <button type="submit">Submit</button>
+            </form>
+            <p>sign up as admin <a href="signup-admin.html">here</a>,
+                sign in <a href="signin.html">here</a>!</p>
         </section>
     </main>
 
     <!--This is used for the footer-->
     <div id="footer-placeholder"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <script src="js/headers-footer.js"></script>
     <script type="text/javascript" src="./javascript/client.js"></script>
 
