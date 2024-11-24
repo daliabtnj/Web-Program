@@ -14,7 +14,6 @@ var users = [
     }
 ];
 
-// Function to handle customer signup
 function signUPCustomer() {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
@@ -22,37 +21,29 @@ function signUPCustomer() {
     const password = document.getElementById('password').value;
     const passwordRepeat = document.getElementById('password-repeat').value;
 
-    // Basic validation for password confirmation
+    // Validate that passwords match
     if (password !== passwordRepeat) {
-        const errorElement = document.getElementById('error');
-        errorElement.innerText = 'Passwords do not match.';
+        document.getElementById('error').innerText = 'Passwords do not match.';
         return;
     }
 
-    console.log('Sending data to /signup-client:', { name, email, phone, password });
-
-    // Make the POST request using fetch
-    fetch('http://localhost:3000/signup-client', {
-        method: 'POST',
-        mode: "no-cors",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, phone, password }),
+    // POST request to the server
+    axios.post('http://localhost:3000/signup-client', {
+        name: name,
+        email: email,
+        phone: phone,
+        password: password
     })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.error) {
-                console.error('Server responded with an error:', data.error);
-                document.getElementById('error').innerText = data.error;
-            } else {
-                console.log('Signup successful:', data.message);
-                window.location.href = 'customer-dashboard.html'; // Redirect on success
-            }
+        .then((response) => {
+            // Handle success
+            console.log(response.data.message);
+            signUPCustomer();
+            window.location.href = 'customer-dashboard.html'; // Redirect to dashboard
         })
         .catch((error) => {
-            console.error('Fetch Error:', error);
-            document.getElementById('error').innerText = 'An error occurred. Please try again.';
+            // Handle error
+            console.error(error.response ? error.response.data.error : error.message);
+            document.getElementById('error').innerText = error.response?.data?.error || 'An error occurred. Please try again.';
         });
 }
 
@@ -124,8 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign up successful and pushes new user to users array
             else {
                 console.log("Form is valid. Redirecting...");
-                signUPCustomer();
-                window.location.href = "customer-dashboard.html";   // Redirect to customer dashboard
+                // signUPCustomer();
+                // window.location.href = "customer-dashboard.html";   // Redirect to customer dashboard
 
             }
         });

@@ -41,6 +41,42 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+app.get("/signup-client", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "signup-client.html"));
+});
+
+db.connect((err) => {
+    if (err) throw err;
+    console.log("Connected to the database");
+});
+
+// POST route for customer signup
+app.post('/signup-client', (req, res) => {
+    const { name, email, phone, password } = req.body;
+
+    // Input validation
+    if (!name || !email || !phone || !password) {
+        return res.status(400).json({ error: "All fields are required." });
+    }
+
+    // Check if email already exists
+    const checkQuery = "SELECT * FROM Clients WHERE email = ?";
+    db.query(checkQuery, [email], (err, results) => {
+        if (err) return res.status(500).json({ error: "Database error." });
+
+        if (results.length > 0) {
+            return res.status(409).json({ error: "Email already in use." });
+        }
+
+        // Insert the new client into the database
+        const insertQuery = "INSERT INTO Clients (name, email, phone, password) VALUES (?, ?, ?, ?)";
+        db.query(insertQuery, [name, email, phone, password], (err) => {
+            if (err) return res.status(500).json({ error: "Failed to create user." });
+
+            return res.status(201).json({ message: "Customer account created successfully." });
+        });
+    });
+});
 
 // Start the server
 app.listen(PORT, () => {
