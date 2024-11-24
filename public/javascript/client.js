@@ -47,6 +47,26 @@ function signUPCustomer() {
         });
 }
 
+function signInCustomer() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // POST request to the server
+    axios.post('http://localhost:3000/signin-client', {
+        email: email,
+        password: password
+    })
+        .then((response) => {
+            // Handle success
+            console.log(response.data.message);
+            window.location.href = 'customer-dashboard.html'; // Redirect to dashboard
+        })
+        .catch((error) => {
+            // Handle error
+            console.error(error.response ? error.response.data.error : error.message);
+            document.getElementById('error').innerText = error.response?.data?.error || 'An error occurred. Please try again.';
+        });
+}
 
 // Error Handling and Form Validation for clients
 document.addEventListener('DOMContentLoaded', () => {

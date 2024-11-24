@@ -37,7 +37,7 @@
         <section class="signup-box">
             <h1>Client Sign In</h1>
             <div id="error" style="color: red;"></div>
-            <form id="client-sign-in-form">
+            <form id="client-sign-in-form" onsubmit="event.preventDefault(); signInCustomer();">
                 <!--Username-->
                 <label for="email">Email:</label><br>
                 <input type="email" placeholder="enter email" id="email" name="email" required><br>
@@ -47,7 +47,7 @@
                 <input type="password" placeholder="enter password" id="password" name="password" required><br>
 
                 <!--sign in button-->
-                <button type="submit" onsubmit="saveCustomer()">Submit</button>
+                <button type="submit">Submit</button>
             </form>
             <p>Sign in as admin <a href="signin-admin.html">here</a>,
                 sign up <a href="signup.html">here</a>!</p>
@@ -64,13 +64,14 @@
 
 
 
-<!-- Confirmation Modal -->
-<div id="confirmationModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center;">
-    <div style="background-color: white; padding: 20px; border-radius: 8px; width: 300px; text-align: center;">
-        <p>Sign in successful!</p>
-        <button onclick="closeModal()">OK</button>
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center;">
+        <div style="background-color: white; padding: 20px; border-radius: 8px; width: 300px; text-align: center;">
+            <p>Sign in successful!</p>
+            <button onclick="closeModal()">OK</button>
+        </div>
     </div>
-</div>
 
 
 </body>
