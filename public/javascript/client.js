@@ -229,7 +229,6 @@ async function fetchRequests() {
         });
     } catch (error) {
         console.error('Error fetching requests:', error);
-        alert('2- Failed to load requests. Please try again.');
     }
 }
 
