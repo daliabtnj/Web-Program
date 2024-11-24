@@ -42,11 +42,24 @@ header {
     padding-left: 20px; /* Space from the left */
 }
 
+
 /* Add the logo styling */
 .header-logo {
     width: 50px; /* Adjust size as needed */
     height: auto;
     margin-right: 10px; /* Space between logo and title */
+}
+
+.right-logo-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header-right-logo {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
 }
 
 /*--------------------------------------------------------------------------------------------------------------*/

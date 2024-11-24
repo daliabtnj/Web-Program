@@ -10,13 +10,13 @@
 
 
 const express = require("express"); // to deal with http methods
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const path = require("path");
 
 // Create an Express Router instance
 const router = express.Router();
 
-// Middleware for parsing URL-encoded and JSON data
+
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
@@ -94,7 +94,7 @@ router.get("/addhardcodedservices", (req, res) => {
                     }
                     addedServices.push(service);
 
-                    // Display confirmation after all services are processed
+                    // Display confirmation after all services are done
                     if (addedServices.length === services.length || index === services.length - 1) {
                         res.send(`
                             <html>
@@ -142,7 +142,6 @@ router.post("/addservice", (req, res) => {
             return res.status(500).send("Could not insert new service!");
         }
 
-        // Respond with the inserted service details
         const newServiceId = result.insertId;
         res.json({
             id: newServiceId,
@@ -163,7 +162,7 @@ router.get("/services", (req, res) => {
     const sql = "SELECT * FROM Services";
     db.query(sql, (err, result) => {
         if (err) {
-            console.error("Error fetching services:", err); // Log error details
+            console.error("Error fetching services:", err); 
             res.send("Could not fetch services.");
         } else {
             res.json(result); // Return data as JSON
@@ -221,7 +220,7 @@ router.put("/update-service/:id", (req, res) => {
 router.get("/delete-service/:id", (req, res) => {
     const { id } = req.params; // Extract service ID from URL
 
-    // First, fetch the service details
+    // fetch service details
     const fetchServiceSql = "SELECT * FROM services WHERE id = ?";
     db.query(fetchServiceSql, [id], (err, serviceResult) => {
         if (err) {
@@ -235,7 +234,7 @@ router.get("/delete-service/:id", (req, res) => {
 
         const service = serviceResult[0]; // Extract service details
 
-        // Now, delete the service
+        // delete the service
         const deleteServiceSql = "DELETE FROM services WHERE id = ?";
         db.query(deleteServiceSql, [id], (deleteErr, deleteResult) => {
             if (deleteErr) {
@@ -243,7 +242,7 @@ router.get("/delete-service/:id", (req, res) => {
                 return res.status(500).send(`Could not delete the service with ID = ${id}`);
             }
 
-            // Respond with confirmation message including service details
+            // confirmation message 
             res.send(`
                 <html>
                     <body>
@@ -263,10 +262,7 @@ router.get("/delete-service/:id", (req, res) => {
 
 
 
-
-
-
-
+/*----------------------------------------------------------------------------------------------------------------------*/
 
 // Export the Router
 module.exports = router;

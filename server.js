@@ -4,6 +4,8 @@
 // Main Backend File: server.js
 
 
+// Load environment variables
+require('dotenv').config();
 
 // Import necessary dependencies
 const express = require("express");
@@ -23,18 +25,31 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Database connection (optional: used for other routes in server.js)
+// Database connection (direct credentials for XAMPP)
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
+    host: "localhost",    // XAMPP uses 'localhost'
+    user: "root",         // Default username in XAMPP
+    password: "",         // Default password is empty for XAMPP
+    database: "service_hub_db" // Your database name
 });
 
-// db.connect((err) => {
-//     if (err) throw err;
-//     console.log("Database service_hub_db connected");
-// });
+// Connect to the database
+db.connect((err) => {
+    if (err) {
+        console.error("Database connection failed:", err);
+        return;
+    }
+    console.log("Connected to the database.");
+
+    // Explicitly select the database
+    db.query("USE service_hub_db", (err) => {
+        if (err) {
+            console.error("Error selecting database:", err);
+        } else {
+            console.log("Database selected successfully.");
+        }
+    });
+});
 
 // Serve the frontend (public directory)
 app.get("/", (req, res) => {
@@ -84,6 +99,17 @@ app.listen(PORT, () => {
 });
 
 
+// file upload
+const fs = require('fs');
+const uploadDir = path.join(__dirname, 'public/uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
+
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
+
+
+
 
 /*----------------------------------------------------------------------------------------------------------------------*/
 // what we need to import for backend
@@ -97,10 +123,9 @@ app.use("/api", modifyServicesRoutes);
 // Import the business settings router
 const businessSettingsRoutes = require('./Backend/business-settings');
 // Use the business settings routes
-app.use('/api', businessSettingsRoutes);
-
+app.use("/api", businessSettingsRoutes);
 
 // Import the customer account router
 const clientSettingsRoutes = require('./Backend/edit-customer-account');
 // Use the customer account routes
-app.use('/api', clientSettingsRoutes);
+app.use("/api", clientSettingsRoutes);
