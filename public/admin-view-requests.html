@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/styles.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
+    <script type="text/javascript" src="./javascript/client.js"></script>
+
+
 </head>
 
 <body>
@@ -19,54 +22,24 @@
 
 
     <!-- Customer Requests -->
-    <div class="table-title" id="bills">
-        <div class="table-header">Customer Requests</div>
-
-      <table>
-          <thead>
-            <!--Table categories-->
-              <tr>
-                  <th>Service</th>
-                  <th>Client Name</th>
-                  <th>Details / Notes</th>
-                  <th>Status</th>
-                  <th>Date</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                <!--Example Resquest #1-->
-                  <td>#1 Tutoring</td>
-                  <td>John Doe</td>
-                  <td>For a 15 year old and for 2 hours.</td>
-                  <td>
-                      <select>
-                          <option value="pending">Pending</option>
-                          <option value="completed">Completed</option>
-                          <option value="booked">Booked</option>
-                      </select>
-                  </td>
-                  <td>2024-10-10</td>
-                  <td><button class="save-button" onclick="savedPopup()">Save</button></td>
-              </tr>
-              <tr>
-                <!--Eample Request #2-->
-                  <td>#3 Pet Grooming</td>
-                  <td>Violet Steveland</td>
-                  <td>Small poodle</td>
-                  <td>
-                      <select>
-                          <option value="pending">Pending</option>
-                          <option value="completed">Completed</option>
-                          <option value="booked">Booked</option>
-                      </select>
-                  </td>
-                  <td>2024-10-15</td>
-                  <td><button class="save-button" onclick="savedPopup()">Save</button></td>
-              </tr>
-          </tbody>
-      </table>
-  </div>
+    <div class="section" id="client-requests">
+        <div class="header">Customer Requests</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Booking Reference</th>
+                    <th>Client ID</th>
+                    <th>Service ID</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="requests-table-body-admin">
+                <!-- Rows will be populated dynamically -->
+            </tbody>
+        </table>
+    </div>
 </main>
 
   <!--This is used for the footer-->
@@ -81,8 +54,9 @@
       <button class="close-botton " onclick="closePopup()">Close</button>
   </div>
 
-</body>
 
+
+</body>
 <!--CSS for the table-->
 <style>
     

@@ -93,3 +93,13 @@ app.use("/api", businessSettingsRoutes);
 const clientSettingsRoutes = require('./Backend/edit-customer-account');
 // Use the customer account routes
 app.use("/api", clientSettingsRoutes);
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// Import the manage-requests router
+const manageRequestsRoutes = require('./Backend/manage-requests');
+
+// Use the manage-requests routes with a prefix (e.g., /api)
+app.use("/api", manageRequestsRoutes);
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

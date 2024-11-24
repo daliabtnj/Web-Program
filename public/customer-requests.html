@@ -1,3 +1,5 @@
+
+<!--CUSTOMER REQUESTS HTML-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +12,8 @@
     <link rel="stylesheet" href="css/styles.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
-    
+    <script type="text/javascript" src="./javascript/client.js"></script>
+
     
 </head>
 
@@ -23,33 +26,20 @@
   <main>
     <h1>My Requests</h1>
 
-    <!-- View Client's Requests-->
     <div class="section" id="client-requests">
       <div class="header">My Requests</div>
       <table>
         <thead>
           <tr>
-            <th>Service</th>
-            <th>Details</th>
+            <th>Booking Refrence</th>
+            <th>Service ID</th>
             <th>Status</th>
             <th>Date</th>
+            <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Tutoring</td>
-            <td>Aged 6, for 2 hours</td>
-            <td>Pending</td>
-            <td>2024-10-10</td>
-            <td><button class="cancel-service-button">Cancel</button></td>
-          </tr>
-          <tr>
-            <td>Pet Grooming</td>
-            <td>For a small dog.</td>
-            <td>Booked</td>
-            <td>2024-10-15</td>
-            <td><button class="cancel-service-button">Cancel</button></td>
-          </tr>
+        <tbody id="requests-table-body">
+          <!-- Rows will be populated dynamically -->
         </tbody>
       </table>
     </div>
@@ -62,6 +52,8 @@
 
 
 </body>
+
+
 <!--CSS for the table-->
 <style>
     
