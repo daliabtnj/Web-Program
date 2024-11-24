@@ -50,7 +50,7 @@ router.post('/business-settings', (req, res) => {
         fieldsToUpdate.push("company_name = ?");
         values.push(company_name);
     }
-    if (address) {
+    if (address) {it
         fieldsToUpdate.push("address = ?");
         values.push(address);
     }

@@ -93,6 +93,14 @@ INSERT INTO `Clients` (`id`, `name`, `email`, `phone`, `password`) VALUES
 (1, 'John', 'johndoe@gmail.com', 5141234567, 'password123!'),
 (2, 'Violet', 'violetsteveland@hotmail.com', 4389876543, 'bookcase451<');
 
+--
+-- Dumping data for table `Clients`
+--
+
+INSERT INTO `Clients` (`id`, `name`, `email`, `phone`, `password`) VALUES
+(1, 'John', 'johndoe@gmail.com', 5141234567, 'password123!'),
+(2, 'Violet', 'violetsteveland@hotmail.com', 4389876543, 'bookcase451<');
+
 -- --------------------------------------------------------
 
 --
@@ -205,6 +213,7 @@ ALTER TABLE `BusinessSettings`
 -- AUTO_INCREMENT for table `Clients`
 --
 ALTER TABLE `Clients`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
