@@ -122,6 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+
 // Form Validation for customer-account information changes
 document.addEventListener('DOMContentLoaded', () => {
     const editButton = document.getElementById('edit-client-button');
@@ -170,6 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+
 
 // Client can cancel services
 document.addEventListener('DOMContentLoaded', () => {

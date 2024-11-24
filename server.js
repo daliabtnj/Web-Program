@@ -14,9 +14,6 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const path = require("path");
 
-// Import the modify-services router
-const modifyServicesRoutes = require('./Backend/modify-services');
-
 
 dotenv.config();
 
@@ -59,17 +56,12 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Use the modify-services routes with a prefix (/api)
-app.use("/api", modifyServicesRoutes);
 
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
 
-// d - buisness settings
-// Import the business settings router
-const businessSettingsRoutes = require('./Backend/business-settings');
 
 // file upload
 const fs = require('fs');
@@ -81,5 +73,23 @@ if (!fs.existsSync(uploadDir)) {
 app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 
+
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+// what we need to import for backend
+
+
+// Import the modify-services router
+const modifyServicesRoutes = require('./Backend/modify-services');
+// Use the modify-services routes with a prefix (/api)
+app.use("/api", modifyServicesRoutes);
+
+// Import the business settings router
+const businessSettingsRoutes = require('./Backend/business-settings');
 // Use the business settings routes
-app.use('/api', businessSettingsRoutes);
+app.use("/api", businessSettingsRoutes);
+
+// Import the customer account router
+const clientSettingsRoutes = require('./Backend/edit-customer-account');
+// Use the customer account routes
+app.use("/api", clientSettingsRoutes);

@@ -23,6 +23,9 @@ function editInformation(button) {
     field.focus();
 }
 
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+
 async function saveInformation(button) {
     const parent = button.parentNode;
     const field = parent.querySelector('.editable');

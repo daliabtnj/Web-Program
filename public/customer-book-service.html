@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generic Company - Customer Dashboard</title>
+    <title>SERVICEHUB - Customer Dashboard</title>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/service.css">
@@ -19,9 +19,8 @@
         <section>
             <h1>Book a Service</h1>
 
-            <!-- Dynamic services container -->
+        
             <div id="services-container">
-                <!-- Services will be loaded dynamically -->
             </div>
         </section>
 
@@ -42,12 +41,12 @@
         async function loadServices() {
             try {
                 const response = await fetch('/api/services'); // Fetch services from backend
-                const services = await response.json(); // Parse JSON
+                const services = await response.json(); 
 
                 const container = document.getElementById('services-container');
-                container.innerHTML = ''; // Clear the container
+                container.innerHTML = ''; 
 
-                // Dynamically create service boxes
+        
                 services.forEach(service => {
                     const serviceBox = document.createElement('div');
                     serviceBox.classList.add('service-box');
