@@ -23,9 +23,9 @@ async function fetchRequests() {
                 <td>${request.service_id}</td>
                 <td id="status-${request.id}">
                     <select id="status-select-${request.id}" onchange="updateStatus(${request.id})">
-                        <option value="Booked" ${request.status === 'booked' ? 'selected' : ''}>Booked</option>
-                        <option value="Pending" ${request.status === 'pending' ? 'selected' : ''}>Pending</option>
-                        <option value="Completed" ${request.status === 'completed' ? 'selected' : ''}>Completed</option>
+                        <option value="Booked" ${request.status === 'Booked' ? 'selected' : ''}>Booked</option>
+                        <option value="Pending" ${request.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                        <option value="Completed" ${request.status === 'Completed' ? 'selected' : ''}>Completed</option>
                     </select>
                 </td>
                 <td>${request.date}</td>
@@ -42,7 +42,7 @@ async function fetchRequests() {
         });
     } catch (error) {
         console.error('Error fetching requests:', error);
-        alert('Failed to load requests. Please try again.');
+        alert('3- Failed to load requests. Please try again.');
     }
 }
 

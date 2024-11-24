@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2024 at 08:37 PM
+-- Generation Time: Nov 24, 2024 at 08:59 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -46,7 +46,7 @@ CREATE TABLE `Bills` (
   `client_id` int(11) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `STATUS` enum('unpaid','paid') DEFAULT 'unpaid',
-  `DATE` timestamp NOT NULL DEFAULT current_timestamp()
+  `DATE` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -54,13 +54,13 @@ CREATE TABLE `Bills` (
 --
 
 INSERT INTO `Bills` (`id`, `service_request_id`, `client_id`, `amount`, `STATUS`, `DATE`) VALUES
-(6, 25, 2, 40.00, 'unpaid', '2024-11-24 18:09:57'),
-(10, 25, 2, 40.00, 'unpaid', '2024-11-24 18:09:57'),
-(14, 25, 2, 40.00, 'unpaid', '2024-11-24 18:09:57'),
-(24, 25, 2, 40.00, 'unpaid', '2024-11-24 18:09:57'),
-(34, 25, 2, 40.00, 'unpaid', '2024-11-24 18:09:57'),
-(89, 25, 2, 40.00, 'unpaid', '2024-11-24 18:09:57'),
-(1234566, 25, 2, 40.00, 'unpaid', '2024-11-24 18:09:31');
+(6, 25, 2, 40.00, 'unpaid', '2024-11-24 13:09:57'),
+(10, 25, 2, 40.00, 'unpaid', '2024-11-24 13:09:57'),
+(14, 25, 2, 40.00, 'unpaid', '2024-11-24 13:09:57'),
+(24, 25, 2, 40.00, 'unpaid', '2024-11-24 13:09:57'),
+(34, 25, 2, 40.00, 'unpaid', '2024-11-24 13:09:57'),
+(89, 25, 2, 40.00, 'unpaid', '2024-11-24 13:09:57'),
+(1234566, 25, 2, 40.00, 'unpaid', '2024-11-24 13:09:31');
 
 -- --------------------------------------------------------
 
@@ -117,7 +117,7 @@ CREATE TABLE `ServiceRequests` (
   `client_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
   `status` enum('Pending','Completed','Booked') DEFAULT 'Pending',
-  `date` timestamp NOT NULL DEFAULT current_timestamp()
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -125,14 +125,11 @@ CREATE TABLE `ServiceRequests` (
 --
 
 INSERT INTO `ServiceRequests` (`id`, `client_id`, `service_id`, `status`, `date`) VALUES
-(13, 2, 9, 'Pending', '2024-11-24 19:35:48'),
-(24, 2, 9, 'Pending', '2024-11-24 19:35:48'),
-(25, 2, 9, 'Pending', '2024-11-24 17:46:35'),
-(55, 2, 9, 'Pending', '2024-11-24 19:35:48'),
-(67, 2, 9, 'Pending', '2024-11-24 19:35:48'),
-(2490, 2, 9, 'Pending', '2024-11-24 17:46:35'),
-(4444, 2, 9, 'Pending', '2024-11-24 19:35:30'),
-(333333, 2, 9, 'Pending', '2024-11-24 17:45:18');
+(25, 2, 9, 'Booked', '2024-11-24 12:46:35'),
+(67, 2, 9, 'Pending', '2024-11-24 14:35:48'),
+(2490, 2, 9, 'Pending', '2024-11-24 12:46:35'),
+(4444, 2, 9, 'Pending', '2024-11-24 14:35:30'),
+(333333, 2, 9, 'Pending', '2024-11-24 12:45:18');
 
 -- --------------------------------------------------------
 
