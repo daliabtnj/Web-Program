@@ -3,8 +3,6 @@
 
 // Main Backend File: server.js
 
-
-
 // Import necessary dependencies
 const express = require("express");
 const mysql = require("mysql2");
@@ -23,7 +21,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
-// Database connection (optional: used for other routes in server.js)
+// Database connection 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,

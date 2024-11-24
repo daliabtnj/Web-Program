@@ -19,7 +19,7 @@
     <h1>My Account</h1>
 
     <!-- Client Settings -->
-    <div id="client-settings" data-id="1"> <!-- Client ID -->
+    <div id="client-settings" data-id="1"> 
         <div class="client-item">
             <h3>Name:</h3>
             <p id="name-display" class="editable">John Doe</p>
@@ -155,7 +155,7 @@
         });
 
         if (response.ok) {
-            // Re-fetch all client settings to reflect the latest data
+            // fetch all client settings for latest data
             loadClientSettings();
             savedPopup();
         } else {
@@ -170,27 +170,22 @@
 }
 
 function saveField(field) {
-    // Get the value from the input field
     const inputValue = document.getElementById(`${field}-input`).value.trim();
 
-    // Validate input (optional)
+    // Validate input 
     if (!inputValue) {
         alert(`${field.charAt(0).toUpperCase() + field.slice(1)} cannot be empty!`);
         return;
     }
 
-    // Update the display text
     document.getElementById(`${field}-display`).innerText = inputValue;
 
-    // Hide the input field and the "Save" button
     document.getElementById(`${field}-input`).style.display = "none";
     document.getElementById(`save-${field}`).style.display = "none";
 
-    // Show the display text and the "Edit" button
     document.getElementById(`${field}-display`).style.display = "block";
     document.getElementById(`edit-${field}`).style.display = "inline-block";
 
-    // Optionally, save the updated value to the server
     saveToServer(field, inputValue);
 }
 

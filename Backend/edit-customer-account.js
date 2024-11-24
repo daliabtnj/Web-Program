@@ -7,7 +7,6 @@ const bcrypt = require("bcrypt");
 
 const router = express.Router();
 
-// Middleware for parsing URL-encoded and JSON data
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 
@@ -63,11 +62,11 @@ router.put("/client-settings/:id", (req, res) => {
         if (err) return res.status(500).send(err.message);
         if (!result.affectedRows) return res.status(404).send("Client not found.");
 
-        // Fetch updated client data and return it
+        // Fetch updated client data and display
         const selectQuery = "SELECT * FROM Clients WHERE id = ?";
         db.query(selectQuery, [req.params.id], (err, results) => {
             if (err) return res.status(500).send(err.message);
-            res.json(results[0]); // Send updated client data
+            res.json(results[0]);
         });
     });
 });

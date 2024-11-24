@@ -14,7 +14,7 @@ async function loadClientSettings() {
 
         const data = await response.json();
 
-        // Update both display and input fields
+        // Update 
         document.getElementById("name-display").innerText = data.name || "N/A";
         document.getElementById("name-input").value = data.name || "";
 
@@ -55,14 +55,14 @@ async function saveInformation(button) {
     const fieldName = field.getAttribute('data-field');
     const updatedValue = field.innerText.trim();
 
-    const clientId = document.getElementById('client-settings').dataset.id; // Get client ID
+    const clientId = document.getElementById('client-settings').dataset.id;
 
     const payload = { [fieldName]: updatedValue };
 
     console.log("Sending payload to server:", payload);
 
     try {
-        const response = await fetch(`/api/client-settings/${clientId}`, { // Include client ID in the endpoint
+        const response = await fetch(`/api/client-settings/${clientId}`, { 
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
