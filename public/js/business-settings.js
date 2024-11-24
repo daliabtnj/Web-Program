@@ -1,22 +1,3 @@
-<<<<<<< HEAD
-// Function to make only the paragraph text editable
-function editInformation(button) {
-    const parent = button.parentNode;
-    const serviceDescription = parent.querySelector('p'); 
-    serviceDescription.contentEditable = true;
-    serviceDescription.classList.add('editable-box'); 
-    serviceDescription.focus();
-}
-
-    // Function to save the edited text (just for frontend purposes)
-    function saveInformation(button) {
-    const parent = button.parentNode;
-    const serviceDescription = parent.querySelector('p'); 
-    serviceDescription.contentEditable = false;
-    serviceDescription.classList.remove('editable-box'); 
-    alert("Information updated (not persisted in backend).");
-}
-=======
 // business settings methods
 
 
@@ -51,41 +32,40 @@ function editInformation(button) {
 /*----------------------------------------------------------------------------------------------------------------------*/
 
 
-    // Function to save the edited text (just for frontend purposes)
-    async function saveInformation(button) {
-        const parent = button.parentNode;
-        const field = parent.querySelector('.editable');
-        const fieldName = field.getAttribute('data-field');
-        const updatedValue = field.innerText.trim();
-    
-        const payload = { [fieldName]: updatedValue };
-    
-        console.log("Sending payload to server:", payload);
-    
-        try {
-            const response = await fetch('/api/business-settings', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            });
-    
-            if (response.ok) {
-                alert(`${fieldName} updated successfully!`);
-                field.contentEditable = false;
-            } else {
-                const errorText = await response.text();
-                console.error("Error response from server:", errorText);
-                alert("Failed to update business settings.");
-            }
-        } catch (error) {
-            console.error(`Error updating ${fieldName}:`, error);
-            alert("An error occurred while updating the settings.");
-        }
-    }
-    
+// Function to save the edited text (just for frontend purposes)
+async function saveInformation(button) {
+    const parent = button.parentNode;
+    const field = parent.querySelector('.editable');
+    const fieldName = field.getAttribute('data-field');
+    const updatedValue = field.innerText.trim();
 
-    /*----------------------------------------------------------------------------------------------------------------------*/
-    
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', loadBusinessSettings);
->>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087
+    const payload = { [fieldName]: updatedValue };
+
+    console.log("Sending payload to server:", payload);
+
+    try {
+        const response = await fetch('/api/business-settings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+        });
+
+        if (response.ok) {
+            alert(`${fieldName} updated successfully!`);
+            field.contentEditable = false;
+        } else {
+            const errorText = await response.text();
+            console.error("Error response from server:", errorText);
+            alert("Failed to update business settings.");
+        }
+    } catch (error) {
+        console.error(`Error updating ${fieldName}:`, error);
+        alert("An error occurred while updating the settings.");
+    }
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', loadBusinessSettings);
