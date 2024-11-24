@@ -16,12 +16,36 @@ async function loadBusinessSettings() {
 
 
 // Enable editing of a specific field
+// Load business settings and populate the fields
+async function loadBusinessSettings() {
+    try {
+        const response = await fetch('/api/business-settings');
+        const data = await response.json();
+
+        // Populate the fields
+        document.querySelector('[data-field="company_name"]').innerText = data.company_name;
+        document.querySelector('[data-field="address"]').innerText = data.address;
+        document.querySelector('[data-field="email"]').innerText = data.email;
+        document.querySelector('[data-field="phone"]').innerText = data.phone;
+    } catch (error) {
+        console.error("Error loading business settings:", error);
+    }
+}
+
+
+// Enable editing of a specific field
 function editInformation(button) {
     const parent = button.parentNode;
     const field = parent.querySelector('.editable');
     field.contentEditable = true;
     field.focus();
+    const field = parent.querySelector('.editable');
+    field.contentEditable = true;
+    field.focus();
 }
+
+/*----------------------------------------------------------------------------------------------------------------------*/
+
 
 async function saveInformation(button) {
     const parent = button.parentNode;

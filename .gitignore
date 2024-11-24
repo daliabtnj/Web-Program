@@ -1,6 +1,13 @@
+# macOS system files
 .DS_Store
-.package-lock.json
-.package.json
-.node_modules
-.uploads
+
+# Dependency management files
+package-lock.json
+package.json
+
+# Node.js dependencies
+node_modules/
+
+# Temporary uploads folder (if applicable)
+uploads/
 

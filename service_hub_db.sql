@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2024 at 04:37 AM
+-- Generation Time: Nov 24, 2024 at 11:52 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,6 +34,14 @@ CREATE TABLE `Admins` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `Admins`
+--
+
+INSERT INTO `Admins` (`id`, `name`, `email`, `password`) VALUES
+(1, 'admin', 'admin@email.com', 'password'),
+(2, 'admin2', 'admin2@email.com', 'password2');
+
 -- --------------------------------------------------------
 
 --
@@ -46,7 +54,7 @@ CREATE TABLE `Bills` (
   `client_id` int(11) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `STATUS` enum('unpaid','paid') DEFAULT 'unpaid',
-  `DATE` timestamp NOT NULL DEFAULT current_timestamp()
+  `DATE` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -69,7 +77,7 @@ CREATE TABLE `BusinessSettings` (
 --
 
 INSERT INTO `BusinessSettings` (`id`, `company_name`, `logo`, `address`, `email`, `phone`) VALUES
-(1, 'CompanyName', '/uploads/1732418636949-49163177.png', '222 Maplewood Street, H5H 1A8, Montreal, QC', 'email@servicehub.com', '+1(514)123-1117');
+(1, 'Company Name', '/uploads/1732418636949-49163177.png', '222 Maplewood Street, H5H 1A8, Montreal, Q', 'email@servicehub.ca', '+1(456)123-1117');
 
 -- --------------------------------------------------------
 
@@ -85,6 +93,14 @@ CREATE TABLE `Clients` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `Clients`
+--
+
+INSERT INTO `Clients` (`id`, `name`, `email`, `phone`, `password`) VALUES
+(1, 'John', 'johndoe@gmail.com', 5141234567, 'password123!'),
+(2, 'Violet', 'violetsteveland@hotmail.com', 4389876543, 'bookcase451<');
+
 -- --------------------------------------------------------
 
 --
@@ -96,8 +112,19 @@ CREATE TABLE `ServiceRequests` (
   `client_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
   `status` enum('Pending','Completed','Booked') DEFAULT 'Pending',
-  `date` timestamp NOT NULL DEFAULT current_timestamp()
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `ServiceRequests`
+--
+
+INSERT INTO `ServiceRequests` (`id`, `client_id`, `service_id`, `status`, `date`) VALUES
+(345810351, 1, 1, 'Pending', '2025-01-04'),
+(345810352, 1, 2, 'Pending', '2024-11-30'),
+(345810353, 1, 3, 'Completed', '2025-01-18'),
+(345810354, 1, 4, 'Completed', '2025-02-08'),
+(345810355, 2, 5, 'Pending', '2025-01-01');
 
 -- --------------------------------------------------------
 
@@ -121,8 +148,7 @@ INSERT INTO `Services` (`id`, `service_name`, `description`, `default_price`) VA
 (2, 'Second Service - Cleaning', 'Our cleaning service is ideal for clients seeking professional, thorough, and reliable cleaning solutions. This premium service ensures a spotless environment.', 200),
 (3, 'Third Service - Pet Grooming', 'Our pet grooming service ensures your furry friends look and feel their best. We offer comprehensive grooming services including bathing, haircuts, and nail trimming.', 50),
 (4, 'Other Service - Private Trainer', 'Our private training service offers personalized fitness coaching tailored to your individual goals. Whether you’re looking to improve your strength, endurance, or overall health, our trainers are here to guide you.', 35),
-(5, 'Last Service - Stylist', 'Our stylist service offers expert advice and assistance in makeup, hair, and clothing selection for special events. Whether you’re preparing for a wedding, party, or business event, our professional stylists will help you look your best.', 175),
-(6, 'Test Service', 'Private lessons for kids less than 10 years old', 500);
+(5, 'Last Service - Stylist', 'Our stylist service offers expert advice and assistance in makeup, hair, and clothing selection for special events. Whether you’re preparing for a wedding, party, or business event, our professional stylists will help you look your best.', 175);
 
 --
 -- Indexes for dumped tables
@@ -179,14 +205,13 @@ ALTER TABLE `Services`
 -- AUTO_INCREMENT for table `Admins`
 --
 ALTER TABLE `Admins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `Bills`
 --
 ALTER TABLE `Bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567;
 --
 -- AUTO_INCREMENT for table `BusinessSettings`
 --
@@ -197,19 +222,19 @@ ALTER TABLE `BusinessSettings`
 -- AUTO_INCREMENT for table `Clients`
 --
 ALTER TABLE `Clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `ServiceRequests`
 --
 ALTER TABLE `ServiceRequests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=345810356;
 
 --
 -- AUTO_INCREMENT for table `Services`
 --
 ALTER TABLE `Services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
