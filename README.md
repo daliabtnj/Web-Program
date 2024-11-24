@@ -83,6 +83,7 @@ Run on localhost:3000
    - Select **Open with Live Server**. 
    - Your default web browser will open, displaying your website.
 
+<<<<<<< HEAD
 ### Team Members
 - Dalia Betinjaneh (40200966)
 - Mariana Bou-Saleh (40227084)
@@ -96,3 +97,15 @@ Run on localhost:3000
 
 ### Database (for us only)
 Import service_hub_db.sql from sql folder into phpmyadmin
+=======
+
+
+For backend purpose
+
+## Database Setup for the admin manage services
+1. Open phpMyAdmin
+2. Create a new database named `service_hub_db`.
+3. Import the `database/service_hub_db.sql` file.
+4. Ensure the database connection credentials in `server.js` match your local MySQL setup. (do node server.js)
+5. use the url : http://localhost:3000 with your local server running to display the website.
+>>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087

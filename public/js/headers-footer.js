@@ -1,8 +1,15 @@
 fetch('footer.html')
+<<<<<<< HEAD
     .then(response => response.text())
     .then(data => {
         document.getElementById('footer-placeholder').innerHTML = data;
     });
+=======
+.then(response => response.text())
+.then(data => {
+    document.getElementById('footer-placeholder').innerHTML = data;
+});
+>>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087
 
 // Function to save admin login status
 function saveAdmin() {
@@ -33,6 +40,7 @@ function signUPAdmin() {
     return true; // Allow form submission
 }
 
+<<<<<<< HEAD
 // // Function to save client login status
 // function signUPCustomer() {
 //     // localStorage.setItem("whoIsLogged", "client");
@@ -100,6 +108,16 @@ function signUPAdmin() {
 //         });
 // }
 
+=======
+// Function to save client login status
+function signUPCustomer() {
+    localStorage.setItem("whoIsLogged", "client");
+
+    // Show confirmation message
+    alert("Account created! You are now logged in.");
+    return true; // Allow form submission
+}
+>>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087
 
 
 
@@ -126,7 +144,15 @@ function loadHeader() {
 }
 
 // Call loadHeader to dynamically load the header when the page loads
+<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", loadHeader);
+=======
+document.addEventListener("DOMContentLoaded", () => {
+    loadHeader(); // Load the appropriate header based on login status
+    reloadServices(); // Fetch and display the services dynamically
+});
+
+>>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087
 
 function logout() {
     // Clear the login state

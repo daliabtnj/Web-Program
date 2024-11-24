@@ -4,16 +4,25 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Generic Company - Customer Dashboard</title>
     <!-- styles CSS file  -->
     <!-- styles CSS file  -->
     <link rel="stylesheet" href="css/styles.css">
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
+=======
+    <title>SERVICEHUB - Customer Dashboard</title>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <script src="javascript/client-settings.js" defer></script>
+>>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087
 </head>
 
 <body>
 
+<<<<<<< HEAD
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
 
@@ -72,6 +81,65 @@
 
 
 <!-- CSS for styling -->
+=======
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
+    <h1>My Account</h1>
+
+    <!-- Client Settings -->
+    <div id="client-settings" data-id="1"> <!-- Client ID -->
+        <div class="client-item">
+            <h3>Name:</h3>
+            <p id="name-display" class="editable">John Doe</p>
+            <input id="name-input" type="text" value="John" style="display: none;">
+            <button id="edit-name" onclick="editField('name')">EDIT</button>
+            <button id="save-name" style="display: none;" onclick="saveField('name')">SAVE</button>
+        </div>
+        <hr>
+
+        <div class="client-item">
+            <h3>Email:</h3>
+            <p id="email-display" class="editable">johndoe@gmail.com</p>
+            <input id="email-input" type="email" value="johndoe@gmail.com" style="display: none;">
+            <button id="edit-email" onclick="editField('email')">EDIT</button>
+            <button id="save-email" style="display: none;" onclick="saveField('email')">SAVE</button>
+        </div>
+        <hr>
+
+        <div class="client-item">
+            <h3>Phone:</h3>
+            <p id="phone-display" class="editable">5141234567</p>
+            <input id="phone-input" type="tel" value="5141234567" style="display: none;">
+            <button id="edit-phone" onclick="editField('phone')">EDIT</button>
+            <button id="save-phone" style="display: none;" onclick="saveField('phone')">SAVE</button>
+        </div>
+        <hr>
+
+        <div class="client-item">
+            <h3>Password:</h3>
+            <p id="password-display" class="editable">password123!</p>
+            <input id="password-input" type="password" value="password123!" style="display: none;">
+            <button id="edit-password" onclick="editField('password')">EDIT</button>
+            <button id="save-password" style="display: none;" onclick="saveField('password')">SAVE</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Success Popup -->
+    <div class="dark-background" id="dark-background"></div>
+    <div class="popup" id="popup">
+        <h2>Success!</h2>
+        <p>Your account has been updated.</p>
+        <button class="close-button" onclick="closePopup()">Close</button>
+    </div>
+
+</body>
+
+<!-- Styling -->
+>>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087
 <style>
     main {
         max-width: 1300px;
@@ -85,14 +153,30 @@
         color: #333;
     }
 
+<<<<<<< HEAD
 
     input[type="name"], input[type="email"], input[type="tel"], input[type="password"] {
+=======
+    input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
+>>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087
         width: 100%;
         padding: 8px;
         margin-top: 5px;
         margin-bottom: 15px;
+<<<<<<< HEAD
         border: 1px solid#3a3838;
         border-radius: 5px;
+=======
+        border: 1px solid #3a3838;
+        border-radius: 5px;
+        display: none;
+    }
+
+    button {
+        margin-right: 10px;
+        padding: 8px 15px;
+        cursor: pointer;
+>>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087
     }
 
     .popup {
@@ -118,7 +202,11 @@
         background-color: rgba(0, 0, 0, 0.5);
     }
 
+<<<<<<< HEAD
     .close-botton {
+=======
+    .close-button {
+>>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087
         background-color: #600d19;
         border: none;
         color: white;
@@ -126,6 +214,7 @@
         border-radius: 5px;
         cursor: pointer;
     }
+<<<<<<< HEAD
 
     
 </style>
@@ -140,8 +229,94 @@
     function closePopup() {
         document.getElementById('dark-background').style.display = 'none';
         document.getElementById('popup').style.display = 'none';
+=======
+</style>
+
+<!-- JavaScript -->
+<script>
+    function editField(field) {
+        document.getElementById(`${field}-display`).style.display = "none";
+        document.getElementById(`${field}-input`).style.display = "block";
+        document.getElementById(`edit-${field}`).style.display = "none";
+        document.getElementById(`save-${field}`).style.display = "inline-block";
+    }
+
+
+
+    async function saveToServer(field, value) {
+    const clientId = document.getElementById("client-settings").dataset.id;
+    const payload = { [field]: value };
+
+    try {
+        const response = await fetch(`/api/client-settings/${clientId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+        });
+
+        if (response.ok) {
+            // Re-fetch all client settings to reflect the latest data
+            loadClientSettings();
+            savedPopup();
+        } else {
+            const errorText = await response.text();
+            console.error("Error:", errorText);
+            alert("Failed to update settings.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred.");
+    }
+}
+
+function saveField(field) {
+    // Get the value from the input field
+    const inputValue = document.getElementById(`${field}-input`).value.trim();
+
+    // Validate input (optional)
+    if (!inputValue) {
+        alert(`${field.charAt(0).toUpperCase() + field.slice(1)} cannot be empty!`);
+        return;
+    }
+
+    // Update the display text
+    document.getElementById(`${field}-display`).innerText = inputValue;
+
+    // Hide the input field and the "Save" button
+    document.getElementById(`${field}-input`).style.display = "none";
+    document.getElementById(`save-${field}`).style.display = "none";
+
+    // Show the display text and the "Edit" button
+    document.getElementById(`${field}-display`).style.display = "block";
+    document.getElementById(`edit-${field}`).style.display = "inline-block";
+
+    // Optionally, save the updated value to the server
+    saveToServer(field, inputValue);
+}
+
+
+
+
+    function savedPopup() {
+        document.getElementById("dark-background").style.display = "block";
+        document.getElementById("popup").style.display = "block";
+    }
+
+    function closePopup() {
+        document.getElementById("dark-background").style.display = "none";
+        document.getElementById("popup").style.display = "none";
+>>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087
     }
 </script>
 
 
+<<<<<<< HEAD
 </html>
+=======
+<!--This is used for the footer-->
+<div id="footer-placeholder"></div>
+<script src="js/headers-footer.js"></script>
+
+
+</html>
+>>>>>>> 05332eba9344d9bce9f3b588d5589273094dd087
