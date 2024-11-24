@@ -1,5 +1,5 @@
 // manage-request.js 
-// Manage clien requests
+// Manage client requests
 // url : http://localhost:3000
 
 const express = require('express');
@@ -10,6 +10,7 @@ const mysql = require('mysql2');
 // Setup CORS
 router.use(cors());
 
+// Database connection setup
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -26,6 +27,7 @@ db.connect((err) => {
     }
 });
 
+// Fetch all service requests
 router.get('/service-requests', (req, res) => {
     const query = "SELECT * FROM ServiceRequests";
 
@@ -38,8 +40,7 @@ router.get('/service-requests', (req, res) => {
     });
 });
 
-
-// Delete request due to cancelation (By client and admins)
+// Delete request due to cancellation (by clients and admins)
 router.get("/delete-request/:id", (req, res) => {
     const { id } = req.params; // Extract service request ID from URL
 
@@ -77,20 +78,18 @@ router.get("/delete-request/:id", (req, res) => {
     });
 });
 
-
-
 // Update request status
-router.put('/api/service-requests/:id/status', async (req, res) => {
+router.put('/service-requests/:id/status', async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
 
     // Log the status to see what is being received
-    console.log('Received status:', status);  // Debugging line
+    console.log('Received status:', status); // Debugging line
 
     // Validate the status input (it should be one of "Completed", "Booked", or "Pending")
     const validStatuses = ["Completed", "Booked", "Pending"];
     if (!validStatuses.includes(status)) {
-        console.log('Invalid status:', status);  // Debugging line
+        console.log('Invalid status:', status); // Debugging line
         return res.status(400).send("Invalid status.");
     }
 
@@ -100,11 +99,10 @@ router.put('/api/service-requests/:id/status', async (req, res) => {
         await db.promise().query(query, [status, id]);
         res.status(200).send("Status updated successfully!");
     } catch (err) {
-        console.error("Error updating status:", err);  // Log database errors
+        console.error("Error updating status:", err); // Log database errors
         res.status(500).send("Failed to update status.");
     }
 });
 
-
-
+// Export the router
 module.exports = router;
