@@ -47,21 +47,14 @@ async function fetchRequests() {
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
-// Change the status (Requests) NOT WORKING YET
+// Change the status
+
 async function updateStatus(id) {
     const select = document.getElementById(`status-select-${id}`);
     const status = select.value;
 
-    // Log the selected status to check what value is being passed
-    console.log('Selected status:', status);  // Debugging line
-
-    // Validate that the status is one of the allowed values
-    const validStatuses = ["Completed", "Booked", "Pending"];
-    if (!validStatuses.includes(status)) {
-        console.log('Invalid status:', status);  // Debugging line
-        alert('Invalid status selected!');
-        return;
-    }
+    console.log('Updating status for ID:', id);  
+    console.log('Selected status:', status);    
 
     try {
         const response = await fetch(`/api/service-requests/${id}/status`, {
@@ -69,22 +62,23 @@ async function updateStatus(id) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ status }), // Send the status in the request body
+            body: JSON.stringify({ status }),
         });
 
-        // Check if the response is OK
-        console.log('Response status:', response.status);  // Debugging line
+        console.log('Response status:', response.status);  
         if (!response.ok) {
-            throw new Error(`Failed to update status: ${response.status}`);
+            const errorText = await response.text();
+            throw new Error(`Failed to update status: ${response.status}, Details: ${errorText}`);
         }
 
         alert('Status updated successfully!');
-        fetchRequests(); // Refresh requests to reflect the change
+        fetchRequests(); // Refresh requests
     } catch (error) {
         console.error('Error updating status:', error.message);
-        alert('Failed to update status. Please check the console for details.');
+        alert('Failed to update status. Check console for details.');
     }
 }
+
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Cancel requests and delete from database

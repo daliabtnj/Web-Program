@@ -84,12 +84,12 @@ router.put('/service-requests/:id/status', async (req, res) => {
     const { status } = req.body;
 
     // Log the status to see what is being received
-    console.log('Received status:', status); // Debugging line
+    console.log('Received status:', status); 
 
-    // Validate the status input (it should be one of "Completed", "Booked", or "Pending")
+    // Validate the status input 
     const validStatuses = ["Completed", "Booked", "Pending"];
     if (!validStatuses.includes(status)) {
-        console.log('Invalid status:', status); // Debugging line
+        console.log('Invalid status:', status); 
         return res.status(400).send("Invalid status.");
     }
 
@@ -99,7 +99,7 @@ router.put('/service-requests/:id/status', async (req, res) => {
         await db.promise().query(query, [status, id]);
         res.status(200).send("Status updated successfully!");
     } catch (err) {
-        console.error("Error updating status:", err); // Log database errors
+        console.error("Error updating status:", err); 
         res.status(500).send("Failed to update status.");
     }
 });
