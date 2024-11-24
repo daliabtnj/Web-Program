@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2024 at 04:37 AM
+-- Generation Time: Nov 24, 2024 at 08:15 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -69,7 +69,7 @@ CREATE TABLE `BusinessSettings` (
 --
 
 INSERT INTO `BusinessSettings` (`id`, `company_name`, `logo`, `address`, `email`, `phone`) VALUES
-(1, 'CompanyName', '/uploads/1732418636949-49163177.png', '222 Maplewood Street, H5H 1A8, Montreal, QC', 'email@servicehub.com', '+1(514)123-1117');
+(1, 'Service Company', NULL, 'laval', 'hi@mjjaa', '7738822');
 
 -- --------------------------------------------------------
 
@@ -129,7 +129,8 @@ INSERT INTO `Services` (`id`, `service_name`, `description`, `default_price`) VA
 (2, 'Second Service - Cleaning', 'Our cleaning service is ideal for clients seeking professional, thorough, and reliable cleaning solutions. This premium service ensures a spotless environment.', 200),
 (3, 'Third Service - Pet Grooming', 'Our pet grooming service ensures your furry friends look and feel their best. We offer comprehensive grooming services including bathing, haircuts, and nail trimming.', 50),
 (4, 'Other Service - Private Trainer', 'Our private training service offers personalized fitness coaching tailored to your individual goals. Whether you’re looking to improve your strength, endurance, or overall health, our trainers are here to guide you.', 35),
-(5, 'Last Service - Stylist', 'Our stylist service offers expert advice and assistance in makeup, hair, and clothing selection for special events. Whether you’re preparing for a wedding, party, or business event, our professional stylists will help you look your best.', 175);
+(5, 'Last Service - Stylist', 'Our stylist service offers expert advice and assistance in makeup, hair, and clothing selection for special events. Whether you’re preparing for a wedding, party, or business event, our professional stylists will help you look your best.', 175),
+(10, 'newservice', 'hello', 34);
 
 --
 -- Indexes for dumped tables
@@ -198,7 +199,7 @@ ALTER TABLE `Bills`
 -- AUTO_INCREMENT for table `BusinessSettings`
 --
 ALTER TABLE `BusinessSettings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `Clients`
@@ -216,7 +217,7 @@ ALTER TABLE `ServiceRequests`
 -- AUTO_INCREMENT for table `Services`
 --
 ALTER TABLE `Services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
@@ -226,15 +227,15 @@ ALTER TABLE `Services`
 -- Constraints for table `Bills`
 --
 ALTER TABLE `Bills`
-  ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`service_request_id`) REFERENCES `servicerequests` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`service_request_id`) REFERENCES `ServiceRequests` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `Clients` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `ServiceRequests`
 --
 ALTER TABLE `ServiceRequests`
-  ADD CONSTRAINT `servicerequests_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `servicerequests_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `servicerequests_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `Clients` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `servicerequests_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `Services` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
