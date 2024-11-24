@@ -39,7 +39,7 @@ router.get('/business-settings', (req, res) => {
 router.post('/business-settings', (req, res) => {
     const { company_name, address, email, phone, right_logo } = req.body;
 
-    if (!company_name && !address && !email && !phone && !right_logo) {
+    if (!company_name && !address && !email && !phone && !logo) {
         return res.status(400).send("At least one field (company_name, address, email, phone, logo) is required.");
     }
 
@@ -62,9 +62,9 @@ router.post('/business-settings', (req, res) => {
         fieldsToUpdate.push("phone = ?");
         values.push(phone);
     }
-    if (right_logo) {
+    if (logo) {
         fieldsToUpdate.push("right_logo = ?");
-        values.push(right_logo);
+        values.push(logo);
     }
 
     const query = `UPDATE BusinessSettings SET ${fieldsToUpdate.join(", ")} WHERE id = 1`;
