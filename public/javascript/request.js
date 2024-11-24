@@ -1,3 +1,6 @@
+// FRONT END JAVASCRIPT FOR ADMIN MANAGE REQUESTS & BILLS
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Fill the requests table using the database (for admins)
 async function fetchRequests() {
     try {
@@ -20,14 +23,14 @@ async function fetchRequests() {
                 <td>${request.service_id}</td>
                 <td id="status-${request.id}">
                     <select id="status-select-${request.id}" onchange="updateStatus(${request.id})">
-                        <option value="booked" ${request.status === 'booked' ? 'selected' : ''}>Booked</option>
-                        <option value="pending" ${request.status === 'pending' ? 'selected' : ''}>Pending</option>
-                        <option value="completed" ${request.status === 'completed' ? 'selected' : ''}>Completed</option>
+                        <option value="Booked" ${request.status === 'booked' ? 'selected' : ''}>Booked</option>
+                        <option value="Pending" ${request.status === 'pending' ? 'selected' : ''}>Pending</option>
+                        <option value="Completed" ${request.status === 'completed' ? 'selected' : ''}>Completed</option>
                     </select>
                 </td>
                 <td>${request.date}</td>
                 <td>
-                    <button 
+                      <button 
                         class="cancel-service-button" 
                         onclick="cancelRequest(${request.id})"
                         ${request.status !== 'booked' ? 'pending' : ''}>
@@ -43,6 +46,47 @@ async function fetchRequests() {
     }
 }
 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Change the status (Requests) NOT WORKING YET
+async function updateStatus(id) {
+    const select = document.getElementById(`status-select-${id}`);
+    const status = select.value;
+
+    // Log the selected status to check what value is being passed
+    console.log('Selected status:', status);  // Debugging line
+
+    // Validate that the status is one of the allowed values
+    const validStatuses = ["Completed", "Booked", "Pending"];
+    if (!validStatuses.includes(status)) {
+        console.log('Invalid status:', status);  // Debugging line
+        alert('Invalid status selected!');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/api/service-requests/${id}/status`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ status }), // Send the status in the request body
+        });
+
+        // Check if the response is OK
+        console.log('Response status:', response.status);  // Debugging line
+        if (!response.ok) {
+            throw new Error(`Failed to update status: ${response.status}`);
+        }
+
+        alert('Status updated successfully!');
+        fetchRequests(); // Refresh requests to reflect the change
+    } catch (error) {
+        console.error('Error updating status:', error.message);
+        alert('Failed to update status. Please check the console for details.');
+    }
+}
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Cancel requests and delete from database
 async function cancelRequest(id) {
     try {

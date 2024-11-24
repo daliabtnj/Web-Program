@@ -79,31 +79,32 @@ router.get("/delete-request/:id", (req, res) => {
 
 
 
-// Change request status (only for admin)
-router.put('/api/service-requests/:id/status', (req, res) => {
+// Update request status
+router.put('/api/service-requests/:id/status', async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
 
-    if (!["booked", "pending", "completed", "cancelled"].includes(status)) {
-        return res.status(400).send("Invalid status value.");
+    // Log the status to see what is being received
+    console.log('Received status:', status);  // Debugging line
+
+    // Validate the status input (it should be one of "Completed", "Booked", or "Pending")
+    const validStatuses = ["Completed", "Booked", "Pending"];
+    if (!validStatuses.includes(status)) {
+        console.log('Invalid status:', status);  // Debugging line
+        return res.status(400).send("Invalid status.");
     }
 
-    const query = "UPDATE ServiceRequests SET status = ? WHERE id = ?";
-    db.query(query, [status, id], (err, result) => {
-        if (err) {
-            console.error(`Error updating status for request ${id}:`, err);
-            return res.status(500).send("Could not update status.");
-        }
+    const query = `UPDATE ServiceRequests SET status = ? WHERE id = ?`;
 
-        if (result.affectedRows === 0) {
-            console.warn(`Service request ${id} not found.`);
-            return res.status(404).send("Service request not found.");
-        }
-
-        console.log(`Status of request ${id} updated to ${status}`);
-        res.send("Status updated successfully.");
-    });
+    try {
+        await db.promise().query(query, [status, id]);
+        res.status(200).send("Status updated successfully!");
+    } catch (err) {
+        console.error("Error updating status:", err);  // Log database errors
+        res.status(500).send("Failed to update status.");
+    }
 });
+
 
 
 module.exports = router;
