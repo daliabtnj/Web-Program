@@ -33,11 +33,14 @@
             <hr>
         </div>
 
+        <!-- Logo Upload -->
         <div class="service-item">
-            <h3>Logo URL:</h3>
-            <p class="editable" contenteditable="false" data-field="logo">logo.jpeg</p>
-            <button onclick="editInformation(this)">EDIT LOGO</button>
-            <button onclick="saveInformation(this)">SAVE LOGO</button>
+            <h3>Right Logo:</h3>
+            <p class="editable" contenteditable="false" data-field="logo">/uploads/default-logo.png</p>
+            <input type="file" id="logo-upload" style="display: none;" accept="image/*" />
+            <button onclick="triggerLogoUpload()">UPLOAD LOGO</button>
+            <button onclick="saveLogo()">SAVE LOGO</button>
+            <button onclick="removeLogo()">REMOVE LOGO</button>
             <hr>
         </div>
 

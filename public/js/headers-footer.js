@@ -83,7 +83,6 @@ function signUPCustomer() {
 }
 
 
-
 async function loadHeader() {
     const whoIsIt = localStorage.getItem('whoIsLogged');
     let headerFile;
@@ -96,16 +95,13 @@ async function loadHeader() {
         headerFile = 'header.html'; // Default header for signed-out users
     }
 
-    // Fetch the selected header file
     try {
         const response = await fetch(headerFile);
         const headerHTML = await response.text();
-
-        // Inject the header HTML into the page
         document.getElementById('header-placeholder').innerHTML = headerHTML;
 
-        // Dynamically update the business name in all headers
-        updateHeader();
+        // Apply the header updates for company name and logo
+        await updateHeader();
 
         window.scrollTo(0, 0); // Scroll to the top of the page
     } catch (error) {
@@ -113,25 +109,35 @@ async function loadHeader() {
     }
 }
 
+
 async function updateHeader() {
     try {
-        // Fetch the latest business settings
         const response = await fetch('/api/business-settings');
         const data = await response.json();
 
-        if (!data || !data.company_name) {
-            console.error("Business settings data is empty or invalid:", data);
+        if (!data) {
+            console.error('Business settings data not found.');
             return;
         }
 
-        // Update the company name in the header title
         const headerTitle = document.querySelector('.header-title');
         if (headerTitle) {
             const prefix = "SERVICEHUB - ";
             headerTitle.textContent = `${prefix}${data.company_name}`;
         }
+
+        // Update the right logo
+        const rightLogo = document.querySelector('.header-right-logo');
+        if (rightLogo) {
+            if (data.right_logo) {
+                rightLogo.src = data.right_logo; // Use the updated logo URL
+                rightLogo.style.display = "block"; // Ensure it's visible
+            } else {
+                rightLogo.style.display = "none"; // Hide if no logo
+            }
+        }
     } catch (error) {
-        console.error("Error fetching or updating the header:", error);
+        console.error('Error updating admin header:', error);
     }
 }
 

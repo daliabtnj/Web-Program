@@ -54,6 +54,87 @@ async function saveInformation(button) {
     }
 }
 
+// Function to trigger the file input for logo upload
+function triggerLogoUpload() {
+    const fileInput = document.getElementById('logo-upload');
+    fileInput.click(); // Open the file picker
+}
+
+// Function to save the uploaded logo
+// Function to save the uploaded logo
+function saveLogo() {
+    const fileInput = document.getElementById('logo-upload');
+    const file = fileInput.files[0]; // Get the selected file
+
+    if (!file) {
+        alert("Please select a file to upload.");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('logo', file);
+
+    fetch('/api/upload-logo', {
+        method: 'POST',
+        body: formData,
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to upload logo.");
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert("Logo uploaded successfully!");
+
+            // Update the logo in the header dynamically
+            const rightLogoElement = document.querySelector('.header-right-logo');
+            if (rightLogoElement) {
+                rightLogoElement.src = data.logo_url; // Update the right logo URL dynamically
+            }
+
+            // Clear the file input
+            fileInput.value = "";
+        })
+        .catch(error => {
+            console.error("Error uploading logo:", error);
+            alert("Error uploading logo.");
+        });
+}
+
+function removeLogo() {
+    if (!confirm("Are you sure you want to remove the right-side logo?")) return;
+
+    fetch('/api/remove-logo', {
+        method: 'POST',
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Failed to remove logo.");
+            }
+            return response.json();
+        })
+        .then(data => {
+            alert("Logo removed successfully!");
+
+            // Update the frontend to reflect no logo
+            const rightLogoElement = document.querySelector('.header-right-logo');
+            if (rightLogoElement) {
+                rightLogoElement.src = ""; // Remove the logo
+            }
+
+            // Clear the database value in the UI
+            const logoField = document.querySelector('[data-field="right_logo"]');
+            if (logoField) {
+                logoField.textContent = "No logo set";
+            }
+        })
+        .catch(error => {
+            console.error("Error removing logo:", error);
+            alert("Error removing logo.");
+        });
+}
+
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', loadBusinessSettings);
