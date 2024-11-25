@@ -1,8 +1,9 @@
-// admin-bills.js
-
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+//  Admin Bills JavaScript 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
-// Fill the bills table using the database (for admins)
+// Fill the bills table using the database (Admin side)
 async function fetchBills() {
     try {
         const response = await fetch('http://localhost:3000/api/service-bills');
@@ -13,13 +14,13 @@ async function fetchBills() {
         }
 
         const requests = await response.json();
-        console.log('Fetched bills data:', requests);
 
         const tableBody = document.getElementById('admin-bills-table-body');
         if (!tableBody) {
             throw new Error('Table body element not found');
         }
 
+        // Bills Table
         tableBody.innerHTML = '';
         requests.forEach(request => {
             console.log('Processing request:', request); // Log each request
@@ -43,25 +44,12 @@ async function fetchBills() {
     }
 }
 
-
-
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
-// Change the status of the bills
-
-
-
-// TEMP ONE
+// Change the status of the bills (paid or unpaid)
 async function updateBillStatus(id) {
+
     const select = document.getElementById(`status-select-${id}`);
     const status = select ? select.value : null;
-
-    console.log('Dropdown select:', select);
-    console.log('Selected status:', status);
-
-    if (status !== 'unpaid' && status !== 'paid') {
-        alert('Invalid status selected. Please choose either "unpaid" or "paid".');
-        return;
-    }
 
     try {
         const response = await fetch(`/api/service-bills/${id}`, {
@@ -77,59 +65,17 @@ async function updateBillStatus(id) {
             throw new Error(`Server error: ${errorText}`);
         }
 
-        alert('Status updated successfully!');
+        alert('Payment Received!');
         fetchBills();
+
     } catch (error) {
-        console.error('Error updating status:', error.message);
-        alert('Failed to update status. Check console for details.');
+        console.error('Error status was not updated:', error.message);
     }
 }
-/*
-async function updateBillStatus(id) {
-    const select = document.getElementById(`status-select-${id}`);
-    const status = select.value;
 
-    console.log('Updating status for ID:', id);  
-    console.log('Selected status:', status);
-
-    // Validate status value (can only be "unpaid" or "paid")
-    if (status !== 'unpaid' && status !== 'paid') {
-        alert('Invalid status selected. Please choose either "unpaid" or "paid".');
-        return;  // Exit if invalid status
-    }
-
-    try {
-        const response = await fetch(`/api/service-bills/${id}`, { // Route matches server-side
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ status }),
-        });
-        
-
-        console.log('Response status:', response.status);
-
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`Failed to update status: ${response.status}, Details: ${errorText}`);
-        }
-
-        alert('Status updated successfully!');
-        fetchBills(); // Refresh the bills table after update
-    } catch (error) {
-        console.error('Error updating status:', error.message);
-        alert('Failed to update status. Check console for details.');
-    }
-}
-*/
-
-
-
-
-
-// Initialize the page
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Update the page and load bills
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Document loaded. Fetching bills...");
+    console.log("Loading Bills");
     fetchBills();
 });

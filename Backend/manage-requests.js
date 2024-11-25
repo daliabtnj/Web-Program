@@ -1,16 +1,14 @@
-// manage-request.js 
-// Manage client requests
-// url : http://localhost:3000
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+//  Manage Requests JavaScript 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 const express = require('express');
 const cors = require('cors');
 const router = express.Router();
 const mysql = require('mysql2');
 
-// Setup CORS
 router.use(cors());
 
-// Database connection setup
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -27,36 +25,37 @@ db.connect((err) => {
     }
 });
 
-// Fetch all service requests
+// Get all service requests from database
 router.get('/service-requests', (req, res) => {
     const query = "SELECT * FROM ServiceRequests";
 
     db.query(query, (err, results) => {
         if (err) {
-            console.error("Error fetching service requests:", err);
-            return res.status(500).send("Could not fetch service requests.");
+            console.error("Error loading service requests:", err);
+            return res.status(500).send("Could not get service requests.");
         }
         res.json(results);
     });
 });
 
-// Delete request due to cancellation (by clients and admins)
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Delete requests due to cancellation (by clients and admins)
 router.get("/delete-request/:id", (req, res) => {
-    const { id } = req.params; // Extract service request ID from URL
+    const { id } = req.params; 
 
-    // Fetch service request details
+    // Service to delete/cancel
     const fetchRequestSql = "SELECT * FROM ServiceRequests WHERE id = ?";
     db.query(fetchRequestSql, [id], (err, requestResult) => {
         if (err) {
-            console.error(`Error fetching the service request with ID = ${id}`, err);
-            return res.status(500).send(`Error fetching the service request with ID = ${id}`);
+            console.error(`Error loading service request with ID = ${id}`, err);
+            return res.status(500).send(`Error loading the service request with ID = ${id}`);
         }
 
         if (requestResult.length === 0) {
             return res.status(404).send(`No service request found with ID = ${id}`);
         }
 
-        const request = requestResult[0]; // Extract service request details
+        const request = requestResult[0]; 
 
         // Delete the service request
         const deleteRequestSql = "DELETE FROM ServiceRequests WHERE id = ?";
@@ -78,13 +77,12 @@ router.get("/delete-request/:id", (req, res) => {
     });
 });
 
-// Update request status
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Update request status (Completed, Pending, Booked)
 router.put('/service-requests/:id/status', async (req, res) => {
+    
     const { id } = req.params;
     const { status } = req.body;
-
-    // Log the status to see what is being received
-    console.log('Received status:', status); 
 
     // Validate the status input 
     const validStatuses = ["Completed", "Booked", "Pending"];
@@ -100,9 +98,10 @@ router.put('/service-requests/:id/status', async (req, res) => {
         res.status(200).send("Status updated successfully!");
     } catch (err) {
         console.error("Error updating status:", err); 
-        res.status(500).send("Failed to update status.");
+        res.status(500).send("Could not update status.");
     }
 });
 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Export the router
 module.exports = router;

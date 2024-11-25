@@ -1,4 +1,8 @@
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Bills Javascript (For Clients)
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Fill the bills table using the database (for clients)
 async function fetchBills() {
     try {
@@ -12,7 +16,7 @@ async function fetchBills() {
 
         tableBody.innerHTML = '';
 
-        // Fill table with requested services from the database
+        // Table with requested services from the database
         requests.forEach(request => {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -29,11 +33,9 @@ async function fetchBills() {
     }
 }
 
-
-
-
-// Initialize the page
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Update the page and load bills
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Document loaded. Fetching bills...");
+    console.log("Loading Bills");
     fetchBills();
 });

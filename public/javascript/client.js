@@ -1,3 +1,8 @@
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+//  Client Bills JavaScript 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 // Hardcoded predefined users
 var users = [
     {
@@ -195,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Fill the requests table using the database (for clients)
 async function fetchRequests() {
     try {
@@ -232,8 +238,8 @@ async function fetchRequests() {
     }
 }
 
-
-// Cancel requests and delete from database
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Cancel requests and delete from database (for clients) 
 async function cancelRequest(id) {
     try {
         const response = await fetch(`http://localhost:3000/api/delete-request/${id}`, {
@@ -246,18 +252,18 @@ async function cancelRequest(id) {
         }
 
         alert('Request deleted successfully!');
-        fetchRequests(); // Refresh the table
+        fetchRequests(); 
+
     } catch (error) {
         console.error('Error deleting request:', error.message);
         alert('Failed to delete the request. Please check the console for details.');
     }
 }
 
-
-
-// Initialize the page
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Update the page and load requests
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Document loaded. Fetching requests...");
+    console.log("Loading Request");
     fetchRequests();
 });
 

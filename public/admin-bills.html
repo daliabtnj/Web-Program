@@ -14,8 +14,10 @@
 
     
 </head>
+
 <!--This is used for the drop down menu-->
 <div id="header-placeholder"></div>
+
 <body>
     
     <main>
@@ -38,7 +40,7 @@
                     </tr>
                 </thead>
                 <tbody id="admin-bills-table-body">
-                    <!-- Rows will be populated dynamically -->
+                    <!-- Rows will be filled dynamically -->
                 </tbody>
             </table>
         </div>
@@ -57,9 +59,9 @@
        <button class="close-botton " onclick="closePopup()">Close</button>
    </div>
 
-
 </body>
 
+<!----------------------------------------------------------------------------------------------------------------------->
 <!--CSS for the table-->
 <style>
     
@@ -147,7 +149,8 @@
     }
 </style>
 
-
+<!----------------------------------------------------------------------------------------------------------------------->
+<!--Javascrip for pop-up-->
 <script>
     function savedPopup() {
         document.getElementById('dark-background').style.display = 'block';
@@ -159,7 +162,5 @@
         document.getElementById('popup').style.display = 'none';
     }
 </script>
-
-
 
 </html>

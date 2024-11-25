@@ -1,4 +1,6 @@
-// manage-bills.js
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+//  Manage Bills JavaScript 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 const express = require('express');
 const cors = require('cors');
@@ -7,7 +9,6 @@ const mysql = require('mysql2');
 
 router.use(cors());
 
-// Database connection setup
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -24,7 +25,7 @@ db.connect((err) => {
     }
 });
 
-// Fetch all bills
+// Get all bills from database
 router.get('/service-bills', (req, res) => {
     const query = "SELECT * FROM Bills";
 
@@ -37,6 +38,7 @@ router.get('/service-bills', (req, res) => {
     });
 });
 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Update request status
 router.put('/service-bills/:id', async (req, res) => {
     const { id } = req.params;
@@ -59,8 +61,6 @@ router.put('/service-bills/:id', async (req, res) => {
         res.status(500).send("Failed to update status.");
     }
 });
-
-
 
 // Export the router
 module.exports = router;
