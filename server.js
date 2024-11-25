@@ -98,8 +98,11 @@ app.use("/api", clientSettingsRoutes);
 
 // Import the manage-requests router
 const manageRequestsRoutes = require('./Backend/manage-requests');
-
-// Use the manage-requests routes with a prefix (e.g., /api)
 app.use("/api", manageRequestsRoutes);
+
+// Import the manage-requests router
+const manageBillsRoutes = require('./Backend/manage-bills');
+app.use("/api", manageBillsRoutes);
+
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

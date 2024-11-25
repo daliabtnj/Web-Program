@@ -1,13 +1,14 @@
-// Fill the bills table using the database (for admins)
-async function fetchRequests() {
+
+// Fill the bills table using the database (for clients)
+async function fetchBills() {
     try {
-        const response = await fetch('http://localhost:3000/api/Bills');
+        const response = await fetch('http://localhost:3000/api/service-bills');
         if (!response.ok) {
-            throw new Error('Service Bills Unavailable');
+            throw new Error('Bills Unavailable');
         }
 
         const requests = await response.json();
-        const tableBody = document.getElementById('bills-table-body-admin');
+        const tableBody = document.getElementById('bills-table-body');
 
         tableBody.innerHTML = '';
 
@@ -16,22 +17,23 @@ async function fetchRequests() {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${request.id}</td>
-                <td>${request.client_id}</td>
                 <td>${request.service_request_id}</td>
                 <td>${request.amount}</td>
-                <td>${request.date}</td>
-                <td id="status-${request.id}">
-                    <select id="status-select-${request.id}" onchange="updateStatus(${request.id})">
-                        <option value="paid" ${request.status === 'paid' ? 'selected' : ''}>paid</option>
-                        <option value="unpaid" ${request.status === 'unpaid' ? 'selected' : ''}>unpaid</option>
-                    </select>
-                </td>
-             
+                <td>${request.DATE}</td>
+                <td id="status-${request.id}">${request.STATUS}</td>
             `;
             tableBody.appendChild(row);
         });
     } catch (error) {
-        console.error('Error fetching requests:', error);
-        alert('1- Failed to load requests. Please try again.');
+        console.error('Error fetching bills:', error);
     }
 }
+
+
+
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Document loaded. Fetching bills...");
+    fetchBills();
+});

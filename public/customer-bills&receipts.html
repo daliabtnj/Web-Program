@@ -21,31 +21,39 @@
     <h1>My Bills</h1>
     <!-- Client Bills -->
     <div class="section" id="bills">
-      <table>
-        <thead>
-            <tr>
-                <th>Bill Number</th>
-                <th>Client ID</th>
-                <th>Service ID</th>
-                <th>Amount</th>
-                <th>Date</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody id="bills-table-body-admin">
-            <!-- Rows will be populated dynamically -->
-        </tbody>
-    </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Bill Number</th>
+                    <th>Service ID</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="bills-table-body">
+                <!-- Rows will be populated dynamically -->
+            </tbody>
+        </table>
     </div>
+</main>
 
-  </main>
 
   <!--This is used for the footer-->
   <div id="footer-placeholder"></div>
   <script src="js/headers-footer.js"></script>
 
-</body>
 
+
+<!-- Saved Popup -->
+<div class="dark-background" id="dark-background"></div>
+<div class="popup" id="popup">
+    <h2>Success!</h2>
+    <p>Status has been updated.</p>
+    <button class="close-botton " onclick="closePopup()">Close</button>
+</div>
+
+</body>
 
 <!--CSS for the table-->
 <style>

@@ -254,6 +254,7 @@ async function cancelRequest(id) {
 }
 
 
+
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Document loaded. Fetching requests...");
