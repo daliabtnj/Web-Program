@@ -1,4 +1,3 @@
-import axios from 'axios';
 // Hardcoded predefined users
 var users = [
     {
@@ -52,8 +51,11 @@ function signInCustomer() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    // Clear any previous error message
-    document.getElementById('error').innerText = "";
+    // Validate input fields
+    if (!email || !password) {
+        document.getElementById('error').innerText = "Email and password are required.";
+        return;
+    }
 
     // POST request to the server
     axios.post('http://localhost:3000/signin-client', {
@@ -62,17 +64,15 @@ function signInCustomer() {
     })
         .then((response) => {
             // Handle success
-            console.log(response.data.message);
-            alert("Sign-in successful!");
+            console.log("Sign-in success:", response.data.message);
             window.location.href = 'customer-dashboard.html'; // Redirect to dashboard
         })
         .catch((error) => {
             // Handle error
-            console.error(error.response ? error.response.data.error : error.message);
-            document.getElementById('error').innerText = error.response?.data?.error || 'An error occurred. Please try again.';
+            console.error("Sign-in error:", error.response ? error.response.data.error : error.message);
+            document.getElementById('error').innerText = error.response?.data?.error || "An error occurred. Please try again.";
         });
 }
-
 
 // Error Handling and Form Validation for clients
 document.addEventListener('DOMContentLoaded', () => {
@@ -174,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign in successful
             else {
                 console.log("Form is valid. Redirecting...");
-                signInCustomer();
                 saveCustomer();
                 window.location.href = "customer-dashboard.html";
 
@@ -272,8 +271,8 @@ async function fetchRequests() {
         // Fill table with requested services from the database
         requests.forEach(request => {
             const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${request.id}</td>
+            row.innerHTML =
+                `<td>${request.id}</td>
                 <td>${request.service_id}</td>
                 <td id="status-${request.id}">${request.status}</td>
                 <td>${request.date}</td>
@@ -284,8 +283,8 @@ async function fetchRequests() {
                         ${request.status !== 'booked' ? 'pending' : ''}>
                         Cancel
                     </button>
-                </td>
-            `;
+                </td>`
+                ;
             tableBody.appendChild(row);
         });
     } catch (error) {
@@ -303,7 +302,7 @@ async function cancelRequest(id) {
 
         if (!response.ok) {
             const errorDetails = await response.text();
-            throw new Error(`Service was not delete. Details: ${errorDetails}`);
+            throw new Error(`Service was not delete.Details: ${errorDetails}`);
         }
 
         alert('Request deleted successfully!');
