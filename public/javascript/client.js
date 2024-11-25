@@ -45,7 +45,40 @@ function signUPCustomer() {
             console.error(error.response ? error.response.data.error : error.message);
             document.getElementById('error').innerText = error.response?.data?.error || 'An error occurred. Please try again.';
         });
-}
+};
+
+function signUPAdmin() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordRepeat = document.getElementById('password-repeat').value;
+
+    // Validate that passwords match
+    if (password !== passwordRepeat) {
+        document.getElementById('error').innerText = 'Passwords do not match.';
+        return;
+    }
+
+    // POST request to the server
+    axios.post('http://localhost:3000/signup-admin', {
+        name: name,
+        email: email,
+        password: password
+    })
+        .then((response) => {
+            // Handle success
+            console.log(response.data.message);
+            signUPAdmin();
+            window.location.href = 'admin-dashboard.html'; // Redirect to dashboard
+        })
+        .catch((error) => {
+            // Handle error
+            console.error(error.response ? error.response.data.error : error.message);
+            document.getElementById('error').innerText = error.response?.data?.error || 'An error occurred. Please try again.';
+        });
+};
+
+
 
 function signInCustomer() {
     const email = document.getElementById('email').value;
@@ -72,7 +105,7 @@ function signInCustomer() {
             console.error("Sign-in error:", error.response ? error.response.data.error : error.message);
             document.getElementById('error').innerText = error.response?.data?.error || "An error occurred. Please try again.";
         });
-}
+};
 
 // Error Handling and Form Validation for clients
 document.addEventListener('DOMContentLoaded', () => {
@@ -113,8 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign up successful and pushes new user to users array
             else {
                 console.log("Form is valid. Redirecting...");
-                signUPAdmin();
-                window.location.href = "admin-dashboard.html";   // Redirect to customer dashboard
+                // signUPAdmin();
+                // window.location.href = "admin-dashboard.html";   // Redirect to customer dashboard
 
             }
         });

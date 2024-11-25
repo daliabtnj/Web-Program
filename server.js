@@ -67,6 +67,10 @@ app.get("/signin-client", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "signin-client.html"));
 });
 
+app.get("/signup-admin", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "signup-admin.html"));
+});
+
 
 db.connect((err) => {
     if (err) throw err;
@@ -101,6 +105,30 @@ app.post('/signup-client', (req, res) => {
     });
 });
 
+// POST route for admin sign-up
+app.post('/signup-admin', (req, res) => {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+        return res.status(400).json({ error: "All fields are required." });
+    }
+
+    const checkQuery = "SELECT * FROM Admins WHERE email = ?";
+    db.query(checkQuery, [email], (err, results) => {
+        if (err) return res.status(500).json({ error: "Database error." });
+
+        if (results.length > 0) {
+            return res.status(409).json({ error: "Email already in use." });
+        }
+
+        const insertQuery = "INSERT INTO Admins (name, email, password) VALUES (?, ?, ?)";
+        db.query(insertQuery, [name, email, password], (err) => {
+            if (err) return res.status(500).json({ error: "Failed to create user." });
+
+            return res.status(201).json({ message: "Admin account created successfully." });
+        });
+    });
+});
 
 // POST route for client sign-in
 app.post('/signin-client', (req, res) => {

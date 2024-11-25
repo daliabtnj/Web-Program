@@ -65,13 +65,13 @@ async function updateFooter() {
 
 
 // Function to save admin login status
-function signUPAdmin() {
-    localStorage.setItem("whoIsLogged", "admin");
+// function signUPAdmin() {
+//     localStorage.setItem("whoIsLogged", "admin");
 
-    // Show confirmation message
-    alert("Account created! You are now logged in.");
-    return true; // Allow form submission
-}
+//     // Show confirmation message
+//     alert("Account created! You are now logged in.");
+//     return true; // Allow form submission
+// }
 
 // // Function to save client login status
 // function signUPCustomer() {
