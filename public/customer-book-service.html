@@ -36,44 +36,12 @@
 
     <div id="footer-placeholder"></div>
 
-    <script>
-        // Fetch and display services dynamically
-        async function loadServices() {
-            try {
-                const response = await fetch('/api/services'); // Fetch services from backend
-                const services = await response.json(); 
-
-                const container = document.getElementById('services-container');
-                container.innerHTML = ''; 
-
-        
-                services.forEach(service => {
-                    const serviceBox = document.createElement('div');
-                    serviceBox.classList.add('service-box');
-
-                    serviceBox.innerHTML = `
-                        <h3>${service.service_name}</h3>
-                        <p>${service.description}</p>
-                        <p><strong>Price:</strong> $${service.default_price}</p>
-                        <button type="button" onclick="bookService('${service.service_name}')">BOOK SERVICE</button>
-                        <hr>
-                    `;
-                    container.appendChild(serviceBox);
-                });
-            } catch (error) {
-                console.error('Error fetching services:', error);
-            }
-        }
-
-        
-
-        // Load services on page load
-        document.addEventListener('DOMContentLoaded', loadServices);
-    </script>
 
     <!--This is used for the footer-->
     <script src="js/headers-footer.js"></script>
     <script src="js/confirmation-pop-ups.js"></script>
+
+    
 </body>
 
 </html>

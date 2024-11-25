@@ -104,5 +104,70 @@ router.put('/service-requests/:id/status', async (req, res) => {
     }
 });
 
+// ----------------------------------------------------------------------------------------------------------------------------------
+// MANAGE REQUESTS WHEN CUSTOMER BOOKS A SERVICE INTO ServiceRequest table
+
+// Fetch all service requests
+router.get('/api/service-requests', (req, res) => {
+    const query = "SELECT * FROM ServiceRequests";
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error("Error fetching service requests:", err);
+            return res.status(500).send("Could not fetch service requests.");
+        }
+        res.json(results);
+    });
+});
+
+// Add a new service request
+router.post('/api/book-service', (req, res) => {
+    const { client_id, service_id, status, date } = req.body;
+
+    const query = `INSERT INTO ServiceRequests (client_id, service_id, status, date) VALUES (?, ?, ?, ?)`;
+    db.query(query, [client_id, service_id, status, date], (err, result) => {
+        if (err) {
+            console.error("Error booking service:", err);
+            return res.status(500).send("Error booking the service.");
+        }
+        res.json({ success: true, message: 'Service booked successfully!' });
+    });
+});
+
+// Update request status
+router.put('/api/service-requests/:id/status', (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const validStatuses = ["Pending", "Booked", "Completed"];
+    if (!validStatuses.includes(status)) {
+        return res.status(400).send("Invalid status.");
+    }
+
+    const query = `UPDATE ServiceRequests SET status = ? WHERE id = ?`;
+    db.query(query, [status, id], (err, result) => {
+        if (err) {
+            console.error("Error updating status:", err);
+            return res.status(500).send("Failed to update status.");
+        }
+        res.send("Status updated successfully!");
+    });
+});
+
+// Delete a request
+router.delete('/api/delete-request/:id', (req, res) => {
+    const { id } = req.params;
+
+    const query = `DELETE FROM ServiceRequests WHERE id = ?`;
+    db.query(query, [id], (err, result) => {
+        if (err) {
+            console.error("Error deleting request:", err);
+            return res.status(500).send("Failed to delete the request.");
+        }
+        res.send("Request deleted successfully!");
+    });
+});
+
 // Export the router
 module.exports = router;
+

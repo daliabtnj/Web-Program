@@ -170,12 +170,6 @@ ALTER TABLE `Bills`
   ADD KEY `client_id` (`client_id`);
 
 --
--- Indexes for table `BusinessSettings`
---
-ALTER TABLE `BusinessSettings`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `Clients`
 --
 ALTER TABLE `Clients`
@@ -212,11 +206,6 @@ ALTER TABLE `Admins`
 --
 ALTER TABLE `Bills`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567;
---
--- AUTO_INCREMENT for table `BusinessSettings`
---
-ALTER TABLE `BusinessSettings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `Clients`
@@ -244,15 +233,15 @@ ALTER TABLE `Services`
 -- Constraints for table `Bills`
 --
 ALTER TABLE `Bills`
-  ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`service_request_id`) REFERENCES `servicerequests` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `bills_ibfk_1` FOREIGN KEY (`service_request_id`) REFERENCES `ServiceRequests` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `bills_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `Clients` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `ServiceRequests`
 --
 ALTER TABLE `ServiceRequests`
-  ADD CONSTRAINT `servicerequests_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `clients` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `servicerequests_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `services` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `servicerequests_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `Clients` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `servicerequests_ibfk_2` FOREIGN KEY (`service_id`) REFERENCES `Services` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

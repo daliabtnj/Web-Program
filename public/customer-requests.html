@@ -13,7 +13,7 @@
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
     <script type="text/javascript" src="./javascript/client.js"></script>
-
+    <script type="text/javascript" src="public/javascript/request.js"></script>
     
 </head>
 
@@ -49,6 +49,13 @@
   <div id="footer-placeholder"></div>
   <script src="js/headers-footer.js"></script>
   <script type="text/javascript" src="./javascript/client.js"></script>
+
+  <script src="./javascript/request.js"></script>
+  <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          fetchRequests(); // Fetch all service requests for admin
+      });
+  </script>
 
 
 </body>

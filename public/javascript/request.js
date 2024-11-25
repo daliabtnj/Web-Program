@@ -106,3 +106,95 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Document loaded. Fetching requests...");
     fetchRequests();
 });
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// filter request by client id
+async function fetchClientRequests(clientId) {
+    try {
+        const response = await fetch('http://localhost:3000/api/service-requests');
+        const allRequests = await response.json();
+        const clientRequests = allRequests.filter(req => req.client_id === clientId);
+
+        const tableBody = document.getElementById('requests-table-body');
+        tableBody.innerHTML = '';
+
+        clientRequests.forEach(request => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${request.id}</td>
+                <td>${request.service_id}</td>
+                <td>${request.status}</td>
+                <td>${request.date}</td>
+                <td><button onclick="cancelRequest(${request.id})">Cancel</button></td>
+            `;
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error("Error fetching client requests:", error);
+    }
+}
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+async function bookService(serviceId) {
+    const clientId = 1; // Replace with the logged-in client ID
+    const requestBody = {
+        client_id: clientId,
+        service_id: serviceId,
+        status: 'Pending',
+        date: new Date().toISOString(),
+    };
+
+    try {
+        const response = await fetch('/api/book-service', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(requestBody),
+        });
+
+        if (response.ok) {
+            alert('Service booked successfully!');
+        } else {
+            console.error("Failed to book service");
+        }
+    } catch (error) {
+        console.error("Error booking service:", error);
+    }
+}
+
+// Replace `1` with the actual logged-in client ID
+document.addEventListener('DOMContentLoaded', () => fetchClientRequests(1));
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------
+// dynamically populate the "My Requests" table in customer-requests.html
+async function fetchClientRequests(clientId) {
+    try {
+        const response = await fetch('/api/service-requests');
+        if (!response.ok) throw new Error("Failed to fetch requests");
+
+        const allRequests = await response.json();
+        const clientRequests = allRequests.filter(request => request.client_id === clientId);
+
+        const tableBody = document.getElementById('requests-table-body');
+        tableBody.innerHTML = '';
+
+        clientRequests.forEach(request => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${request.id}</td>
+                <td>${request.service_id}</td>
+                <td>${request.status}</td>
+                <td>${request.date}</td>
+                <td><button onclick="cancelRequest(${request.id})">Cancel</button></td>
+            `;
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error("Error fetching client requests:", error);
+    }
+}
+
+// Replace `1` with the logged-in client ID
+document.addEventListener('DOMContentLoaded', () => fetchClientRequests(1));
+
+
+

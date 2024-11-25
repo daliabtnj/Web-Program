@@ -32,7 +32,7 @@ function closeModal() {
 
 
 /*------------------------------------------------------------------------------------------------------*/
-
+/*
 // booking confirmation for client with message
 function bookService() {
     const confirmationNumber = Math.floor(Math.random() * 10000000);
@@ -56,7 +56,7 @@ function closeModal() {
     document.getElementById("confirmationModal").style.display = "none";
 }
 
-
+*/
 
 
 /*------------------------------------------------------------------------------------------------------*/

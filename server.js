@@ -34,10 +34,6 @@ const db = mysql.createConnection({
     user: "root",         // Default username in XAMPP
     password: "",         // Default password is empty for XAMPP
     database: "service_hub_db" // Your database name
-    host: "localhost",    // XAMPP uses 'localhost'
-    user: "root",         // Default username in XAMPP
-    password: "",         // Default password is empty for XAMPP
-    database: "service_hub_db" // Your database name
 });
 
 // Connect to the database
