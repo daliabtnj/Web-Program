@@ -1,8 +1,8 @@
 // Hardcoded examples of admins, business info, service, requests, and bills strings for testing
 
 const adminAccounts = [
-    { email: "admin@email.com", password: "password"},
-    { email: "admin2@email.com", password: "password2"}
+    { email: "admin@email.com", password: "password" },
+    { email: "admin2@email.com", password: "password2" }
 ];
 
 let businessInfo = {
@@ -14,10 +14,10 @@ let businessInfo = {
 };
 
 let services = [
-    {id: 1, serviceName: "Service 1", serviceDescription: "This service can be used to................", price: 500},
-    {id: 2, serviceName: "Service 2", serviceDescription: "This service can be used to................", price: 100},
-    {id: 3, serviceName: "Service 3", serviceDescription: "This service can be used to................", price: 800},
-    {id: 4, serviceName: "Service 4", serviceDescription: "This service can be used to................", price: 490}
+    { id: 1, serviceName: "Service 1", serviceDescription: "This service can be used to................", price: 500 },
+    { id: 2, serviceName: "Service 2", serviceDescription: "This service can be used to................", price: 100 },
+    { id: 3, serviceName: "Service 3", serviceDescription: "This service can be used to................", price: 800 },
+    { id: 4, serviceName: "Service 4", serviceDescription: "This service can be used to................", price: 490 }
 ];
 
 // ------------------------------------------- Admin Login ------------------------------------------------
@@ -168,37 +168,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    
+
     // Sign-In Form Validation and error handling
-    if (clientSignInForm) {
-        clientSignInForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            let errorMessages = [];
-            const errors = document.getElementById('error');
-            errors.innerText = '';
+    function signInCustomer() {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-            // Check if user exists
-            const existingUser = users.some(user => (user.email == email.value) && (user.password == password.value));
+        // Clear any previous error message
+        document.getElementById('error').innerText = "";
 
-            // If user does not exist
-            if (!existingUser) {
-                console.log("user does not exist")
-                errorMessages.push('User does not exist. Try again or sign up.')
-            }
-
-            // Display error messages
-            if (errorMessages.length > 0) {
-                errors.innerText = errorMessages.join(', ');
-            }
-
-            // Redirects if sign in successful
-            else {
-                console.log("Form is valid. Redirecting...");
-                saveCustomer();
-                window.location.href = "customer-dashboard.html";
-
-            }
+        // POST request to the server
+        axios.post('http://localhost:3000/signin-client', {
+            email: email,
+            password: password
         })
+            .then((response) => {
+                // Handle success
+                console.log(response.data.message);
+                alert("Sign-in successful!");
+                window.location.href = 'customer-dashboard.html'; // Redirect to dashboard
+            })
+            .catch((error) => {
+                // Handle error
+                console.error(error.response ? error.response.data.error : error.message);
+                document.getElementById('error').innerText = error.response?.data?.error || 'An error occurred. Please try again.';
+            });
     }
 });
 

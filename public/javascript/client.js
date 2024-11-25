@@ -1,3 +1,4 @@
+import axios from 'axios';
 // Hardcoded predefined users
 var users = [
     {
@@ -51,6 +52,9 @@ function signInCustomer() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
+    // Clear any previous error message
+    document.getElementById('error').innerText = "";
+
     // POST request to the server
     axios.post('http://localhost:3000/signin-client', {
         email: email,
@@ -59,6 +63,7 @@ function signInCustomer() {
         .then((response) => {
             // Handle success
             console.log(response.data.message);
+            alert("Sign-in successful!");
             window.location.href = 'customer-dashboard.html'; // Redirect to dashboard
         })
         .catch((error) => {
@@ -67,6 +72,7 @@ function signInCustomer() {
             document.getElementById('error').innerText = error.response?.data?.error || 'An error occurred. Please try again.';
         });
 }
+
 
 // Error Handling and Form Validation for clients
 document.addEventListener('DOMContentLoaded', () => {
@@ -168,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirects if sign in successful
             else {
                 console.log("Form is valid. Redirecting...");
+                signInCustomer();
                 saveCustomer();
                 window.location.href = "customer-dashboard.html";
 

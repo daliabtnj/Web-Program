@@ -104,33 +104,37 @@ app.post('/signup-client', (req, res) => {
 // POST route for client sign-in
 app.post('/signin-client', (req, res) => {
     const { email, password } = req.body;
+    console.log("Received email:", email, "Received password:", password);
 
     // Input validation
     if (!email || !password) {
         return res.status(400).json({ error: "All fields are required" });
     }
 
-    // Query to find the user by email
-    const query = "SELECT * FROM Clients WHERE email = ?";
-    db.query(query, [email], (err, results) => {
-        if (err) return res.status(500).json({ error: "Database error." });
+    // Query to find the user by email and password
+    const query = "SELECT * FROM Clients WHERE email = ? AND password = ?";
+    db.query(query, [email, password], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            return res.status(500).json({ error: "Database error." });
+        }
 
-        // Check if a user with given email exists
+        // Check if a user with the given credentials exists
         if (results.length === 0) {
-            return res.status(404).json({ error: "User not found." });
+            return res.status(401).json({ error: "Invalid email or password." });
         }
 
-        const user = results[0];
-
-        // Validate password
-        if (user.password !== password) {
-            return res.status(401).json({ error: "Incorrect password." });
-        }
+        const user = results[0]; // Retrieve the user information
 
         // Successful login
-        return res.status(200).json({ message: "Sign-in successful.", user: { id: user.id, name: user.name, email: user.email } });
+        console.log("Sign-in successful for user:", user.name);
+        return res.status(200).json({
+            message: "Sign-in successful.",
+            user: { id: user.id, name: user.name, email: user.email },
+        });
     });
 });
+
 
 
 // Start the server

@@ -24,7 +24,7 @@
             clearLoginStatus(); // Clear login status
         });
     </script>-->
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -36,24 +36,33 @@
     <main>
         <section class="signup-box">
             <h1>Client Sign In</h1>
-            <div id="error" style="color: red;"></div>
+            <!-- <div id="error" style="color: red;"></div>
             <form id="client-sign-in-form" onsubmit="event.preventDefault(); signInCustomer();">
-                <!--Username-->
+                
                 <label for="email">Email:</label><br>
                 <input type="email" placeholder="enter email" id="email" name="email" required><br>
 
-                <!--Password-->
+                
                 <label for="password">Password:</label><br>
                 <input type="password" placeholder="enter password" id="password" name="password" required><br>
 
-                <!--sign in button-->
+                
                 <button type="submit">Submit</button>
+            </form> -->
+            <div id="error" style="color: red; margin-top: 10px;"></div>
+            <form id="client-sign-in-form">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Sign In</button>
             </form>
+            <script src="javascript/client.js"></script>
             <p>Sign in as admin <a href="signin-admin.html">here</a>,
                 sign up <a href="signup.html">here</a>!</p>
 
         </section>
-    </main>g
+    </main>
 
 
     <!--This is used for the footer-->
@@ -72,6 +81,7 @@
             <button onclick="closeModal()">OK</button>
         </div>
     </div>
+
 
 
 </body>
