@@ -100,7 +100,7 @@ app.use("/api", clientSettingsRoutes);
 const manageRequestsRoutes = require('./Backend/manage-requests');
 app.use("/api", manageRequestsRoutes);
 
-// Import the manage-requests router
+// Import the manage-bills router
 const manageBillsRoutes = require('./Backend/manage-bills');
 app.use("/api", manageBillsRoutes);
 

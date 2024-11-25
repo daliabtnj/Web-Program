@@ -38,27 +38,24 @@ router.get('/service-bills', (req, res) => {
 });
 
 // Update request status
-router.put('/service-bills/:id/STATUS', async (req, res) => {
+router.put('/service-bills/:id', async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
 
-    // Log the status to see what is being received
-    console.log('Received STATUS:', status); 
+    console.log('Received ID:', id, 'and Status:', status);
 
-    // Validate the status input 
     const validStatuses = ["unpaid", "paid"];
     if (!validStatuses.includes(status)) {
-        console.log('Invalid status:', status); 
         return res.status(400).send("Invalid status.");
     }
 
-    const query = `UPDATE Bills SET STATUS = ? WHERE id = ?`;
+    const query = `UPDATE Bills SET status = ? WHERE id = ?`;
 
     try {
-        await db.promise().query(query, [status, id]);
+        await db.query(query, [status, id]);
         res.status(200).send("Status updated successfully!");
     } catch (err) {
-        console.error("Error updating status:", err); 
+        console.error("Error updating status:", err);
         res.status(500).send("Failed to update status.");
     }
 });

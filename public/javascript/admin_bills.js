@@ -31,10 +31,10 @@ async function fetchBills() {
                 <td>${request.amount}</td>
                 <td>${request.DATE}</td>
                 <td id="status-${request.id}">
-                    <select id="status-select-${request.id}" onchange="updateBillStatus(${request.id})">
-                        <option value="unpaid" ${request.status === 'unpaid' ? 'selected' : ''}>unpaid</option>
-                        <option value="Pending" ${request.status === 'paid' ? 'selected' : ''}>paid</option>
-                    </select>
+                <select id="status-select-${request.id}" onchange="updateBillStatus(${request.id})">
+                        <option value="unpaid" ${request.STATUS === 'upaid' ? 'selected' : ''}>unpaid</option>
+                        <option value="paid" ${request.STATUS === 'paid' ? 'selected' : ''}>paid</option>
+                        </select>
                 </td>            `;
             tableBody.appendChild(row);
         });
@@ -47,6 +47,44 @@ async function fetchBills() {
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Change the status of the bills
+
+
+
+// TEMP ONE
+async function updateBillStatus(id) {
+    const select = document.getElementById(`status-select-${id}`);
+    const status = select ? select.value : null;
+
+    console.log('Dropdown select:', select);
+    console.log('Selected status:', status);
+
+    if (status !== 'unpaid' && status !== 'paid') {
+        alert('Invalid status selected. Please choose either "unpaid" or "paid".');
+        return;
+    }
+
+    try {
+        const response = await fetch(`/api/service-bills/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status }),
+        });
+
+        console.log('Server response:', response.status);
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Server error: ${errorText}`);
+        }
+
+        alert('Status updated successfully!');
+        fetchBills();
+    } catch (error) {
+        console.error('Error updating status:', error.message);
+        alert('Failed to update status. Check console for details.');
+    }
+}
+/*
 async function updateBillStatus(id) {
     const select = document.getElementById(`status-select-${id}`);
     const status = select.value;
@@ -61,13 +99,14 @@ async function updateBillStatus(id) {
     }
 
     try {
-        const response = await fetch(`/api/service-bills/${id}`, {
+        const response = await fetch(`/api/service-bills/${id}`, { // Route matches server-side
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ status }),
         });
+        
 
         console.log('Response status:', response.status);
 
@@ -83,7 +122,7 @@ async function updateBillStatus(id) {
         alert('Failed to update status. Check console for details.');
     }
 }
-
+*/
 
 
 
