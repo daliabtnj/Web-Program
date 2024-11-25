@@ -51,7 +51,6 @@ router.post('/business-settings', (req, res) => {
         values.push(company_name);
     }
     if (address) {
-        it
         fieldsToUpdate.push("address = ?");
         values.push(address);
     }
