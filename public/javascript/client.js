@@ -98,7 +98,35 @@ function signInCustomer() {
         .then((response) => {
             // Handle success
             console.log("Sign-in success:", response.data.message);
+            saveCustomer();
             window.location.href = 'customer-dashboard.html'; // Redirect to dashboard
+        })
+        .catch((error) => {
+            // Handle error
+            console.error("Sign-in error:", error.response ? error.response.data.error : error.message);
+            document.getElementById('error').innerText = error.response?.data?.error || "An error occurred. Please try again.";
+        });
+};
+
+function signInAdmin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Validate input fields
+    if (!email || !password) {
+        document.getElementById('error').innerText = "Email and password are required.";
+        return;
+    }
+
+    // POST request to the server
+    axios.post('http://localhost:3000/signin-admin', {
+        email: email,
+        password: password
+    })
+        .then((response) => {
+            // Handle success
+            console.log("Sign-in success:", response.data.message);
+            window.location.href = 'admin-dashboard.html'; // Redirect to dashboard
         })
         .catch((error) => {
             // Handle error

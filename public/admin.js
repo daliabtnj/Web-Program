@@ -21,23 +21,51 @@ let services = [
 ];
 
 // ------------------------------------------- Admin Login ------------------------------------------------
-function loginAdmin(event) {
-    event.preventDefault();
+// function loginAdmin(event) {
+//     event.preventDefault();
 
-    // Inputed email & password
-    const emailInput = document.getElementById('email').value;
-    const passwordInput = document.getElementById('password').value;
+//     // Inputed email & password
+//     const emailInput = document.getElementById('email').value;
+//     const passwordInput = document.getElementById('password').value;
 
-    // Check if the inputted username & password corresponds to a valid admin
-    const validAdmin = adminAccounts.find(account => account.email === emailInput && account.password === passwordInput);
+//     // Check if the inputted username & password corresponds to a valid admin
+//     const validAdmin = adminAccounts.find(account => account.email === emailInput && account.password === passwordInput);
 
-    if (validAdmin) {
-        saveAdmin();
-        window.location.href = 'admin-dashboard.html'; // Leads to admin dashboard
-    } else {
-        alert("Incorrect email or password.");
+//     if (validAdmin) {
+//         saveAdmin();
+//         window.location.href = 'admin-dashboard.html'; // Leads to admin dashboard
+//     } else {
+//         alert("Incorrect email or password.");
+//     }
+// }
+
+function signInAdmin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Validate input fields
+    if (!email || !password) {
+        document.getElementById('error').innerText = "Email and password are required.";
+        return;
     }
-}
+
+    // POST request to the server
+    axios.post('http://localhost:3000/signin-admin', {
+        email: email,
+        password: password
+    })
+        .then((response) => {
+            // Handle success
+            console.log("Sign-in success:", response.data.message);
+            saveAdmin();
+            window.location.href = 'admin-dashboard.html'; // Redirect to dashboard
+        })
+        .catch((error) => {
+            // Handle error
+            console.error("Sign-in error:", error.response ? error.response.data.error : error.message);
+            document.getElementById('error').innerText = error.response?.data?.error || "An error occurred. Please try again.";
+        });
+};
 
 // ----------------------------------------- Business Settings --------------------------------------------
 function editBusinessInfo(event) {

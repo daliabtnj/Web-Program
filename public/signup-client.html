@@ -27,7 +27,7 @@
 
             <p>Create a new account</p>
             <div id="error" style="color: red;"></div>
-            <form id="client-sign-up-form" onsubmit="event.preventDefault(); signUPCustomer();">
+            <form id="client-sign-up-form" onsubmit="event.preventDefault(); signUPCustomer(); saveCustomer();">
                 <label for="name">Name:</label><br>
                 <input type="text" placeholder="enter name" id="name" name="name" required><br>
 
@@ -48,7 +48,7 @@
                 <!-- <button type="submit" onsubmit="saveCustomer()">Submit</button> -->
                 <button type="submit">Submit</button>
             </form>
-            <p>sign up as admin <a href="signup-admin.html">here</a>,
+            <p>sign up as admin <a href="signup-admin">here</a>,
                 sign in <a href="signin">here</a>!</p>
         </section>
     </main>
