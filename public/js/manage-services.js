@@ -172,9 +172,17 @@ function loadServices() {
     servicesContainer.innerHTML = ''; // Clear existing content
 
     fetch('http://localhost:3000/api/services')
-        .then(response => response.json())
-        .then(services => {
+        .then(response => {
+            console.log('Services Fetch Response:', response); // Log the response
+
+            if (!response.ok) throw new Error('Failed to fetch services');
+            return response.json();
+        })
+            .then(services => {
+                console.log('Fetched Services:', services); // Log the data
+
             services.forEach(service => {
+
                 const serviceHTML = `
                     <div class="service-item" data-id="${service.id}">
                         <h3 class="editable" contenteditable="false">${service.service_name}</h3>
@@ -186,6 +194,8 @@ function loadServices() {
                         <hr>
                     </div>`;
                 servicesContainer.insertAdjacentHTML('beforeend', serviceHTML);
+                console.log('Services Data:', services); // Add this
+
             });
         })
         .catch(err => {

@@ -5,6 +5,8 @@
 async function fetchRequests() {
     try {
         const response = await fetch('http://localhost:3000/api/service-requests');
+        console.log('Fetch Requests Response:', response); // Log the response object
+
         if (!response.ok) {
             throw new Error('Service Requests Unavailable');
         }
@@ -136,13 +138,14 @@ async function fetchClientRequests(clientId) {
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 async function bookService(serviceId) {
-    const clientId = 1; // Replace with the logged-in client ID
+    const clientId = getClientId(); // Replace with the logged-in client ID
     const requestBody = {
         client_id: clientId,
         service_id: serviceId,
         status: 'Pending',
         date: new Date().toISOString(),
     };
+    console.log('Booking Request Body:', requestBody); // Log the request body debug
 
     try {
         const response = await fetch('/api/book-service', {
@@ -150,32 +153,35 @@ async function bookService(serviceId) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(requestBody),
         });
+        console.log('Booking Response:', response); // Log the response object debug
+
 
         if (response.ok) {
+            const responseData = await response.json();
+            console.log('Booking Response Data:', responseData); // Log the JSON response debug
             alert('Service booked successfully!');
         } else {
-            console.error("Failed to book service");
+            const errorDetails = await response.text();
+            console.error("Failed to book service:", errorDetails);
+
         }
     } catch (error) {
         console.error("Error booking service:", error);
     }
 }
 
-// Replace `1` with the actual logged-in client ID
-document.addEventListener('DOMContentLoaded', () => fetchClientRequests(1));
-
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------
 // dynamically populate the "My Requests" table in customer-requests.html
 async function fetchClientRequests(clientId) {
     try {
-        const response = await fetch('/api/service-requests');
-        if (!response.ok) throw new Error("Failed to fetch requests");
+        const response = await fetch('http://localhost:3000/api/service-requests');
+        if (!response.ok) throw new Error('Failed to fetch requests');
 
         const allRequests = await response.json();
         const clientRequests = allRequests.filter(request => request.client_id === clientId);
 
         const tableBody = document.getElementById('requests-table-body');
-        tableBody.innerHTML = '';
+        tableBody.innerHTML = ''; // Clear existing rows
 
         clientRequests.forEach(request => {
             const row = document.createElement('tr');
@@ -189,12 +195,24 @@ async function fetchClientRequests(clientId) {
             tableBody.appendChild(row);
         });
     } catch (error) {
-        console.error("Error fetching client requests:", error);
+        console.error('Error fetching client requests:', error);
     }
 }
 
-// Replace `1` with the logged-in client ID
-document.addEventListener('DOMContentLoaded', () => fetchClientRequests(1));
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Initialize the page based on the user's role (admin or client)
+document.addEventListener('DOMContentLoaded', () => {
+    const adminTableBody = document.getElementById('requests-table-body-admin');
+    const clientTableBody = document.getElementById('requests-table-body');
 
+    if (adminTableBody) fetchRequests(); // Admin view
+    if (clientTableBody) fetchClientRequests(getClientId()); // Client view
+});
 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Utility function to fetch the logged-in client ID
+function getClientId() {
+    // Replace this with the actual logic to fetch the client ID (e.g., from session storage, cookies, or backend)
+    return 1; // Default client ID for testing
+}
 

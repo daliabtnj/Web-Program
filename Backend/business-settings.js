@@ -29,7 +29,6 @@ router.get('/business-settings', (req, res) => {
             console.error("Error fetching business settings:", err);
             return res.status(500).send("Could not fetch business settings.");
         }
-        console.log("Fetched business settings:", results[0]); // Debugging log
         res.json(results[0]);
     });
 });

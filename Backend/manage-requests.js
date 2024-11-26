@@ -43,6 +43,7 @@ router.get('/service-requests', (req, res) => {
 // Delete request due to cancellation (by clients and admins)
 router.get("/delete-request/:id", (req, res) => {
     const { id } = req.params; // Extract service request ID from URL
+    
 
     // Fetch service request details
     const fetchRequestSql = "SELECT * FROM ServiceRequests WHERE id = ?";
@@ -108,21 +109,24 @@ router.put('/service-requests/:id/status', async (req, res) => {
 // MANAGE REQUESTS WHEN CUSTOMER BOOKS A SERVICE INTO ServiceRequest table
 
 // Fetch all service requests
-router.get('/api/service-requests', (req, res) => {
-    const query = "SELECT * FROM ServiceRequests";
+router.get('/api/services', (req, res) => {
+    const query = "SELECT * FROM Services";
 
     db.query(query, (err, results) => {
         if (err) {
-            console.error("Error fetching service requests:", err);
-            return res.status(500).send("Could not fetch service requests.");
+            console.error("Error fetching services:", err);
+            return res.status(500).send("Could not fetch services.");
         }
         res.json(results);
     });
 });
 
-// Add a new service request
+
 router.post('/api/book-service', (req, res) => {
     const { client_id, service_id, status, date } = req.body;
+
+    console.log('Received Booking Request:', req.body); // Log the incoming data
+
 
     const query = `INSERT INTO ServiceRequests (client_id, service_id, status, date) VALUES (?, ?, ?, ?)`;
     db.query(query, [client_id, service_id, status, date], (err, result) => {
@@ -130,9 +134,18 @@ router.post('/api/book-service', (req, res) => {
             console.error("Error booking service:", err);
             return res.status(500).send("Error booking the service.");
         }
+        console.log('Booking Successful. Result:', result); // Log the insertion result
+
         res.json({ success: true, message: 'Service booked successfully!' });
     });
 });
+
+// waiting for victors part
+function getClientId() {
+    return 1; // Replace with the ID of a predefined client
+}
+
+
 
 // Update request status
 router.put('/api/service-requests/:id/status', (req, res) => {
