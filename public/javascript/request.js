@@ -1,4 +1,6 @@
-// FRONT END JAVASCRIPT FOR ADMIN MANAGE REQUESTS & BILLS
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Request Javascript (Manage requests admins)
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Fill the requests table using the database (for admins)
@@ -14,7 +16,7 @@ async function fetchRequests() {
 
         tableBody.innerHTML = '';
 
-        // Fill table with requested services from the database
+        // Fill request table with requested services from the database
         requests.forEach(request => {
             const row = document.createElement('tr');
             row.innerHTML = `
@@ -47,8 +49,7 @@ async function fetchRequests() {
 }
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
-// Change the status
-
+// Function to update the status for requests 
 async function updateStatus(id) {
     const select = document.getElementById(`status-select-${id}`);
     const status = select.value;
@@ -72,16 +73,16 @@ async function updateStatus(id) {
         }
 
         alert('Status updated successfully!');
-        fetchRequests(); // Refresh requests
+        fetchRequests(); 
     } catch (error) {
         console.error('Error updating status:', error.message);
         alert('Failed to update status. Check console for details.');
     }
 }
 
-
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Cancel requests and delete from database
+
 async function cancelRequest(id) {
     try {
         const response = await fetch(`http://localhost:3000/api/delete-request/${id}`, {
@@ -101,8 +102,9 @@ async function cancelRequest(id) {
     }
 }
 
-// Initialize the page
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Update the page and load requests
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Document loaded. Fetching requests...");
+    console.log("Loading Request");
     fetchRequests();
 });
