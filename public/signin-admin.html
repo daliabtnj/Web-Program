@@ -13,7 +13,8 @@
     <!-- footer CSS file  -->
     <link rel="stylesheet" href="css/footer.css">
     <!-- JavaScript file-->
-    <script src = "admin.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="admin.js" defer></script>
     <script src="js/headers-footer.js" defer></script>
     <script>
         // Clear login status on page load
@@ -22,7 +23,7 @@
         }
 
         // Call the function when the page loads
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             clearLoginStatus(); // Clear login status
         });
     </script>
@@ -33,12 +34,12 @@
     <!--This is used for the drop down menu-->
     <div id="header-placeholder"></div>
 
-<!--Main section for signing in
+    <!--Main section for signing in
     Allows to choose between client or administrator to log in-->
     <main>
         <section class="signup-box">
             <h1>Admin Sign In</h1>
-            <form id="admin-login-form" onsubmit="loginAdmin(event);">
+            <form id="admin-login-form" onsubmit="event.preventDefault(); signInAdmin();">
                 <!--Username-->
                 <label for="email">Email:</label><br>
                 <input type="email" placeholder="enter email" id="email" name="email" required><br>
@@ -51,13 +52,14 @@
                 <button type="submit">Submit</button>
             </form>
 
-            <p>sign in as client <a href="signin-client.html">here</a>,
-            sign up <a href="signup.html">here</a>!</p>
+            <p>sign in as client <a href="signin-client">here</a>,
+                sign up <a href="signup">here</a>!</p>
         </section>
     </main>
 
     <!--This is used for the footer-->
-<div id="footer-placeholder"></div>
+    <div id="footer-placeholder"></div>
 
 </body>
+
 </html>

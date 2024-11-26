@@ -19,6 +19,127 @@ var users = [
     }
 ];
 
+function signUPCustomer() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const password = document.getElementById('password').value;
+    const passwordRepeat = document.getElementById('password-repeat').value;
+
+    // Validate that passwords match
+    if (password !== passwordRepeat) {
+        document.getElementById('error').innerText = 'Passwords do not match.';
+        return;
+    }
+
+    // POST request to the server
+    axios.post('http://localhost:3000/signup-client', {
+        name: name,
+        email: email,
+        phone: phone,
+        password: password
+    })
+        .then((response) => {
+            // Handle success
+            console.log(response.data.message);
+            signUPCustomer();
+            window.location.href = 'customer-dashboard.html'; // Redirect to dashboard
+        })
+        .catch((error) => {
+            // Handle error
+            console.error(error.response ? error.response.data.error : error.message);
+            document.getElementById('error').innerText = error.response?.data?.error || 'An error occurred. Please try again.';
+        });
+};
+
+function signUPAdmin() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const passwordRepeat = document.getElementById('password-repeat').value;
+
+    // Validate that passwords match
+    if (password !== passwordRepeat) {
+        document.getElementById('error').innerText = 'Passwords do not match.';
+        return;
+    }
+
+    // POST request to the server
+    axios.post('http://localhost:3000/signup-admin', {
+        name: name,
+        email: email,
+        password: password
+    })
+        .then((response) => {
+            // Handle success
+            console.log(response.data.message);
+            signUPAdmin();
+            window.location.href = 'admin-dashboard.html'; // Redirect to dashboard
+        })
+        .catch((error) => {
+            // Handle error
+            console.error(error.response ? error.response.data.error : error.message);
+            document.getElementById('error').innerText = error.response?.data?.error || 'An error occurred. Please try again.';
+        });
+};
+
+
+
+function signInCustomer() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Validate input fields
+    if (!email || !password) {
+        document.getElementById('error').innerText = "Email and password are required.";
+        return;
+    }
+
+    // POST request to the server
+    axios.post('http://localhost:3000/signin-client', {
+        email: email,
+        password: password
+    })
+        .then((response) => {
+            // Handle success
+            console.log("Sign-in success:", response.data.message);
+            saveCustomer();
+            window.location.href = 'customer-dashboard.html'; // Redirect to dashboard
+        })
+        .catch((error) => {
+            // Handle error
+            console.error("Sign-in error:", error.response ? error.response.data.error : error.message);
+            document.getElementById('error').innerText = error.response?.data?.error || "An error occurred. Please try again.";
+        });
+};
+
+function signInAdmin() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Validate input fields
+    if (!email || !password) {
+        document.getElementById('error').innerText = "Email and password are required.";
+        return;
+    }
+
+    // POST request to the server
+    axios.post('http://localhost:3000/signin-admin', {
+        email: email,
+        password: password
+    })
+        .then((response) => {
+            // Handle success
+            console.log("Sign-in success:", response.data.message);
+            window.location.href = 'admin-dashboard.html'; // Redirect to dashboard
+        })
+        .catch((error) => {
+            // Handle error
+            console.error("Sign-in error:", error.response ? error.response.data.error : error.message);
+            document.getElementById('error').innerText = error.response?.data?.error || "An error occurred. Please try again.";
+        });
+};
+
 // Error Handling and Form Validation for clients
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -126,77 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 });
-
-
-/*
-// Form Validation for customer-account information changes
-document.addEventListener('DOMContentLoaded', () => {
-    const editButton = document.getElementById('edit-client-button');
-    const saveButton = document.getElementById('save-changes');
-    const cancelButton = document.getElementById('cancel');
-
-    const clientAccountInfo = document.getElementById('client-account-info');
-    const editClientAccountForm = document.getElementById('client-account-edit-form');
-
-    const nameDisplay = document.getElementById('client-name-display');
-    const emailDisplay = document.getElementById('client-email-display');
-    const phoneDisplay = document.getElementById('client-phone-display');
-    const passwordDisplay = document.getElementById('client-password-display');
-
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const phoneInput = document.getElementById('phone');
-    const passwordInput = document.getElementById('password');
-
-    if (editButton) {
-
-        editButton.addEventListener('click', () => {
-            clientAccountInfo.style.display = 'none';
-            editClientAccountForm.style.display = 'block';
-        });
-    }
-
-    if (saveButton) {
-        saveButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            nameDisplay.textContent = nameInput.value;
-            emailDisplay.textContent = emailInput.value;
-            phoneDisplay.textContent = phoneInput.value;
-            passwordDisplay.textContent = passwordInput.value;
-
-            editClientAccountForm.style.display = 'none';
-            clientAccountInfo.style.display = 'block';
-        });
-    }
-
-    if (cancelButton) {
-        cancelButton.addEventListener('click', () => {
-            editClientAccountForm.style.display = 'none';
-            clientAccountInfo.style.display = 'block';
-        });
-    }
-
-});
-
-
-
-// Client can cancel services
-document.addEventListener('DOMContentLoaded', () => {
-    const cancelServiceButton = document.querySelectorAll('.cancel-service-button');
-
-    if (cancelServiceButton) {
-        cancelServiceButton.forEach(button => {
-            button.addEventListener('click', () => {
-                alert('Service canceled');
-
-                const serviceRow = event.target.closest('tr');
-                if (serviceRow) {
-                    serviceRow.remove();
-                }
-            });
-        });
-    }
-})*/
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

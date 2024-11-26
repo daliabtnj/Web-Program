@@ -39,7 +39,7 @@ router.get('/service-bills', (req, res) => {
 });
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
-// Update request status
+// Update bills status
 router.put('/service-bills/:id', async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
