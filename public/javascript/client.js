@@ -1,3 +1,8 @@
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+//  Client Bills JavaScript 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 // Hardcoded predefined users
 var users = [
     {
@@ -243,79 +248,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-
-/*
-// Form Validation for customer-account information changes
-document.addEventListener('DOMContentLoaded', () => {
-    const editButton = document.getElementById('edit-client-button');
-    const saveButton = document.getElementById('save-changes');
-    const cancelButton = document.getElementById('cancel');
-
-    const clientAccountInfo = document.getElementById('client-account-info');
-    const editClientAccountForm = document.getElementById('client-account-edit-form');
-
-    const nameDisplay = document.getElementById('client-name-display');
-    const emailDisplay = document.getElementById('client-email-display');
-    const phoneDisplay = document.getElementById('client-phone-display');
-    const passwordDisplay = document.getElementById('client-password-display');
-
-    const nameInput = document.getElementById('name');
-    const emailInput = document.getElementById('email');
-    const phoneInput = document.getElementById('phone');
-    const passwordInput = document.getElementById('password');
-
-    if (editButton) {
-
-        editButton.addEventListener('click', () => {
-            clientAccountInfo.style.display = 'none';
-            editClientAccountForm.style.display = 'block';
-        });
-    }
-
-    if (saveButton) {
-        saveButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            nameDisplay.textContent = nameInput.value;
-            emailDisplay.textContent = emailInput.value;
-            phoneDisplay.textContent = phoneInput.value;
-            passwordDisplay.textContent = passwordInput.value;
-
-            editClientAccountForm.style.display = 'none';
-            clientAccountInfo.style.display = 'block';
-        });
-    }
-
-    if (cancelButton) {
-        cancelButton.addEventListener('click', () => {
-            editClientAccountForm.style.display = 'none';
-            clientAccountInfo.style.display = 'block';
-        });
-    }
-
-});
-
-
-
-// Client can cancel services
-document.addEventListener('DOMContentLoaded', () => {
-    const cancelServiceButton = document.querySelectorAll('.cancel-service-button');
-
-    if (cancelServiceButton) {
-        cancelServiceButton.forEach(button => {
-            button.addEventListener('click', () => {
-                alert('Service canceled');
-
-                const serviceRow = event.target.closest('tr');
-                if (serviceRow) {
-                    serviceRow.remove();
-                }
-            });
-        });
-    }
-})*/
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Fill the requests table using the database (for clients)
 async function fetchRequests() {
     try {
@@ -353,8 +288,8 @@ async function fetchRequests() {
     }
 }
 
-
-// Cancel requests and delete from database
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Cancel requests and delete from database (for clients) 
 async function cancelRequest(id) {
     try {
         const response = await fetch(`http://localhost:3000/api/delete-request/${id}`, {
@@ -367,17 +302,18 @@ async function cancelRequest(id) {
         }
 
         alert('Request deleted successfully!');
-        fetchRequests(); // Refresh the table
+        fetchRequests(); 
+
     } catch (error) {
         console.error('Error deleting request:', error.message);
         alert('Failed to delete the request. Please check the console for details.');
     }
 }
 
-
-// Initialize the page
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Update the page and load requests
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("Document loaded. Fetching requests...");
+    console.log("Loading Request");
     fetchRequests();
 });
 

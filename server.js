@@ -216,6 +216,168 @@ app.post('/signin-admin', (req, res) => {
     });
 });
 
+app.get("/signup", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "signup.html"));
+});
+
+app.get("/signin", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "signin.html"));
+});
+
+app.get("/signup-client", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "signup-client.html"));
+});
+
+app.get("/signin-client", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "signin-client.html"));
+});
+
+app.get("/signup-admin", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "signup-admin.html"));
+});
+
+app.get("/signin-admin", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "signin-admin.html"));
+});
+
+
+db.connect((err) => {
+    if (err) throw err;
+    console.log("Connected to the database");
+});
+
+// POST route for customer signup
+app.post('/signup-client', (req, res) => {
+    const { name, email, phone, password } = req.body;
+
+    // Input validation
+    if (!name || !email || !phone || !password) {
+        return res.status(400).json({ error: "All fields are required." });
+    }
+
+    // Check if email already exists
+    const checkQuery = "SELECT * FROM Clients WHERE email = ?";
+    db.query(checkQuery, [email], (err, results) => {
+        if (err) return res.status(500).json({ error: "Database error." });
+
+        if (results.length > 0) {
+            return res.status(409).json({ error: "Email already in use." });
+        }
+
+        // Insert the new client into the database
+        const insertQuery = "INSERT INTO Clients (name, email, phone, password) VALUES (?, ?, ?, ?)";
+        db.query(insertQuery, [name, email, phone, password], (err) => {
+            if (err) return res.status(500).json({ error: "Failed to create user." });
+
+            return res.status(201).json({ message: "Customer account created successfully." });
+        });
+    });
+});
+
+// POST route for admin sign-up
+app.post('/signup-admin', (req, res) => {
+    const { name, email, password } = req.body;
+
+    if (!name || !email || !password) {
+        return res.status(400).json({ error: "All fields are required." });
+    }
+
+    const checkQuery = "SELECT * FROM Admins WHERE email = ?";
+    db.query(checkQuery, [email], (err, results) => {
+        if (err) return res.status(500).json({ error: "Database error." });
+
+        if (results.length > 0) {
+            return res.status(409).json({ error: "Email already in use." });
+        }
+
+        const insertQuery = "INSERT INTO Admins (name, email, password) VALUES (?, ?, ?)";
+        db.query(insertQuery, [name, email, password], (err) => {
+            if (err) return res.status(500).json({ error: "Failed to create user." });
+
+            return res.status(201).json({ message: "Admin account created successfully." });
+        });
+    });
+});
+
+// POST route for client sign-in
+app.post('/signin-client', (req, res) => {
+    const { email, password } = req.body;
+    console.log("Received email:", email, "Received password:", password);
+
+    // Input validation
+    if (!email || !password) {
+        return res.status(400).json({ error: "All fields are required" });
+    }
+
+    // Query to find the user by email
+    const query = "SELECT * FROM Clients WHERE email = ?";
+    db.query(query, [email], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            return res.status(500).json({ error: "Database error." });
+        }
+
+        // Check if a user with the given email exists
+        if (results.length === 0) {
+            return res.status(404).json({ error: "User not found." });
+        }
+
+        const user = results[0];
+
+        // Validate password
+        if (user.password !== password) {
+            return res.status(401).json({ error: "Incorrect password." });
+        }
+
+        // Successful login
+        console.log("Sign-in successful for:", email);
+        return res.status(200).json({
+            message: "Sign-in successful.",
+            user: { id: user.id, name: user.name, email: user.email }
+        });
+    });
+});
+
+// POST route for admin sign-in
+app.post('/signin-admin', (req, res) => {
+    const { email, password } = req.body;
+    console.log("Received email:", email, "Received password:", password);
+
+    // Input validation
+    if (!email || !password) {
+        return res.status(400).json({ error: "All fields are required" });
+    }
+
+    // Query to find the admin by email
+    const query = "SELECT * FROM Admins WHERE email = ?";
+    db.query(query, [email], (err, results) => {
+        if (err) {
+            console.error("Database error:", err);
+            return res.status(500).json({ error: "Database error." });
+        }
+
+        // Check if an admin with the given email exists
+        if (results.length === 0) {
+            return res.status(404).json({ error: "User not found." });
+        }
+
+        const user = results[0];
+
+        // Validate password
+        if (user.password !== password) {
+            return res.status(401).json({ error: "Incorrect password." });
+        }
+
+        // Successful login
+        console.log("Sign-in successful for:", email);
+        return res.status(200).json({
+            message: "Sign-in successful.",
+            user: { id: user.id, name: user.name, email: user.email }
+        });
+    });
+});
+
+
 
 // Start the server
 app.listen(PORT, () => {
@@ -258,8 +420,15 @@ app.use("/api", clientSettingsRoutes);
 
 // Import the manage-requests router
 const manageRequestsRoutes = require('./Backend/manage-requests');
-
-// Use the manage-requests routes with a prefix (e.g., /api)
 app.use("/api", manageRequestsRoutes);
 
+<<<<<<< HEAD
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+=======
+// Import the manage-bills router
+const manageBillsRoutes = require('./Backend/manage-bills');
+app.use("/api", manageBillsRoutes);
+
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>>>>>>> b9d1a59c366150832f5b20ef99c3980f94000e89
