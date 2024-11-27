@@ -136,9 +136,11 @@ function signInAdmin() {
         email: email,
         password: password
     })
+
         .then((response) => {
             // Handle success
             console.log("Sign-in success:", response.data.message);
+            saveAdmin();
             window.location.href = 'admin-dashboard.html'; // Redirect to dashboard
         })
         .catch((error) => {
@@ -260,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Fill the requests table using the database (for clients)
+/*
 async function fetchRequests() {
 
     try {
@@ -297,10 +300,54 @@ async function fetchRequests() {
         console.error('Error fetching requests:', error);
     }
 }
+*/
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------
+// Fill the "My Requests" table for the client
+
+async function fetchClientRequests() {
+    const clientId = localStorage.getItem("client_id"); // Retrieve client_id from localStorage
+    if (!clientId) {
+        alert("Client ID is missing. Please sign in again.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/get-client-requests?client_id=${clientId}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch client requests.');
+        }
+        const data = await response.json();
+        const requests = data.requests; // Extract the requests array
+        const tableBody = document.getElementById('requests-table-body'); // Update this to match your "My Requests" table ID
+
+        tableBody.innerHTML = '';
+
+        
+            // Populate the "My Requests" table with the client's requests
+            requests.forEach(request => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${request.id}</td>
+                    <td>${request.service_id}</td>
+                    <td>${request.status}</td>
+                    <td>${new Date(request.date).toLocaleDateString()}</td>
+                    <td>
+                        <button class="cancel-service-button" onclick="cancelRequest(${request.id})">Cancel</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+    } catch (error) {
+        console.error('Error fetching client requests:', error);
+        alert('Failed to load your requests. Please try again.');
+    }
+}
 
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Cancel requests and delete from database (for clients) 
+
 async function cancelRequest(id) {
     try {
         const response = await fetch(`http://localhost:3000/api/delete-request/${id}`, {
@@ -313,7 +360,7 @@ async function cancelRequest(id) {
         }
 
         alert('Request deleted successfully!');
-        fetchRequests(); 
+        fetchClientRequests(); 
 
     } catch (error) {
         console.error('Error deleting request:', error.message);
@@ -323,9 +370,14 @@ async function cancelRequest(id) {
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Update the page and load requests
+/*
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Loading Request");
     fetchRequests();
 });
-
+*/
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+// Automatically load "My Requests" when the page loads
+document.addEventListener('DOMContentLoaded', fetchClientRequests);

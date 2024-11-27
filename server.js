@@ -205,6 +205,7 @@ app.post('/signin-admin', (req, res) => {
 
         // Check if an admin with the given email exists
         if (results.length === 0) {
+            console.log("Admin login failed: Invalid email or password.");
             return res.status(404).json({ error: "User not found." });
         }
 
@@ -304,6 +305,10 @@ app.post('/api/book-service', (req, res) => {
 
 app.get('/api/get-client-requests', (req, res) => {
     const client_id = req.query.client_id;
+
+    if (!clientId) {
+        return res.status(400).json({ error: "Client ID is required" });
+    }
 
     const query = `SELECT * FROM ServiceRequests WHERE client_id = ?`;
 
