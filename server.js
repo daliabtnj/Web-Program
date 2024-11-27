@@ -109,7 +109,12 @@ app.post('/signup-client', (req, res) => {
         db.query(insertQuery, [name, email, phone, password], (err) => {
             if (err) return res.status(500).json({ error: "Failed to create user." });
 
-            return res.status(201).json({ message: "Customer account created successfully." });
+            return res.status(201).json({ 
+                message: "Customer account created successfully.", 
+                user: { id: user.id, name: user.name, email: user.email },
+                client_id: user.id  // Send the client_id
+
+            });
         });
     });
 });
@@ -173,7 +178,9 @@ app.post('/signin-client', (req, res) => {
         console.log("Sign-in successful for:", email);
         return res.status(200).json({
             message: "Sign-in successful.",
-            user: { id: user.id, name: user.name, email: user.email }
+            user: { id: user.id, name: user.name, email: user.email },
+            client_id: user.id,  // Send the client_id
+
         });
     });
 });
@@ -268,3 +275,56 @@ app.use("/api", manageBillsRoutes);
 
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+// ServiceRequest for customers requesting a service
+app.post('/api/book-service', (req, res) => {
+    const { client_id, service_id, status, date } = req.body;
+
+    // Validate service_id
+    if (!Number.isInteger(service_id)) {
+        return res.status(400).json({ error: "Invalid service ID" });
+    }
+
+    // Validate date format (YYYY-MM-DD)
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(date)) {
+        return res.status(400).json({ error: "Invalid date format. Expected YYYY-MM-DD." });
+    }
+
+    const query = `INSERT INTO ServiceRequests (client_id, service_id, status, date) VALUES (?, ?, ?, ?)`;
+
+    db.query(query, [client_id, service_id, status, date], (err, result) => {
+        if (err) {
+            console.error("Error booking service:", err);
+            return res.status(500).json({ error: "Failed to book service" });
+        }
+        res.status(200).json({ message: "Service booked successfully", bookingId: result.insertId });
+    });
+});
+
+app.get('/api/get-client-requests', (req, res) => {
+    const client_id = req.query.client_id;
+
+    const query = `SELECT * FROM ServiceRequests WHERE client_id = ?`;
+
+    db.query(query, [client_id], (err, results) => {
+        if (err) {
+            console.error("Error fetching client requests:", err);
+            return res.status(500).json({ error: "Failed to fetch client requests" });
+        }
+        res.status(200).json({ requests: results });
+    });
+});
+
+app.get('/api/get-all-requests', (req, res) => {
+    const query = `SELECT * FROM ServiceRequests`;
+
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error("Error fetching all requests:", err);
+            return res.status(500).json({ error: "Failed to fetch all requests" });
+        }
+        res.status(200).json({ requests: results });
+    });
+});
+

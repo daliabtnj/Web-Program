@@ -43,6 +43,10 @@ function signUPCustomer() {
             // Handle success
             console.log(response.data.message);
             signUPCustomer();
+
+            // Store the client_id in localStorage
+            localStorage.setItem("client_id", response.data.client_id); // Save client_id
+
             window.location.href = 'customer-dashboard.html'; // Redirect to dashboard
         })
         .catch((error) => {
@@ -104,6 +108,10 @@ function signInCustomer() {
             // Handle success
             console.log("Sign-in success:", response.data.message);
             saveCustomer();
+
+            // Store the client_id in localStorage
+            localStorage.setItem("client_id", response.data.client_id); // Save client_id
+
             window.location.href = 'customer-dashboard.html'; // Redirect to dashboard
         })
         .catch((error) => {
@@ -253,7 +261,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Fill the requests table using the database (for clients)
 async function fetchRequests() {
+
     try {
+        const clientId = localStorage.getItem("client_id"); // Retrieve client_id from localStorage
         const response = await fetch('http://localhost:3000/api/service-requests');
         if (!response.ok) {
             throw new Error('Service Requests Unavailable');
@@ -265,7 +275,7 @@ async function fetchRequests() {
         tableBody.innerHTML = '';
 
         // Fill table with requested services from the database
-        requests.forEach(request => {
+        data.requests.forEach(request => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${request.id}</td>
@@ -287,6 +297,7 @@ async function fetchRequests() {
         console.error('Error fetching requests:', error);
     }
 }
+
 
 // --------------------------------------------------------------------------------------------------------------------------------------------------------
 // Cancel requests and delete from database (for clients) 
