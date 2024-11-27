@@ -340,7 +340,7 @@ async function fetchClientRequests() {
             });
     } catch (error) {
         console.error('Error fetching client requests:', error);
-        alert('Failed to load your requests. Please try again.');
+        // alert('Failed to load your requests. Please try again.');
     }
 }
 
