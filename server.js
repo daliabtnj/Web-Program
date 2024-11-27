@@ -304,7 +304,7 @@ app.post('/api/book-service', (req, res) => {
 });
 
 app.get('/api/get-client-requests', (req, res) => {
-    const client_id = req.query.client_id;
+    const clientId = req.query.client_id; // Get client_id from query params
 
     if (!clientId) {
         return res.status(400).json({ error: "Client ID is required" });
@@ -312,7 +312,7 @@ app.get('/api/get-client-requests', (req, res) => {
 
     const query = `SELECT * FROM ServiceRequests WHERE client_id = ?`;
 
-    db.query(query, [client_id], (err, results) => {
+    db.query(query, [clientId], (err, results) => {
         if (err) {
             console.error("Error fetching client requests:", err);
             return res.status(500).json({ error: "Failed to fetch client requests" });
