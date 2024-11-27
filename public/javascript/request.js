@@ -6,6 +6,7 @@
 // Fill the requests table using the database (for admins)
 async function fetchRequests() {
     try {
+        const clientId = localStorage.getItem("client_id"); // Retrieve client_id from localStorage
         const response = await fetch('http://localhost:3000/api/service-requests');
         if (!response.ok) {
             throw new Error('Service Requests Unavailable');
@@ -33,7 +34,7 @@ async function fetchRequests() {
                 <td>${request.date}</td>
                 <td>
                       <button 
-                        class="cancel-service-button" 
+                        class="cancel-service-buttonon" 
                         onclick="cancelRequest(${request.id})"
                         ${request.status !== 'booked' ? 'pending' : ''}>
                         Cancel
@@ -108,3 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("Loading Request");
     fetchRequests();
 });
+
+
+// --------------------------------------------------------------------------------------------------------------------------------------------------------

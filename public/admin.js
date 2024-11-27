@@ -202,6 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
+        
+
         // Clear any previous error message
         document.getElementById('error').innerText = "";
 
@@ -214,6 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Handle success
                 console.log(response.data.message);
                 alert("Sign-in successful!");
+                localStorage.setItem("client_id", response.data.client_id); // Save client_id
                 window.location.href = 'customer-dashboard.html'; // Redirect to dashboard
             })
             .catch((error) => {

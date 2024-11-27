@@ -55,7 +55,7 @@
                         <h3>${service.service_name}</h3>
                         <p>${service.description}</p>
                         <p><strong>Price:</strong> $${service.default_price}</p>
-                        <button type="button" onclick="bookService('${service.service_name}')">BOOK SERVICE</button>
+                        <button type="button" data-service-id="${service.id}" onclick="bookService(${service.id})">BOOK SERVICE</button>
                         <hr>
                     `;
                     container.appendChild(serviceBox);
@@ -74,6 +74,8 @@
     <!--This is used for the footer-->
     <script src="js/headers-footer.js"></script>
     <script src="js/confirmation-pop-ups.js"></script>
+    <script type="text/javascript" src="./javascript/client.js"></script>
+
 </body>
 
 </html>

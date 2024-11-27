@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2024 at 11:52 PM
+-- Generation Time: Nov 27, 2024 at 06:35 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -56,6 +56,17 @@ CREATE TABLE `Bills` (
   `STATUS` enum('unpaid','paid') DEFAULT 'unpaid',
   `DATE` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `Bills`
+--
+
+INSERT INTO `Bills` (`id`, `service_request_id`, `client_id`, `amount`, `STATUS`, `DATE`) VALUES
+(1234567, 345810351, 1, 40.00, 'unpaid', '2025-01-04'),
+(1234568, 345810352, 1, 200.00, 'paid', '2024-11-30'),
+(1234569, 345810353, 1, 50.00, 'paid', '2025-01-18'),
+(1234570, 345810354, 1, 35.00, 'unpaid', '2025-02-08'),
+(1234571, 345810355, 2, 175.00, 'unpaid', '2025-01-01');
 
 -- --------------------------------------------------------
 
@@ -205,7 +216,7 @@ ALTER TABLE `Admins`
 -- AUTO_INCREMENT for table `Bills`
 --
 ALTER TABLE `Bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234567;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234572;
 
 --
 -- AUTO_INCREMENT for table `Clients`
