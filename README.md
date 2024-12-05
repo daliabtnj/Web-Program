@@ -7,6 +7,8 @@ Here's the updated `README.md` with the backend implementation details included:
 ## Overview
 
 This project develops a full-stack web-based system for service companies, enabling clients to manage accounts and request services while allowing administrators to manage offerings and track service histories.
+<img width="1680" alt="Screenshot 2024-12-05 at 12 15 30 AM" src="https://github.com/user-attachments/assets/3a80731c-011f-4455-ab5e-38556c78417e">
+
 
 ## Team Members
 
